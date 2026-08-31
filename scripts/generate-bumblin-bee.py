@@ -365,12 +365,22 @@ export function definingTag(s: BumblinScent): string | null {
   for (const t of scentTags) {
     counts.set(t, bumblinScents.filter((x) => x.tags.includes(t)).length);
   }
-  const families = s.tags.filter(
-    (t) => t !== "best seller" && !(seasonTags as readonly string[]).includes(t),
-  );
-  const pool = families.length ? families : s.tags.filter((t) => t !== "best seller");
+  const pool = s.tags.filter((t) => t !== "best seller");
   if (!pool.length) return null;
-  return pool.sort((a, b) => (counts.get(a) ?? 0) - (counts.get(b) ?? 0))[0] ?? null;
+
+  // Rarest tag wins, because it groups most tightly. On a tie the season wins —
+  // seasonal intent is the clearer signal about what someone is shopping for.
+  return (
+    pool.sort((a, b) => {
+      const ca = counts.get(a) ?? 0;
+      const cb = counts.get(b) ?? 0;
+      if (ca !== cb) return ca - cb;
+      const sa = (seasonTags as readonly string[]).includes(a);
+      const sb = (seasonTags as readonly string[]).includes(b);
+      if (sa !== sb) return sa ? -1 : 1;
+      return a.localeCompare(b);
+    })[0] ?? null
+  );
 }
 
 /** Scents sharing a tag, most-sold first. */

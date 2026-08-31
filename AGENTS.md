@@ -313,6 +313,48 @@ Rendered HTML contains NUL bytes in the TanStack hydration payload, so `grep`
 treats page dumps as binary and silently reports nothing. Use `grep -a` or
 parse with Python when checking SSR output.
 
+## Recommendations & the session profile
+
+Two layers, deliberately separated:
+
+1. **`definingTag(scent)`** (in the generated `bumblin-bee.ts`) - the tag a page
+   is "about". A scent carrying exactly ONE season is unambiguously seasonal, so
+   that wins outright. Otherwise the rarest tag wins because it groups most
+   tightly - **and on a tie the season always wins**, since seasonal intent is
+   the clearer signal. 31 of 78 scents resolve to a season.
+2. **`src/lib/scent-affinity.ts`** - session profile. Every scent opened and
+   every filter chip pressed adds recency-decayed weight to its tags (an
+   explicit chip counts 2.5x a passive view). `dominantTag()` breaks ties the
+   SAME way as `definingTag` - season, then rarity - so the heading does not
+   flip between the server render and the personalised one.
+
+**`src/hooks/use-scent-profile.ts` is the single entry point.** Every page that
+suggests scents uses it; do not re-implement the orchestration inline. It
+renders the caller's `fallback` on the server AND on the first client paint
+(identical markup, so no hydration mismatch), then swaps in profile-driven picks
+once `signalStrength() >= minSignal` (default 3) and at least 2 candidates
+survive. Used by `/` (fallback: real Square top sellers) and `/shop/$slug`
+(fallback: `definingTag` group).
+
+Storage is **sessionStorage only** - per tab, never sent anywhere, gone when the
+tab closes. Every access is try/caught, so a private window simply never
+personalises rather than erroring.
+
+Scoring divides by `sqrt(tagCount)` so a scent tagged with everything cannot win
+by breadth alone; ties break on real Square units sold.
+
+## Best sellers come from Square, not Shopify
+
+`topSellers()` ranks on `unitsSold`, aggregated in the generator from COMPLETED
+Square orders over the last 365 days (4,348 orders). **Do not use Shopify's
+"best seller" tag** - 27 scents carry it but only 14 are in the real top 20, and
+6 genuine top sellers are untagged (Witching Hour is #3, Iced Pine #9).
+Frosty Night alone is 285 units / $5,122, ~14% of all units.
+
+Square's `SearchOrders` REQUIRES a `state_filter` of closed states when sorting
+on `CLOSED_AT`; omitting it returns a 400 that looks like a permissions error
+but is not.
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

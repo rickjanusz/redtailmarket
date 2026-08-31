@@ -799,7 +799,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Cabin in the Woods",
     "handle": "cabin-in-the-woods",
-    "unitsSold": 53,
+    "unitsSold": 52,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -818,7 +818,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "A5R6LVJKTOM4HZCVU44JD3GM",
         "sku": "L287601",
-        "unitsSold": 13,
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_cabin_in_the_woods.jpg?v=1778004453"
         ]
@@ -2866,7 +2866,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Haunting",
     "handle": "haunting",
-    "unitsSold": 29,
+    "unitsSold": 28,
     "tags": [
       "Earthy",
       "fall",
@@ -2881,7 +2881,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "N2YW4GASIBHVKJEZWLI3RM2X",
         "sku": "1521587",
-        "unitsSold": 13,
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_haunting.jpg?v=1778004413"
         ]
@@ -3329,7 +3329,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Jack O'Lantern",
     "handle": "jack-o-lantern",
-    "unitsSold": 67,
+    "unitsSold": 66,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3346,7 +3346,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "IVJ2YCD7NLXGBOPS6BYAINIY",
         "sku": "7897641",
-        "unitsSold": 25,
+        "unitsSold": 24,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_jack_o_lantern.jpg?v=1778004453"
         ]
@@ -4503,7 +4503,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Sand & Sea",
     "handle": "sand-and-sea",
-    "unitsSold": 24,
+    "unitsSold": 23,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -4542,7 +4542,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "VNFEBZXT7JFY4YLUFEOVFX4N",
         "sku": "5435674",
-        "unitsSold": 3,
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_sand_sea.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_sand_sea_seaside.jpg?v=1778004487"
@@ -5445,12 +5445,22 @@ export function definingTag(s: BumblinScent): string | null {
   for (const t of scentTags) {
     counts.set(t, bumblinScents.filter((x) => x.tags.includes(t)).length);
   }
-  const families = s.tags.filter(
-    (t) => t !== "best seller" && !(seasonTags as readonly string[]).includes(t),
-  );
-  const pool = families.length ? families : s.tags.filter((t) => t !== "best seller");
+  const pool = s.tags.filter((t) => t !== "best seller");
   if (!pool.length) return null;
-  return pool.sort((a, b) => (counts.get(a) ?? 0) - (counts.get(b) ?? 0))[0] ?? null;
+
+  // Rarest tag wins, because it groups most tightly. On a tie the season wins —
+  // seasonal intent is the clearer signal about what someone is shopping for.
+  return (
+    pool.sort((a, b) => {
+      const ca = counts.get(a) ?? 0;
+      const cb = counts.get(b) ?? 0;
+      if (ca !== cb) return ca - cb;
+      const sa = (seasonTags as readonly string[]).includes(a);
+      const sb = (seasonTags as readonly string[]).includes(b);
+      if (sa !== sb) return sa ? -1 : 1;
+      return a.localeCompare(b);
+    })[0] ?? null
+  );
 }
 
 /** Scents sharing a tag, most-sold first. */

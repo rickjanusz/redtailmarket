@@ -2,6 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Hammer, MapPin, Recycle, Sparkles } from "lucide-react";
 
 import heroImage from "@/assets/hero-market.jpg";
+import { useScentProfile } from "@/hooks/use-scent-profile";
 import { topSellers } from "@/lib/bumblin-bee";
 import { makers } from "@/lib/placeholder-data";
 import makersImage from "@/assets/makers.jpg";
@@ -59,11 +60,16 @@ const categories = [
   { name: "Pottery", note: "Wheel-thrown stoneware" },
 ];
 
-// Ranked by real Square sales over the last 365 days, not Shopify's
-// "best seller" tag — only 14 of the 27 tagged scents are truly top sellers.
-const featuredScents = topSellers(4);
-
 function Index() {
+  // Ranked by real Square sales over the last 365 days, not Shopify's "best
+  // seller" tag — only 14 of the 27 tagged scents are truly top sellers. A
+  // returning shopper with session history sees their own profile instead.
+  const {
+    scents: featuredScents,
+    tagLabel,
+    personalised,
+  } = useScentProfile({ fallback: topSellers(4) });
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -179,9 +185,11 @@ function Index() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-[0.7rem] uppercase tracking-[0.32em] text-accent">
-                Hand-poured by Bumblin Bee
+                {personalised ? "Picked for you" : "Hand-poured by Bumblin Bee"}
               </p>
-              <h2 className="mt-3 text-4xl text-foreground sm:text-5xl">Best-selling scents</h2>
+              <h2 className="mt-3 text-4xl text-foreground sm:text-5xl">
+                {personalised ? `More ${tagLabel} scents` : "Best-selling scents"}
+              </h2>
             </div>
             <Link
               to="/shop"

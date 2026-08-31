@@ -6,6 +6,7 @@ import { PlaceholderImage } from "@/components/site/PlaceholderImage";
 import { ScentCard } from "@/components/site/ScentCard";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { useScentProfile } from "@/hooks/use-scent-profile";
 import { definingTag, img, scentBySlug, scentsByTag } from "@/lib/bumblin-bee";
 
 export const Route = createFileRoute("/shop/$slug")({
@@ -44,11 +45,19 @@ function ScentDetail() {
   const gallery = active?.images ?? [];
   const hero = gallery[Math.min(shot, Math.max(gallery.length - 1, 0))];
 
-  // Follow the shopper's intent: more of the thing they are already looking at,
-  // using the scent's most distinctive tag rather than any shared one.
-  const tag = definingTag(scent);
-  const related = tag ? scentsByTag(tag, scent.handle, 4) : [];
-  const tagLabel = tag ? tag.charAt(0).toUpperCase() + tag.slice(1) : "";
+  // Baseline (also what the server renders): more of what this page is about.
+  const baseTag = definingTag(scent);
+  const {
+    scents: related,
+    tag,
+    tagLabel,
+    personalised,
+  } = useScentProfile({
+    view: scent.handle,
+    exclude: scent.handle,
+    fallback: baseTag ? scentsByTag(baseTag, scent.handle, 4) : [],
+    fallbackTag: baseTag,
+  });
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -200,7 +209,7 @@ function ScentDetail() {
               <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <p className="text-[0.7rem] uppercase tracking-[0.32em] text-accent">
-                    Keep exploring
+                    {personalised ? "Based on what you've browsed" : "Keep exploring"}
                   </p>
                   <h2 className="mt-3 text-3xl text-foreground sm:text-4xl">
                     More {tagLabel} scents

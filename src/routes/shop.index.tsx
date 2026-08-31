@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 
 import { PageShell } from "@/components/site/PageShell";
+import { recordTag } from "@/lib/scent-affinity";
 import { ScentCard } from "@/components/site/ScentCard";
 import {
   bumblinScents,
@@ -143,7 +144,11 @@ function Shop() {
             <button
               key={t}
               type="button"
-              onClick={() => setTag(t === tag ? null : t)}
+              onClick={() => {
+                const next = t === tag ? null : t;
+                setTag(next);
+                if (next) recordTag(next);
+              }}
               className={`border px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] transition-colors ${
                 t === tag
                   ? "border-accent text-accent"

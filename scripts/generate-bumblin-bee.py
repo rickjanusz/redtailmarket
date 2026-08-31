@@ -259,6 +259,21 @@ export function img(url: string, width: number): string {
 
 export const bumblinScents: BumblinScent[] = ''' + json.dumps(out, indent=2, ensure_ascii=False) + ''';
 
+/** Sizes in ascending order, for filter controls. */
+export const sizeOptions: { key: BumblinSizeKey; label: string; short: string }[] = [
+  { key: "melt3oz", label: "3oz Wax Melt", short: "3oz Melts" },
+  { key: "oz4", label: "4oz Mason Jar Candle", short: "4oz" },
+  { key: "oz7", label: "7oz Mason Jar Candle", short: "7oz" },
+  { key: "oz14", label: "14oz Mason Jar Candle", short: "14oz" },
+  { key: "oz48", label: "48oz Triple Wick Candle", short: "48oz" },
+];
+
+/** Is this size actually carried in Square (i.e. really stocked)? */
+export function carriesSize(s: BumblinScent, key: BumblinSizeKey): boolean {
+  const row = s.sizes.find((v) => v.size === key);
+  return Boolean(row && row.squareVariationId);
+}
+
 export const scentTags: string[] = Array.from(
   new Set(bumblinScents.flatMap((s) => s.tags)),
 ).sort();

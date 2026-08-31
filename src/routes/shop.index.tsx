@@ -3,7 +3,13 @@ import { useMemo, useState } from "react";
 
 import { PageShell } from "@/components/site/PageShell";
 import { ScentCard } from "@/components/site/ScentCard";
-import { bumblinScents, scentTags } from "@/lib/bumblin-bee";
+import {
+  bumblinScents,
+  carriesSize,
+  scentTags,
+  sizeOptions,
+  type BumblinSizeKey,
+} from "@/lib/bumblin-bee";
 
 export const Route = createFileRoute("/shop/")({
   head: () => ({
@@ -38,6 +44,7 @@ function minPrice(prices: string[]) {
 
 function Shop() {
   const [tag, setTag] = useState<string | null>(null);
+  const [size, setSize] = useState<BumblinSizeKey | null>(null);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("az");
 
@@ -45,6 +52,9 @@ function Shop() {
     const q = query.trim().toLowerCase();
     const list = bumblinScents.filter((s) => {
       if (tag && !s.tags.includes(tag)) return false;
+      // Every scent is offered in all five sizes on Shopify, so filter on what
+      // Square actually carries — that is the honest "do you stock this" answer.
+      if (size && !carriesSize(s, size)) return false;
       if (!q) return true;
       return (
         s.scent.toLowerCase().includes(q) ||
@@ -57,12 +67,16 @@ function Shop() {
     sorted.sort((a, b) => {
       if (sort === "az") return a.scent.localeCompare(b.scent);
       if (sort === "za") return b.scent.localeCompare(a.scent);
-      const pa = minPrice(a.sizes.map((s) => s.price));
-      const pb = minPrice(b.sizes.map((s) => s.price));
+      const pick = (x: (typeof list)[number]) =>
+        size
+          ? [x.sizes.find((v) => v.size === size)?.price ?? ""]
+          : x.sizes.map((v) => v.price);
+      const pa = minPrice(pick(a));
+      const pb = minPrice(pick(b));
       return sort === "low" ? pa - pb : pb - pa;
     });
     return sorted;
-  }, [tag, query, sort]);
+  }, [tag, size, query, sort]);
 
   return (
     <PageShell
@@ -72,6 +86,42 @@ function Shop() {
     >
       {/* Filters */}
       <div className="mt-10 flex flex-col gap-5 border-y border-border py-5">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground/70">
+            Size
+          </span>
+          <button
+            type="button"
+            onClick={() => setSize(null)}
+            className={`border px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] transition-colors ${
+              size === null
+                ? "border-accent text-accent"
+                : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+            }`}
+          >
+            All sizes
+          </button>
+          {sizeOptions.map((o) => {
+            const n = bumblinScents.filter((s) => carriesSize(s, o.key)).length;
+            return (
+              <button
+                key={o.key}
+                type="button"
+                onClick={() => setSize(o.key === size ? null : o.key)}
+                title={`${n} scents in ${o.label}`}
+                className={`border px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] transition-colors ${
+                  o.key === size
+                    ? "border-accent text-accent"
+                    : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+                }`}
+              >
+                {o.short}
+                <span className="ml-2 opacity-50">{n}</span>
+              </button>
+            );
+          })}
+        </div>
+
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
@@ -130,7 +180,7 @@ function Shop() {
       {results.length ? (
         <div className="mt-px grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
           {results.map((scent) => (
-            <ScentCard key={scent.handle} scent={scent} />
+            <ScentCard key={scent.handle} scent={scent} sizeKey={size} />
           ))}
         </div>
       ) : (

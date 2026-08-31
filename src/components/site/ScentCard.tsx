@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import { PlaceholderImage } from "@/components/site/PlaceholderImage";
-import { img, type BumblinScent } from "@/lib/bumblin-bee";
+import { img, type BumblinScent, type BumblinSizeKey } from "@/lib/bumblin-bee";
 
 function priceFrom(scent: BumblinScent) {
   const prices = scent.sizes
@@ -10,8 +10,21 @@ function priceFrom(scent: BumblinScent) {
   return prices.length ? Math.min(...prices) : null;
 }
 
-export function ScentCard({ scent }: { scent: BumblinScent }) {
-  const hero = scent.sizes.find((s) => s.images.length > 0)?.images[0];
+export function ScentCard({
+  scent,
+  sizeKey = null,
+}: {
+  scent: BumblinScent;
+  /** When set, the card shows this size's price and photo instead of "From $x". */
+  sizeKey?: BumblinSizeKey | null;
+}) {
+  const picked = sizeKey ? scent.sizes.find((s) => s.size === sizeKey) : undefined;
+
+  // Prefer the chosen size's own photo; fall back to any photo we have.
+  const fallback = scent.sizes.find((s) => s.images.length > 0);
+  const usingFallback = Boolean(picked && picked.images.length === 0 && fallback);
+  const hero = picked?.images[0] ?? fallback?.images[0];
+
   const from = priceFrom(scent);
 
   return (
@@ -23,7 +36,7 @@ export function ScentCard({ scent }: { scent: BumblinScent }) {
       {hero ? (
         <img
           src={img(hero, 800)}
-          alt={`Bumblin Bee ${scent.scent} hand-poured soy candle`}
+          alt={`Bumblin Bee ${scent.scent}${picked ? ` ${picked.label}` : ""} hand-poured soy candle`}
           width={800}
           height={800}
           loading="lazy"
@@ -35,7 +48,7 @@ export function ScentCard({ scent }: { scent: BumblinScent }) {
 
       <div className="flex flex-1 flex-col">
         <p className="text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground">
-          Bumblin Bee
+          {picked ? picked.label : "Bumblin Bee"}
         </p>
         <h3 className="mt-2 font-display text-xl text-foreground transition-colors group-hover:text-accent">
           {scent.scent}
@@ -45,9 +58,20 @@ export function ScentCard({ scent }: { scent: BumblinScent }) {
             {scent.notes}
           </p>
         ) : null}
+
         <p className="mt-3 text-sm text-accent">
-          {from !== null ? `From $${from.toFixed(2)}` : "—"}
+          {picked
+            ? `$${Number.parseFloat(picked.price).toFixed(2)}`
+            : from !== null
+              ? `From $${from.toFixed(2)}`
+              : "—"}
         </p>
+
+        {usingFallback ? (
+          <p className="mt-1 text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground/70">
+            Photo shows another size
+          </p>
+        ) : null}
       </div>
     </Link>
   );

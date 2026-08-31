@@ -28,6 +28,12 @@ export type BumblinScent = {
   tags: string[];
   /** Scent-note line, e.g. "Lavender, Violet, Cardamom, Powder & Wood". */
   notes: string;
+  /**
+   * Individual fragrance notes parsed from the note line and description.
+   * Far more discriminating than the six broad tags: sharing "lily of the
+   * valley" (3 scents) means much more than sharing "vanilla" (18).
+   */
+  noteList: string[];
   description: string;
   /** Units sold in Square over the last 365 days, summed across sizes. */
   unitsSold: number;
@@ -112,6 +118,16 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_absinthe_santal2.jpg?v=1753879952"
         ]
       }
+    ],
+    "noteList": [
+      "amber",
+      "blackberry",
+      "cedar",
+      "coconut",
+      "dark musk",
+      "eucalyptus",
+      "musk",
+      "sandalwood"
     ]
   },
   {
@@ -184,6 +200,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "apple",
+      "apples",
+      "bourbon",
+      "butter",
+      "cinnamon",
+      "coconut",
+      "maple",
+      "maple bourbon",
+      "orange",
+      "vanilla"
     ]
   },
   {
@@ -253,6 +281,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "cinnamon",
+      "dark musk",
+      "leather",
+      "musk",
+      "patchouli",
+      "sandalwood",
+      "vanilla",
+      "vetiver"
     ]
   },
   {
@@ -324,6 +363,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "agave",
+      "aloe",
+      "amber",
+      "bamboo",
+      "chrysanthemum",
+      "green leaves",
+      "lime",
+      "moss",
+      "patchouli"
     ]
   },
   {
@@ -397,6 +447,16 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "grapefruit",
+      "lavender",
+      "oakmoss",
+      "orange",
+      "oud",
+      "sage",
+      "tonka"
     ]
   },
   {
@@ -474,6 +534,15 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_1_Image_0010.jpg?v=1778002816"
         ]
       }
+    ],
+    "noteList": [
+      "amber",
+      "apple",
+      "blackberry",
+      "honey",
+      "patchouli",
+      "saffron",
+      "vanilla"
     ]
   },
   {
@@ -537,6 +606,20 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "fig",
+      "fresh firewood",
+      "molasses",
+      "pine",
+      "pine sprig",
+      "redwood",
+      "sea salt",
+      "sugar",
+      "tonka",
+      "vanilla",
+      "vanilla bean"
     ]
   },
   {
@@ -608,6 +691,18 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_blacktie2_b2c2d9d3-ec3f-40bb-9078-6b0c1e131b3a.jpg?v=1778004541"
         ]
       }
+    ],
+    "noteList": [
+      "amber",
+      "bourbon",
+      "buttercream",
+      "cardamom",
+      "citrus",
+      "palo santo",
+      "sugar",
+      "vanilla",
+      "violet",
+      "wood"
     ]
   },
   {
@@ -677,6 +772,15 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "bergamot",
+      "leather",
+      "raspberry",
+      "rose",
+      "saffron",
+      "vetiver",
+      "violet"
     ]
   },
   {
@@ -748,6 +852,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "apple",
+      "berries",
+      "butter",
+      "cedar",
+      "citrus",
+      "cypress",
+      "eucalyptus",
+      "pine",
+      "vanilla"
     ]
   },
   {
@@ -811,6 +926,20 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 3,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "camphor",
+      "cedar",
+      "clove",
+      "dark musk",
+      "marine",
+      "musk",
+      "patchouli",
+      "peppermint",
+      "saffron",
+      "sandalwood",
+      "smoke"
     ]
   },
   {
@@ -883,6 +1012,14 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 4,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "jasmine",
+      "leather",
+      "patchouli",
+      "pine",
+      "wood"
     ]
   },
   {
@@ -952,6 +1089,16 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "balsam",
+      "cinnamon",
+      "light musk",
+      "musk",
+      "pine",
+      "raspberry",
+      "sugar",
+      "vanilla"
     ]
   },
   {
@@ -1016,6 +1163,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "cedar",
+      "cedar leaf",
+      "linen",
+      "mahogany",
+      "musk",
+      "sandalwood",
+      "tonka",
+      "tonka bean",
+      "vanilla"
     ]
   },
   {
@@ -1087,6 +1246,19 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "cinnamon",
+      "clove",
+      "eucalyptus",
+      "fir",
+      "ginger",
+      "hot cinnamon",
+      "orange",
+      "orange peel",
+      "pine",
+      "sugar",
+      "wood"
     ]
   },
   {
@@ -1160,6 +1332,22 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_citrus_sage2.jpg?v=1778004542"
         ]
       }
+    ],
+    "noteList": [
+      "cedar",
+      "citrus",
+      "eucalyptus",
+      "grapefruit",
+      "green leaves",
+      "lemon",
+      "lemon peel",
+      "mandarin",
+      "orange",
+      "orange peel",
+      "pine",
+      "rosemary",
+      "sage",
+      "vetiver"
     ]
   },
   {
@@ -1232,12 +1420,26 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozClementine_205d897e-b85f-492d-84ac-478063813129.jpg?v=1778002844"
         ]
       }
+    ],
+    "noteList": [
+      "agave",
+      "citrus",
+      "clementine",
+      "grapefruit",
+      "lemon",
+      "lemon peel",
+      "lime",
+      "mandarin",
+      "orange",
+      "orange peel",
+      "peach",
+      "sugar"
     ]
   },
   {
     "scent": "Coal Fire Farm",
     "handle": "coal-fire-farm",
-    "unitsSold": 13,
+    "unitsSold": 12,
     "peakSeason": "fall",
     "tags": [
       "Citrus / Berry",
@@ -1255,7 +1457,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "IYK6ELZWFVBEYZB4XHEQNT3S",
         "sku": "4273853",
-        "unitsSold": 6,
+        "unitsSold": 5,
         "images": []
       },
       {
@@ -1296,6 +1498,23 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "butter",
+      "buttercream",
+      "cinnamon",
+      "cinnamon sugar buttercream",
+      "citrus",
+      "clove",
+      "cream",
+      "ginger",
+      "honey",
+      "jasmine",
+      "pie crust",
+      "pumpkin",
+      "sugar",
+      "warm spices",
+      "white tea"
     ]
   },
   {
@@ -1370,6 +1589,12 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_2_Image_0012.jpg?v=1778002849"
         ]
       }
+    ],
+    "noteList": [
+      "coffee",
+      "cream",
+      "fresh coffee",
+      "sugar"
     ]
   },
   {
@@ -1439,6 +1664,16 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "butter",
+      "cinnamon",
+      "clove",
+      "ginger",
+      "honey",
+      "spice",
+      "sugar",
+      "vanilla"
     ]
   },
   {
@@ -1509,6 +1744,22 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "berries",
+      "camphor",
+      "cedar",
+      "cedar leaf",
+      "citrus",
+      "coriander",
+      "eucalyptus",
+      "evergreen",
+      "fir",
+      "juniper",
+      "musk",
+      "ozone",
+      "pine",
+      "sandalwood"
     ]
   },
   {
@@ -1583,6 +1834,21 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_crewhouse2.jpg?v=1778004542"
         ]
       }
+    ],
+    "noteList": [
+      "aloe",
+      "cedar",
+      "citrus",
+      "eucalyptus",
+      "lavender",
+      "leather",
+      "marine",
+      "oak",
+      "patchouli",
+      "sea salt",
+      "vanilla",
+      "whiskey",
+      "white eucalyptus"
     ]
   },
   {
@@ -1654,6 +1920,15 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "aloe",
+      "bamboo",
+      "cucumber",
+      "honeydew",
+      "lime",
+      "ozone",
+      "powder"
     ]
   },
   {
@@ -1723,6 +1998,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "bergamot",
+      "cashmere",
+      "incense",
+      "lavender",
+      "leather",
+      "musk",
+      "powder",
+      "saffron"
     ]
   },
   {
@@ -1794,6 +2080,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 3,
         "images": []
       }
+    ],
+    "noteList": [
+      "cinnamon",
+      "clove",
+      "eucalyptus",
+      "fir",
+      "ginger",
+      "orange",
+      "orange peel",
+      "pine",
+      "sugar",
+      "wood"
     ]
   },
   {
@@ -1865,6 +2163,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "aloe",
+      "bamboo",
+      "cedar",
+      "citrus",
+      "eucalyptus",
+      "palo santo",
+      "rosemary",
+      "sage",
+      "sandalwood"
     ]
   },
   {
@@ -1928,6 +2237,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "cedar",
+      "eucalyptus",
+      "fire",
+      "incense",
+      "patchouli",
+      "peppermint",
+      "sandalwood",
+      "smoke",
+      "vanilla"
     ]
   },
   {
@@ -1998,6 +2319,21 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_dressedinwhite2.jpg?v=1778004541"
         ]
       }
+    ],
+    "noteList": [
+      "aloe",
+      "amber",
+      "bergamot",
+      "camphor",
+      "cedar",
+      "leather",
+      "oak",
+      "patchouli",
+      "smoke",
+      "vanilla",
+      "whiskey",
+      "white cedar",
+      "white oak"
     ]
   },
   {
@@ -2071,6 +2407,21 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "citrus",
+      "cotton blossom",
+      "jasmine",
+      "lemon",
+      "light musk",
+      "linen",
+      "musk",
+      "ozone",
+      "powder",
+      "sandalwood",
+      "sea salt",
+      "violet"
     ]
   },
   {
@@ -2143,6 +2494,20 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amyris",
+      "cedar",
+      "citrus",
+      "coriander",
+      "dark musk",
+      "jasmine",
+      "light musk",
+      "musk",
+      "ozone",
+      "sandalwood",
+      "sea salt",
+      "violet"
     ]
   },
   {
@@ -2212,6 +2577,15 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "fresh firewood",
+      "pine",
+      "redwood",
+      "tonka",
+      "tonka bean",
+      "vanilla"
     ]
   },
   {
@@ -2282,6 +2656,18 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_eucalyptus_jade2.jpg?v=1778004542"
         ]
       }
+    ],
+    "noteList": [
+      "agave",
+      "aloe",
+      "amber",
+      "cedar",
+      "eucalyptus",
+      "green leaves",
+      "ozone",
+      "patchouli",
+      "peppermint",
+      "sandalwood"
     ]
   },
   {
@@ -2346,6 +2732,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "camphor",
+      "cedar",
+      "cherry blossom",
+      "citrus",
+      "juniper",
+      "ozone",
+      "pine",
+      "rosemary",
+      "sage"
     ]
   },
   {
@@ -2420,6 +2817,17 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_4_Image_0007.jpg?v=1778002880"
         ]
       }
+    ],
+    "noteList": [
+      "baked treats",
+      "butter",
+      "buttercream",
+      "cake",
+      "caramel",
+      "maple",
+      "maple syrup",
+      "orange",
+      "orange peel"
     ]
   },
   {
@@ -2481,6 +2889,16 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "cinnamon",
+      "clove",
+      "fig",
+      "ginger",
+      "molasses",
+      "ozone",
+      "sugar",
+      "wood"
     ]
   },
   {
@@ -2552,6 +2970,24 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "bergamot",
+      "cedar",
+      "clove",
+      "dark musk",
+      "fire",
+      "lemon",
+      "lemon peel",
+      "lily of the valley",
+      "musk",
+      "ozone",
+      "rose",
+      "saffron",
+      "sandalwood",
+      "smoke",
+      "vetiver"
     ]
   },
   {
@@ -2623,6 +3059,21 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "bergamot",
+      "cedar",
+      "citrus",
+      "dark musk",
+      "jasmine",
+      "lavender",
+      "leather",
+      "light musk",
+      "musk",
+      "ozone",
+      "patchouli",
+      "powder"
     ]
   },
   {
@@ -2699,6 +3150,12 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/frostynight.jpg?v=1778002888"
         ]
       }
+    ],
+    "noteList": [
+      "balsam",
+      "citrus",
+      "fir",
+      "fire"
     ]
   },
   {
@@ -2770,6 +3227,20 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozHallowed-Camera2.png?v=1778008225"
         ]
       }
+    ],
+    "noteList": [
+      "cinnamon",
+      "cinnamon bark",
+      "clove",
+      "fire",
+      "hint of fire",
+      "linen",
+      "saffron",
+      "sandalwood",
+      "smoke",
+      "vanilla",
+      "vanilla bean",
+      "wood"
     ]
   },
   {
@@ -2838,6 +3309,14 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cinnamon",
+      "clove",
+      "ginger",
+      "gingerbread",
+      "molasses",
+      "sugar"
     ]
   },
   {
@@ -2908,6 +3387,20 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "apple",
+      "apples",
+      "berries",
+      "cedar",
+      "chrysanthemum",
+      "cinnamon",
+      "citrus",
+      "green leaves",
+      "patchouli",
+      "sandalwood",
+      "vanilla",
+      "vetiver"
     ]
   },
   {
@@ -2979,6 +3472,17 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_haunting3.jpg?v=1778004541"
         ]
       }
+    ],
+    "noteList": [
+      "cedar",
+      "coconut",
+      "leather",
+      "mahogany",
+      "musk",
+      "patchouli",
+      "smoke",
+      "teak-wood",
+      "wood"
     ]
   },
   {
@@ -3048,6 +3552,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "cinnamon",
+      "clove",
+      "fire",
+      "patchouli",
+      "pine",
+      "pumpkin",
+      "vanilla",
+      "white pumpkin"
     ]
   },
   {
@@ -3118,6 +3633,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "balsam",
+      "bergamot",
+      "cedar",
+      "citrus",
+      "eucalyptus",
+      "lavender",
+      "oud",
+      "powder",
+      "tonka",
+      "tonka bean"
     ]
   },
   {
@@ -3179,6 +3706,13 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "cake",
+      "cinnamon",
+      "cranberry",
+      "orange",
+      "white cake"
     ]
   },
   {
@@ -3249,6 +3783,21 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "bamboo",
+      "camphor",
+      "cedar",
+      "cinnamon",
+      "clove",
+      "dark musk",
+      "lavender",
+      "musk",
+      "ozone",
+      "pineapple",
+      "vanilla",
+      "vetiver"
     ]
   },
   {
@@ -3312,6 +3861,19 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "balsam",
+      "cedar",
+      "cypress",
+      "evergreen",
+      "fir",
+      "jasmine",
+      "lemon",
+      "lemon peel",
+      "linen",
+      "moss",
+      "vanilla"
     ]
   },
   {
@@ -3378,6 +3940,14 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "fire",
+      "incense",
+      "lavender",
+      "saffron",
+      "sandalwood"
     ]
   },
   {
@@ -3445,6 +4015,14 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "butter",
+      "caramel",
+      "maple",
+      "orange",
+      "orange peel",
+      "pumpkin"
     ]
   },
   {
@@ -3516,6 +4094,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "bergamot",
+      "cardamom",
+      "cedar",
+      "citrus",
+      "eucalyptus",
+      "lavender",
+      "powder",
+      "spice",
+      "violet",
+      "wood"
     ]
   },
   {
@@ -3587,6 +4177,21 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "bergamot",
+      "citrus",
+      "coffee",
+      "ginger",
+      "jasmine",
+      "lemon",
+      "lemon peel",
+      "lemon verbena",
+      "light musk",
+      "mandarin",
+      "musk",
+      "sugar",
+      "white tea"
     ]
   },
   {
@@ -3650,6 +4255,14 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "amyris",
+      "green leaves",
+      "honeysuckle",
+      "lilac",
+      "lily of the valley",
+      "powder"
     ]
   },
   {
@@ -3721,6 +4334,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "cherry blossom",
+      "citrus",
+      "green leaves",
+      "lemon",
+      "lemon peel",
+      "lemon verbena",
+      "light musk",
+      "musk",
+      "ozone",
+      "wood"
     ]
   },
   {
@@ -3794,6 +4419,20 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "citrus",
+      "coconut",
+      "green leaves",
+      "lemon",
+      "lemon verbena",
+      "lily of the valley",
+      "lime",
+      "mandarin",
+      "ozone",
+      "rose",
+      "sandalwood",
+      "wood"
     ]
   },
   {
@@ -3862,6 +4501,15 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cherry blossom",
+      "magnolia",
+      "ozone",
+      "rose",
+      "sandalwood",
+      "tonka",
+      "tonka bean"
     ]
   },
   {
@@ -3936,6 +4584,13 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 4,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "citrus",
+      "mango",
+      "orange",
+      "pine"
     ]
   },
   {
@@ -4006,6 +4661,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 2,
         "images": []
       }
+    ],
+    "noteList": [
+      "camphor",
+      "cedar",
+      "clove",
+      "eucalyptus",
+      "fir",
+      "mistletoe",
+      "patchouli",
+      "pine",
+      "wood"
     ]
   },
   {
@@ -4070,6 +4736,18 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "bourbon",
+      "cedar",
+      "citrus",
+      "juniper",
+      "light musk",
+      "moss",
+      "musk",
+      "ozone",
+      "pine",
+      "vanilla"
     ]
   },
   {
@@ -4143,6 +4821,15 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "bergamot",
+      "champagne",
+      "dark musk",
+      "musk",
+      "patchouli",
+      "peach"
     ]
   },
   {
@@ -4220,6 +4907,17 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/oak_moss.jpg?v=1778002942"
         ]
       }
+    ],
+    "noteList": [
+      "aloe",
+      "bourbon",
+      "cedar",
+      "lavender",
+      "marine",
+      "moss",
+      "oak",
+      "pineapple",
+      "vanilla"
     ]
   },
   {
@@ -4286,6 +4984,14 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cardamom",
+      "clove",
+      "palo santo",
+      "patchouli",
+      "sandalwood",
+      "wood"
     ]
   },
   {
@@ -4360,6 +5066,14 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0009.jpg?v=1778002946"
         ]
       }
+    ],
+    "noteList": [
+      "buttercream",
+      "cake",
+      "clove",
+      "eucalyptus",
+      "peppermint",
+      "vanilla"
     ]
   },
   {
@@ -4423,6 +5137,14 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "chai tea",
+      "cinnamon",
+      "pumpkin",
+      "vanilla",
+      "warm spices",
+      "white pumpkin"
     ]
   },
   {
@@ -4497,6 +5219,16 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0005.jpg?v=1778002951"
         ]
       }
+    ],
+    "noteList": [
+      "blood orange",
+      "cream",
+      "grapefruit",
+      "lime",
+      "orange",
+      "raspberry",
+      "sugar",
+      "vanilla"
     ]
   },
   {
@@ -4569,6 +5301,12 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "lilly",
+      "ozone",
+      "rose",
+      "sandalwood"
     ]
   },
   {
@@ -4641,6 +5379,15 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "citrus",
+      "jasmine",
+      "ozone",
+      "sandalwood",
+      "sea salt",
+      "violet"
     ]
   },
   {
@@ -4707,6 +5454,17 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "cedar",
+      "citrus",
+      "eucalyptus",
+      "jasmine",
+      "musk",
+      "ozone",
+      "plumeria",
+      "sage",
+      "sea salt"
     ]
   },
   {
@@ -4775,6 +5533,13 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "caramel",
+      "cinnamon",
+      "sugar",
+      "vanilla",
+      "wood"
     ]
   },
   {
@@ -4846,6 +5611,20 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_sugared_pumpkin_fig3.jpg?v=1778004542"
         ]
       }
+    ],
+    "noteList": [
+      "amber",
+      "brown sugar",
+      "cinnamon",
+      "clove",
+      "dark musk",
+      "fig",
+      "musk",
+      "pie crust",
+      "pumpkin",
+      "sea salt",
+      "sugar",
+      "vanilla"
     ]
   },
   {
@@ -4916,6 +5695,12 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "apple",
+      "cinnamon",
+      "clove",
+      "pie crust"
     ]
   },
   {
@@ -4984,6 +5769,16 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "butter",
+      "caramel",
+      "coffee",
+      "cream",
+      "fresh coffee",
+      "maple",
+      "orange",
+      "orange peel"
     ]
   },
   {
@@ -5053,6 +5848,16 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "bergamot",
+      "eucalyptus",
+      "leather",
+      "lemon",
+      "lemon peel",
+      "musk",
+      "patchouli",
+      "sandalwood"
     ]
   },
   {
@@ -5121,6 +5926,15 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "cake",
+      "coffee",
+      "cream",
+      "honey",
+      "sugar",
+      "vanilla",
+      "vanilla bean"
     ]
   },
   {
@@ -5191,6 +6005,20 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "amber",
+      "bergamot",
+      "cedar",
+      "citrus",
+      "clove",
+      "dark musk",
+      "lemon",
+      "lemon peel",
+      "musk",
+      "sandalwood",
+      "smoke",
+      "vetiver"
     ]
   },
   {
@@ -5260,6 +6088,12 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 0,
         "images": []
       }
+    ],
+    "noteList": [
+      "agave",
+      "cactus flower",
+      "cedar",
+      "white cedar"
     ]
   },
   {
@@ -5324,6 +6158,20 @@ export const bumblinScents: BumblinScent[] = [
         "unitsSold": 1,
         "images": []
       }
+    ],
+    "noteList": [
+      "aloe",
+      "cranberry",
+      "fir",
+      "green leaves",
+      "leather",
+      "oak",
+      "patchouli",
+      "pine",
+      "smoke",
+      "vanilla",
+      "whiskey",
+      "white oak"
     ]
   },
   {
@@ -5397,6 +6245,16 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_whitefig2.jpg?v=1753914679"
         ]
       }
+    ],
+    "noteList": [
+      "bourbon",
+      "fig",
+      "green leaves",
+      "jasmine",
+      "musk",
+      "vanilla",
+      "white birch",
+      "wood"
     ]
   },
   {
@@ -5472,6 +6330,16 @@ export const bumblinScents: BumblinScent[] = [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/witchinghourbg.jpg?v=1754001941"
         ]
       }
+    ],
+    "noteList": [
+      "amber",
+      "citrus",
+      "cypress",
+      "fir",
+      "jasmine",
+      "leather",
+      "moss",
+      "tonka"
     ]
   }
 ];
@@ -5489,6 +6357,176 @@ export const sizeOptions: { key: BumblinSizeKey; label: string; short: string }[
 export function carriesSize(s: BumblinScent, key: BumblinSizeKey): boolean {
   const row = s.sizes.find((v) => v.size === key);
   return Boolean(row && row.squareVariationId);
+}
+
+/** How many scents carry each note — the basis for rarity weighting. */
+export const noteCounts: Record<string, number> = {
+  "agave": 4,
+  "aloe": 8,
+  "amber": 19,
+  "amyris": 2,
+  "apple": 5,
+  "apples": 2,
+  "baked treats": 1,
+  "balsam": 4,
+  "bamboo": 4,
+  "bergamot": 11,
+  "berries": 3,
+  "blackberry": 2,
+  "blood orange": 1,
+  "bourbon": 5,
+  "brown sugar": 1,
+  "butter": 7,
+  "buttercream": 4,
+  "cactus flower": 1,
+  "cake": 4,
+  "camphor": 6,
+  "caramel": 4,
+  "cardamom": 3,
+  "cashmere": 1,
+  "cedar": 35,
+  "cedar leaf": 2,
+  "chai tea": 1,
+  "champagne": 1,
+  "cherry blossom": 3,
+  "chrysanthemum": 2,
+  "cinnamon": 18,
+  "cinnamon bark": 1,
+  "cinnamon sugar buttercream": 1,
+  "citrus": 25,
+  "clementine": 1,
+  "clove": 17,
+  "coconut": 4,
+  "coffee": 4,
+  "coriander": 2,
+  "cotton blossom": 1,
+  "cranberry": 2,
+  "cream": 5,
+  "cucumber": 1,
+  "cypress": 3,
+  "dark musk": 10,
+  "eucalyptus": 16,
+  "evergreen": 2,
+  "fig": 4,
+  "fir": 8,
+  "fire": 6,
+  "fresh coffee": 2,
+  "fresh firewood": 2,
+  "ginger": 7,
+  "gingerbread": 1,
+  "grapefruit": 4,
+  "green leaves": 9,
+  "hint of fire": 1,
+  "honey": 4,
+  "honeydew": 1,
+  "honeysuckle": 1,
+  "hot cinnamon": 1,
+  "incense": 3,
+  "jasmine": 11,
+  "juniper": 3,
+  "lavender": 9,
+  "leather": 11,
+  "lemon": 10,
+  "lemon peel": 8,
+  "lemon verbena": 3,
+  "light musk": 7,
+  "lilac": 1,
+  "lilly": 1,
+  "lily of the valley": 3,
+  "lime": 5,
+  "linen": 4,
+  "magnolia": 1,
+  "mahogany": 2,
+  "mandarin": 4,
+  "mango": 1,
+  "maple": 4,
+  "maple bourbon": 1,
+  "maple syrup": 1,
+  "marine": 3,
+  "mistletoe": 1,
+  "molasses": 3,
+  "moss": 5,
+  "musk": 22,
+  "oak": 4,
+  "oakmoss": 1,
+  "orange": 12,
+  "orange peel": 7,
+  "oud": 2,
+  "ozone": 17,
+  "palo santo": 3,
+  "patchouli": 18,
+  "peach": 2,
+  "peppermint": 4,
+  "pie crust": 3,
+  "pine": 15,
+  "pine sprig": 1,
+  "pineapple": 2,
+  "plumeria": 1,
+  "powder": 7,
+  "pumpkin": 5,
+  "raspberry": 3,
+  "redwood": 2,
+  "rose": 5,
+  "rosemary": 3,
+  "saffron": 7,
+  "sage": 5,
+  "sandalwood": 21,
+  "sea salt": 7,
+  "smoke": 8,
+  "spice": 2,
+  "sugar": 16,
+  "teak-wood": 1,
+  "tonka": 7,
+  "tonka bean": 4,
+  "vanilla": 28,
+  "vanilla bean": 3,
+  "vetiver": 7,
+  "violet": 6,
+  "warm spices": 2,
+  "whiskey": 3,
+  "white birch": 1,
+  "white cake": 1,
+  "white cedar": 2,
+  "white eucalyptus": 1,
+  "white oak": 2,
+  "white pumpkin": 2,
+  "white tea": 2,
+  "wood": 14
+};
+
+/**
+ * Rarity weight for a note, IDF-style. A note on 3 of 78 scents is a strong
+ * signal; one on 40 is nearly noise.
+ */
+export function noteWeight(note: string): number {
+  const c = noteCounts[note] ?? 0;
+  if (c <= 0) return 0;
+  return Math.log(bumblinScents.length / c);
+}
+
+/** Scents carrying a note, most-sold first. */
+export function scentsWithNote(
+  note: string,
+  exclude?: string,
+  limit = 4,
+): BumblinScent[] {
+  return bumblinScents
+    .filter((s) => s.noteList.includes(note) && s.handle !== exclude)
+    .sort((a, b) => b.unitsSold - a.unitsSold)
+    .slice(0, limit);
+}
+
+/** Every note, rarest first — the useful order for browsing. */
+export const allNotes: string[] = Object.keys(noteCounts).sort(
+  (a, b) => (noteCounts[a] ?? 0) - (noteCounts[b] ?? 0),
+);
+
+/** Notes shared by two scents, rarest (most meaningful) first. */
+export function sharedNotes(a: BumblinScent, b: BumblinScent): string[] {
+  const other = new Set(b.noteList);
+  return a.noteList
+    .filter((n) => other.has(n))
+    .sort((x, y) => noteWeight(y) - noteWeight(x));
 }
 
 export const scentTags: string[] = Array.from(

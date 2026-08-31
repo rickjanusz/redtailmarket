@@ -13,9 +13,13 @@ import {
 } from "@/lib/bumblin-bee";
 
 export const Route = createFileRoute("/shop/")({
-  validateSearch: (search: Record<string, unknown>): { tag?: string } => {
+  validateSearch: (search: Record<string, unknown>): { tag?: string; note?: string } => {
+    const out: { tag?: string; note?: string } = {};
     const t = search["tag"];
-    return typeof t === "string" && t ? { tag: t } : {};
+    const n = search["note"];
+    if (typeof t === "string" && t) out.tag = t;
+    if (typeof n === "string" && n) out.note = n;
+    return out;
   },
   head: () => ({
     meta: [
@@ -48,8 +52,9 @@ function minPrice(prices: string[]) {
 }
 
 function Shop() {
-  const { tag: tagFromUrl } = Route.useSearch();
+  const { tag: tagFromUrl, note: noteFromUrl } = Route.useSearch();
   const [tag, setTag] = useState<string | null>(tagFromUrl ?? null);
+  const [note, setNote] = useState<string | null>(noteFromUrl ?? null);
   const [size, setSize] = useState<BumblinSizeKey | null>(null);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("az");
@@ -61,6 +66,7 @@ function Shop() {
       // Every scent is offered in all five sizes on Shopify, so filter on what
       // Square actually carries — that is the honest "do you stock this" answer.
       if (size && !carriesSize(s, size)) return false;
+      if (note && !s.noteList.includes(note)) return false;
       if (!q) return true;
       return (
         s.scent.toLowerCase().includes(q) ||
@@ -82,7 +88,7 @@ function Shop() {
       return sort === "low" ? pa - pb : pb - pa;
     });
     return sorted;
-  }, [tag, size, query, sort]);
+  }, [tag, size, note, query, sort]);
 
   return (
     <PageShell
@@ -92,6 +98,23 @@ function Shop() {
     >
       {/* Filters */}
       <div className="mt-10 flex flex-col gap-5 border-y border-border py-5">
+        {note ? (
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground/70">
+              Note
+            </span>
+            <button
+              type="button"
+              onClick={() => setNote(null)}
+              className="border border-accent px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] text-accent"
+            >
+              {note} ×
+            </button>
+            <span className="text-[0.7rem] text-muted-foreground">
+              Showing scents that contain {note}.
+            </span>
+          </div>
+        ) : null}
         <div className="flex flex-wrap items-center gap-2">
           <span className="mr-1 text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground/70">
             Size

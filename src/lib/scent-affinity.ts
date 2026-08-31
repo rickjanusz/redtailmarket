@@ -10,7 +10,13 @@
  * and it is gone when the tab closes. Every access is wrapped: private windows
  * and blocked-storage settings throw on read, and must not take the page down.
  */
-import { bumblinScents, scentTags, seasonTags, type BumblinScent } from "@/lib/bumblin-bee";
+import {
+  bumblinScents,
+  noteWeight,
+  scentTags,
+  seasonTags,
+  type BumblinScent,
+} from "@/lib/bumblin-bee";
 
 const KEY = "rtm.scent-affinity.v1";
 const MAX = 24;
@@ -18,15 +24,18 @@ const MAX = 24;
 /** An explicit filter choice says more than an incidental page view. */
 const VIEW_WEIGHT = 1;
 const TAG_WEIGHT = 2.5;
+const NOTE_WEIGHT = 3;
 
 type Store = {
   /** Scent handles, most recent first. */
   views: string[];
   /** Tags chosen explicitly via a filter chip, most recent first. */
   tags: string[];
+  /** Fragrance notes clicked explicitly, most recent first. */
+  notes: string[];
 };
 
-const EMPTY: Store = { views: [], tags: [] };
+const EMPTY: Store = { views: [], tags: [], notes: [] };
 
 function read(): Store {
   if (typeof window === "undefined") return EMPTY;
@@ -37,6 +46,7 @@ function read(): Store {
     return {
       views: Array.isArray(parsed.views) ? parsed.views.slice(0, MAX) : [],
       tags: Array.isArray(parsed.tags) ? parsed.tags.slice(0, MAX) : [],
+      notes: Array.isArray(parsed.notes) ? parsed.notes.slice(0, MAX) : [],
     };
   } catch {
     return EMPTY;
@@ -64,6 +74,12 @@ export function recordView(handle: string): void {
 export function recordTag(tag: string): void {
   const s = read();
   write({ ...s, tags: unshiftUnique(s.tags, tag) });
+}
+
+/** A shopper clicking a note ("show me more jasmine") is the strongest signal. */
+export function recordNote(note: string): void {
+  const s = read();
+  write({ ...s, notes: unshiftUnique(s.notes, note) });
 }
 
 export function viewedHandles(): string[] {
@@ -116,9 +132,49 @@ export function dominantTag(): string | null {
   );
 }
 
+/**
+ * Accumulated interest per fragrance note.
+ *
+ * Notes discriminate far better than the six broad tags — "Woody / Evergreen"
+ * covers 56 of 78 scents, whereas "lily of the valley" covers 3 — so each note
+ * is scaled by its rarity as well as by recency.
+ */
+export function noteWeights(): Map<string, number> {
+  const { views, notes } = read();
+  const w = new Map<string, number>();
+  const add = (n: string, amount: number) =>
+    w.set(n, (w.get(n) ?? 0) + amount * noteWeight(n));
+
+  views.forEach((handle, i) => {
+    const scent = bumblinScents.find((s) => s.handle === handle);
+    if (!scent) return;
+    const decay = 1 / (1 + i * 0.5);
+    for (const n of scent.noteList) add(n, VIEW_WEIGHT * decay);
+  });
+  notes.forEach((n, i) => add(n, NOTE_WEIGHT * (1 / (1 + i * 0.5))));
+  return w;
+}
+
+/**
+ * The note driving the session, if one clearly is — used for headings like
+ * "More scents with Jasmine". Requires enough other scents to actually show,
+ * so a one-off note such as "frasier fir" (1 scent) never becomes a heading.
+ */
+export function dominantNote(minOthers = 3): string | null {
+  const w = noteWeights();
+  if (!w.size) return null;
+  for (const [note] of [...w.entries()].sort((a, b) => b[1] - a[1])) {
+    if (bumblinScents.filter((s) => s.noteList.includes(note)).length > minOthers) {
+      return note;
+    }
+  }
+  return null;
+}
+
 /** How much signal we have. Below 2 views the profile is not worth trusting. */
 export function signalStrength(): number {
-  return read().views.length + read().tags.length;
+  const s = read();
+  return s.views.length + s.tags.length + s.notes.length;
 }
 
 /**
@@ -129,15 +185,23 @@ export function signalStrength(): number {
  * Returns [] when there is not enough signal, so callers can fall back.
  */
 export function recommend(excludeHandle: string | null, limit = 4): BumblinScent[] {
-  const w = tagWeights();
-  if (!w.size) return [];
+  const notes = noteWeights();
+  const tags = tagWeights();
+  if (!notes.size && !tags.size) return [];
   const seen = new Set(read().views);
 
   return bumblinScents
     .filter((s) => s.handle !== excludeHandle && !seen.has(s.handle))
     .map((s) => {
-      const raw = s.tags.reduce((sum, t) => sum + (w.get(t) ?? 0), 0);
-      return { s, score: raw / Math.sqrt(Math.max(s.tags.length, 1)) };
+      // Notes lead: they say what the shopper actually likes. Tags stay as a
+      // weaker backstop for scents whose notes we extracted little from.
+      const noteScore =
+        s.noteList.reduce((sum, n) => sum + (notes.get(n) ?? 0), 0) /
+        Math.sqrt(Math.max(s.noteList.length, 1));
+      const tagScore =
+        s.tags.reduce((sum, t) => sum + (tags.get(t) ?? 0), 0) /
+        Math.sqrt(Math.max(s.tags.length, 1));
+      return { s, score: noteScore * 2 + tagScore };
     })
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score || b.s.unitsSold - a.s.unitsSold)

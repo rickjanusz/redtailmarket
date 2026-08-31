@@ -197,6 +197,45 @@ def square_units(location_id, days=365):
     return units, per_var_season, baseline
 
 
+# Multi-word notes must be matched before their parts, or "lily of the valley"
+# degrades into "lily". Spelling follows the shop's own copy.
+EXTRA_NOTES = [
+    "lily of the valley", "frasier fir", "fraser fir", "palo santo", "lemon peel",
+    "orange peel", "green leaves", "sea salt", "brown sugar", "tonka bean",
+    "cherry blossom", "white tea", "pie crust", "dark musk", "light musk",
+    "white birch", "black tea", "cedarwood", "sandalwood", "patchouli",
+    "eucalyptus", "bergamot", "jasmine", "oakmoss", "vetiver", "amyris",
+]
+# Domain corrections from the shop owner. Put synonym fixes HERE, not in the
+# recommendation logic — the note vocabulary is where scent knowledge belongs.
+#   * "frasier fir" is interchangeable with plain "fir" (owner, 2026-08-31), so
+#     they collapse to one note; on its own "frasier fir" hit a single scent and
+#     could never drive a recommendation.
+#   * "balsam" is deliberately NOT merged into "fir" — it is its own note, and
+#     Frosty Night genuinely carries both ("a fresh fir balsam core"). It
+#     appears in Candied Heart, Frosty Night, Heirloom and Iced Pine, and
+#     notably NOT in Mistletoe Kisses.
+NOTE_ALIAS = {
+    "fraser fir": "fir",
+    "frasier fir": "fir",
+    "cedarwood": "cedar",
+}
+# Words that are structure, not scent — they carry no discriminating signal.
+NOTE_STOP = {
+    "notes", "note", "top", "middle", "bottom", "base", "heart", "scent", "fragrance",
+    "blend", "hints", "hint", "touch", "aroma", "the", "and", "with", "of", "a",
+}
+
+
+def build_notes(scent_notes, description, vocab):
+    text = f"{scent_notes} {description}".lower()
+    found = []
+    for n in vocab:
+        if re.search(rf"\b{re.escape(n)}\b", text):
+            found.append(NOTE_ALIAS.get(n, n))
+    return sorted(set(found))
+
+
 def norm(s):
     return re.sub(r"[^a-z0-9]+", "", (s or "").lower().replace("&", "and"))
 
@@ -300,6 +339,30 @@ for p in products:
         "sizes": sizes,
     })
 
+# ---- fragrance notes -------------------------------------------------------
+raw_notes = set(EXTRA_NOTES)
+for row in out:
+    for part in re.split(r",|&|\band\b", row["notes"] or ""):
+        n = " ".join(part.split()).strip(" .").lower()
+        if 2 < len(n) < 30 and n not in NOTE_STOP:
+            raw_notes.add(n)
+# longest first so compound notes win over their parts
+vocab = sorted(raw_notes, key=len, reverse=True)
+for row in out:
+    row["noteList"] = build_notes(row["notes"], row["description"], vocab)
+
+note_counts = {}
+for row in out:
+    for n in row["noteList"]:
+        note_counts[n] = note_counts.get(n, 0) + 1
+# drop notes so common they cannot discriminate, and singletons that link nothing
+DROP = {n for n, c in note_counts.items() if c > len(out) * 0.5}
+for row in out:
+    row["noteList"] = [n for n in row["noteList"] if n not in DROP]
+note_counts = {n: c for n, c in note_counts.items() if n not in DROP}
+print(f"note vocabulary: {len(note_counts)} notes; "
+      f"median per scent {sorted(len(r['noteList']) for r in out)[len(out)//2]}")
+
 out.sort(key=lambda x: x["scent"].lower())
 print(f"\nscents: {len(out)}")
 print(f"size rows: {stats['sizes']}  with image: {stats['with_img']}  "
@@ -341,6 +404,12 @@ export type BumblinScent = {
   tags: string[];
   /** Scent-note line, e.g. "Lavender, Violet, Cardamom, Powder & Wood". */
   notes: string;
+  /**
+   * Individual fragrance notes parsed from the note line and description.
+   * Far more discriminating than the six broad tags: sharing "lily of the
+   * valley" (3 scents) means much more than sharing "vanilla" (18).
+   */
+  noteList: string[];
   description: string;
   /** Units sold in Square over the last 365 days, summed across sizes. */
   unitsSold: number;
@@ -376,6 +445,44 @@ export const sizeOptions: { key: BumblinSizeKey; label: string; short: string }[
 export function carriesSize(s: BumblinScent, key: BumblinSizeKey): boolean {
   const row = s.sizes.find((v) => v.size === key);
   return Boolean(row && row.squareVariationId);
+}
+
+/** How many scents carry each note — the basis for rarity weighting. */
+export const noteCounts: Record<string, number> = NOTE_COUNTS_PLACEHOLDER;
+
+/**
+ * Rarity weight for a note, IDF-style. A note on 3 of 78 scents is a strong
+ * signal; one on 40 is nearly noise.
+ */
+export function noteWeight(note: string): number {
+  const c = noteCounts[note] ?? 0;
+  if (c <= 0) return 0;
+  return Math.log(bumblinScents.length / c);
+}
+
+/** Scents carrying a note, most-sold first. */
+export function scentsWithNote(
+  note: string,
+  exclude?: string,
+  limit = 4,
+): BumblinScent[] {
+  return bumblinScents
+    .filter((s) => s.noteList.includes(note) && s.handle !== exclude)
+    .sort((a, b) => b.unitsSold - a.unitsSold)
+    .slice(0, limit);
+}
+
+/** Every note, rarest first — the useful order for browsing. */
+export const allNotes: string[] = Object.keys(noteCounts).sort(
+  (a, b) => (noteCounts[a] ?? 0) - (noteCounts[b] ?? 0),
+);
+
+/** Notes shared by two scents, rarest (most meaningful) first. */
+export function sharedNotes(a: BumblinScent, b: BumblinScent): string[] {
+  const other = new Set(b.noteList);
+  return a.noteList
+    .filter((n) => other.has(n))
+    .sort((x, y) => noteWeight(y) - noteWeight(x));
 }
 
 export const scentTags: string[] = Array.from(
@@ -475,6 +582,7 @@ export function sellableSizes(s: BumblinScent): BumblinSize[] {
   return s.sizes.filter((v) => v.images.length > 0);
 }
 '''
+ts = ts.replace("NOTE_COUNTS_PLACEHOLDER", json.dumps(note_counts, indent=2, sort_keys=True))
 with open(OUT, "w") as fh:
     fh.write(ts)
 print(f"\nwrote {OUT} ({len(ts)/1024:.0f} KB)")

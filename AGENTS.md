@@ -361,6 +361,38 @@ personalises rather than erroring.
 Scoring divides by `sqrt(tagCount)` so a scent tagged with everything cannot win
 by breadth alone; ties break on real Square units sold.
 
+## Fragrance notes drive recommendations
+
+`noteList` on each scent is parsed in the generator from the note headline plus
+the description body, against a vocabulary built from every headline note.
+**131 notes, median 9 per scent, every scent covered.**
+
+Notes are used in preference to tags because they actually discriminate: 34.6%
+of scent pairs share >=2 notes, whereas the tag `Woody / Evergreen` alone covers
+56 of 78 scents. `noteWeight()` is IDF-style, so sharing `lily of the valley`
+(3 scents) counts far more than sharing `vanilla` (28).
+
+Where notes appear: clickable chips on the product page (each records interest
+and links to `/shop?note=x`), `?note=` filtering on the shop, and the session
+profile, where they outweigh tags 2:1 in `recommend()`.
+
+### Note vocabulary is where scent knowledge lives
+Synonym and domain fixes belong in `NOTE_ALIAS` / `EXTRA_NOTES` in
+`scripts/generate-bumblin-bee.py`, **never in the recommendation logic**.
+Owner-supplied corrections so far (2026-08-31):
+
+- **`frasier fir` is interchangeable with plain `fir`** and collapses into it.
+  Note the shop spells it "frasier", not the usual "fraser"; both alias to
+  `fir`. Alone it matched a single scent and could never drive a recommendation.
+- **`balsam` is NOT merged into `fir`.** Separate note; Frosty Night carries
+  both ("a fresh fir balsam core"). It appears in Candied Heart, Frosty Night,
+  Heirloom and Iced Pine - and NOT in Mistletoe Kisses.
+- Multi-word notes must sit in `EXTRA_NOTES` and are matched longest-first, or
+  "lily of the valley" degrades into "lily".
+
+`dominantNote()` requires a note to appear on more than 3 scents before it can
+head a section, so a one-off never becomes "More X scents" with nothing to show.
+
 ## Best sellers come from Square, not Shopify
 
 `topSellers()` ranks on `unitsSold`, aggregated in the generator from COMPLETED

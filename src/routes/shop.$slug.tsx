@@ -7,6 +7,7 @@ import { ScentCard } from "@/components/site/ScentCard";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { useScentProfile } from "@/hooks/use-scent-profile";
+import { recordNote } from "@/lib/scent-affinity";
 import { definingTag, img, scentBySlug, scentsLike } from "@/lib/bumblin-bee";
 
 export const Route = createFileRoute("/shop/$slug")({
@@ -189,12 +190,33 @@ function ScentDetail() {
                 to reserve one.
               </p>
 
+              {scent.noteList.length ? (
+                <div className="mt-8 border-t border-border pt-6">
+                  <p className="text-[0.7rem] uppercase tracking-[0.24em] text-muted-foreground">
+                    Notes in this scent
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {scent.noteList.map((n) => (
+                      <Link
+                        key={n}
+                        to="/shop"
+                        search={{ note: n }}
+                        onClick={() => recordNote(n)}
+                        className="border border-border px-3 py-1.5 text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                      >
+                        {n}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+
               {scent.tags.length ? (
-                <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
+                <div className="mt-6 flex flex-wrap gap-2">
                   {scent.tags.map((t) => (
                     <span
                       key={t}
-                      className="border border-border px-3 py-1.5 text-[0.66rem] uppercase tracking-[0.18em] text-muted-foreground"
+                      className="border border-border/60 px-3 py-1.5 text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground/70"
                     >
                       {t}
                     </span>

@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
 
 import type { BumblinScent } from "@/lib/bumblin-bee";
-import { dominantTag, recommend, recordView, signalStrength } from "@/lib/scent-affinity";
+import {
+  dominantNote,
+  dominantTag,
+  recommend,
+  recordView,
+  signalStrength,
+} from "@/lib/scent-affinity";
 
 export type ScentProfile = {
   /** What to render. Falls back to `fallback` until the profile is worth trusting. */
   scents: BumblinScent[];
   /** The tag these picks represent, for the heading. */
   tag: string | null;
-  /** `tag`, capitalised for display. Season tags are lower case in Shopify. */
+  /** A fragrance note driving the picks, when one clearly is. */
+  note: string | null;
+  /**
+   * What the heading should say — the note if one is driving, else the tag.
+   * Capitalised, since season tags and notes are lower case in the source data.
+   */
   tagLabel: string;
   /** True once picks come from the session profile rather than the fallback. */
   personalised: boolean;
@@ -48,6 +59,7 @@ export function useScentProfile({
 }: UseScentProfileOptions): ScentProfile {
   const [scents, setScents] = useState<BumblinScent[]>(fallback);
   const [tag, setTag] = useState<string | null>(fallbackTag);
+  const [note, setNote] = useState<string | null>(null);
   const [personalised, setPersonalised] = useState(false);
 
   useEffect(() => {
@@ -56,6 +68,7 @@ export function useScentProfile({
     if (signalStrength() < minSignal) {
       setScents(fallback);
       setTag(fallbackTag);
+      setNote(null);
       setPersonalised(false);
       return;
     }
@@ -64,21 +77,29 @@ export function useScentProfile({
     // Two is the floor worth showing; below that the fallback is a better grid.
     if (picks.length >= 2) {
       setScents(picks);
+      // A specific note beats a broad family for a heading: "More Jasmine
+      // scents" tells the shopper far more than "More Earthy scents".
+      setNote(dominantNote());
       setTag(dominantTag() ?? fallbackTag);
       setPersonalised(true);
     } else {
       setScents(fallback);
       setTag(fallbackTag);
+      setNote(null);
       setPersonalised(false);
     }
     // `fallback` is a fresh array each render, so keying on the identifiers
     // keeps this from looping.
   }, [view, exclude, fallbackTag, limit, minSignal]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const headline = note ?? tag;
   return {
     scents,
     tag,
-    tagLabel: tag ? tag.charAt(0).toUpperCase() + tag.slice(1) : "",
+    note,
+    tagLabel: headline
+      ? headline.replace(/\b\w/g, (c) => c.toUpperCase())
+      : "",
     personalised,
   };
 }

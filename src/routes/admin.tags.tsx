@@ -72,6 +72,8 @@ function TagEditor() {
 
   const [state, setState] = useState<Record<string, Set<string>>>(initial);
   const [query, setQuery] = useState("");
+  const [tagFilter, setTagFilter] = useState<string | null>(null);
+  const [mode, setMode] = useState<"has" | "lacks">("has");
   const [status, setStatus] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -110,16 +112,29 @@ function TagEditor() {
     return c;
   }, [state]);
 
+  const dirtyHandles = useMemo(
+    () => new Set(changed.map((c) => c.handle)),
+    [changed],
+  );
+
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return bumblinScents;
-    return bumblinScents.filter(
-      (s) =>
-        s.scent.toLowerCase().includes(q) ||
-        s.notes.toLowerCase().includes(q) ||
-        s.noteList.some((n) => n.includes(q)),
-    );
-  }, [query]);
+    return bumblinScents.filter((s) => {
+      if (q) {
+        const hit =
+          s.scent.toLowerCase().includes(q) ||
+          s.notes.toLowerCase().includes(q) ||
+          s.noteList.some((n) => n.includes(q));
+        if (!hit) return false;
+      }
+      if (!tagFilter) return true;
+      // Rows you have already edited stay put even once they stop matching, so
+      // unticking a tag does not make the row vanish out from under the cursor.
+      if (dirtyHandles.has(s.handle)) return true;
+      const has = state[s.handle]?.has(tagFilter) ?? false;
+      return mode === "has" ? has : !has;
+    });
+  }, [query, tagFilter, mode, state, dirtyHandles]);
 
   async function onSave() {
     setBusy(true);
@@ -179,7 +194,58 @@ function TagEditor() {
             })}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+          {/* Filter to one tag at a time — the practical way to work down an
+              over-applied tag like winter (62% of the catalogue). */}
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <span className="mr-1 text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground/70">
+              Filter
+            </span>
+            <button
+              type="button"
+              onClick={() => setTagFilter(null)}
+              className={`border px-3 py-1.5 text-[0.66rem] uppercase tracking-[0.18em] transition-colors ${
+                tagFilter === null
+                  ? "border-accent text-accent"
+                  : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+              }`}
+            >
+              All scents
+            </button>
+            {scentTags.map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTagFilter(t === tagFilter ? null : t)}
+                className={`border px-3 py-1.5 text-[0.66rem] uppercase tracking-[0.18em] transition-colors ${
+                  t === tagFilter
+                    ? "border-accent text-accent"
+                    : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+                }`}
+              >
+                {t} <span className="opacity-50">{counts[t] ?? 0}</span>
+              </button>
+            ))}
+            {tagFilter ? (
+              <div className="ml-2 flex items-center gap-1">
+                {(["has", "lacks"] as const).map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => setMode(m)}
+                    className={`border px-3 py-1.5 text-[0.62rem] uppercase tracking-[0.16em] transition-colors ${
+                      mode === m
+                        ? "border-primary text-primary"
+                        : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+                    }`}
+                  >
+                    {m === "has" ? `has ${tagFilter}` : `missing ${tagFilter}`}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-3">
             <input
               type="search"
               value={query}
@@ -188,7 +254,7 @@ function TagEditor() {
               className="min-w-[16rem] flex-1 border border-border bg-card px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none"
             />
             <span className="text-[0.72rem] uppercase tracking-[0.2em] text-muted-foreground">
-              {changed.length} changed
+              {rows.length} shown · {changed.length} changed
             </span>
             <button
               type="button"

@@ -2,7 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Hammer, MapPin, Recycle, Sparkles } from "lucide-react";
 
 import heroImage from "@/assets/hero-market.jpg";
-import { bumblinScents } from "@/lib/bumblin-bee";
+import { topSellers } from "@/lib/bumblin-bee";
 import { makers } from "@/lib/placeholder-data";
 import makersImage from "@/assets/makers.jpg";
 import { MakerCard } from "@/components/site/MakerCard";
@@ -59,9 +59,9 @@ const categories = [
   { name: "Pottery", note: "Wheel-thrown stoneware" },
 ];
 
-const featuredScents = bumblinScents
-  .filter((s) => s.tags.includes("best seller") && s.sizes.some((v) => v.images.length > 0))
-  .slice(0, 4);
+// Ranked by real Square sales over the last 365 days, not Shopify's
+// "best seller" tag — only 14 of the 27 tagged scents are truly top sellers.
+const featuredScents = topSellers(4);
 
 function Index() {
   return (

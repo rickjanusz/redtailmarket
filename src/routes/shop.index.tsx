@@ -12,6 +12,10 @@ import {
 } from "@/lib/bumblin-bee";
 
 export const Route = createFileRoute("/shop/")({
+  validateSearch: (search: Record<string, unknown>): { tag?: string } => {
+    const t = search["tag"];
+    return typeof t === "string" && t ? { tag: t } : {};
+  },
   head: () => ({
     meta: [
       { title: "Shop Hand-Poured Candles & Wax Melts | Redtail Market" },
@@ -43,7 +47,8 @@ function minPrice(prices: string[]) {
 }
 
 function Shop() {
-  const [tag, setTag] = useState<string | null>(null);
+  const { tag: tagFromUrl } = Route.useSearch();
+  const [tag, setTag] = useState<string | null>(tagFromUrl ?? null);
   const [size, setSize] = useState<BumblinSizeKey | null>(null);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<Sort>("az");

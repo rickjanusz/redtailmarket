@@ -16,6 +16,8 @@ export type BumblinSize = {
   /** Square variation id — the join key for live price and stock. */
   squareVariationId: string | null;
   sku: string | null;
+  /** Units sold in Square over the last 365 days. */
+  unitsSold: number;
   /** Shopify CDN urls, most size-appropriate first. May be empty. */
   images: string[];
 };
@@ -27,6 +29,8 @@ export type BumblinScent = {
   /** Scent-note line, e.g. "Lavender, Violet, Cardamom, Powder & Wood". */
   notes: string;
   description: string;
+  /** Units sold in Square over the last 365 days, summed across sizes. */
+  unitsSold: number;
   sizes: BumblinSize[];
 };
 
@@ -42,6 +46,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Absinthe & Santal",
     "handle": "absinthe-and-santal",
+    "unitsSold": 42,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -59,6 +64,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "W5MJJURMZRYICMWS7PTWCRSN",
         "sku": "B593607",
+        "unitsSold": 11,
         "images": []
       },
       {
@@ -67,6 +73,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "KAWKAMJUD5T7FSROUHA5UKGX",
         "sku": "2795565",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -75,6 +82,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "ULTTDYQ3WMKH45H6HUKET3BT",
         "sku": "548404N",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -83,6 +91,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "CXGVLJEFWZVCYGQJAYSY5ZRF",
         "sku": "554956S",
+        "unitsSold": 16,
         "images": []
       },
       {
@@ -91,6 +100,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "F2ZDBHKBE6WMDAUOLDP4BQC6",
         "sku": "Y746076",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_absinthe_santal2.jpg?v=1753879952"
         ]
@@ -100,6 +110,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "American Pie",
     "handle": "american-pie",
+    "unitsSold": 31,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -118,6 +129,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "POEFHI6MVE2DLPATNTCZTRPH",
         "sku": "W603208",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_american_pie.jpg?v=1753879820"
         ]
@@ -128,6 +140,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "RRRRDTHULMTNBECVDYUGRBFR",
         "sku": "J664365",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_American_Pie.jpg?v=1753879824"
         ]
@@ -138,6 +151,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "JU7GBGCG6WX3YEPXHRDBYCAJ",
         "sku": "X232097",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_american_pie.jpg?v=1753879852"
         ]
@@ -148,6 +162,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "7YVB6R7GM26UHKBRBDQ5BBFY",
         "sku": "240921J",
+        "unitsSold": 14,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_american_pie.jpg?v=1753879768"
         ]
@@ -158,6 +173,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "WWY3GYQSVRR6NGGFWMFHW7Y2",
         "sku": "363954G",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -165,6 +181,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Apothecary",
     "handle": "apothecary",
+    "unitsSold": 4,
     "tags": [
       "Earthy",
       "fall",
@@ -180,6 +197,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "HLE3PZDLS3FTA57TT4S6R4CD",
         "sku": "4551974",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_apothecary.jpg?v=1753879821"
         ]
@@ -190,6 +208,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "Y6BPBUJTXA7DF6HAH3BZYMQO",
         "sku": "4605055",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Apothecary.jpg?v=1753879825"
         ]
@@ -200,6 +219,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "2RPGAIGYJFVGQ7XZVSIPZONC",
         "sku": "544119E",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_apothecary.jpg?v=1753879853"
         ]
@@ -210,6 +230,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "42TCW6BUDARTTN7YEA7QBQSF",
         "sku": "8061964",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_apothecary.jpg?v=1753879768"
         ]
@@ -220,6 +241,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "SNJVIE3IEU6IWLWUZCMYPNWJ",
         "sku": "200935G",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -227,6 +249,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Bamboo Forest",
     "handle": "bamboo-forest",
+    "unitsSold": 10,
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -244,6 +267,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "RF5VGNXZWFDPLDM23NHYYXVJ",
         "sku": "534421Q",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_bamboo_forest.jpg?v=1778004453"
         ]
@@ -254,6 +278,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "FNPVNXALC6LEOXNUCV5VTQNJ",
         "sku": "202229D",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Bamboo_Forest.jpg?v=1778004466"
         ]
@@ -264,6 +289,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "3FPOSZKKEOCW7HOU5HKRF5FC",
         "sku": "Y446114",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_bamboo_forest.jpg?v=1778004494"
         ]
@@ -274,6 +300,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "TTGZPSWL37DTZJD67AWVZEF2",
         "sku": "8322862",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_bamboo_forest.jpg?v=1778004579"
         ]
@@ -284,6 +311,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "LRYV4S7ECSBLCBH725KSQSAJ",
         "sku": "8123436",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -291,6 +319,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Bats in the Belfry",
     "handle": "bats-in-the-belfry",
+    "unitsSold": 8,
     "tags": [
       "best seller",
       "Earthy",
@@ -309,6 +338,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "4U7EOMVXO2I2EQ7D3UH67HMH",
         "sku": "5541751",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_bats_in_the_belfry.jpg?v=1778004453"
         ]
@@ -319,6 +349,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "EUJNJTJY4RUSTICDE6YGTORI",
         "sku": "D464937",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Bats_in_the_Belfry.jpg?v=1778004465"
         ]
@@ -329,6 +360,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "UHW7VTQDCH5HINIAT3CTSPCA",
         "sku": "B592782",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_bats_in_the_belfry.jpg?v=1778004494"
         ]
@@ -339,6 +371,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "3HMAVSZQLH55WYS25KW6VCCM",
         "sku": "885287F",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_bats_2-Camera_2.png?v=1778004585",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_bats_in_the_belfry.jpg?v=1778004578"
@@ -350,6 +383,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "X3XSWKP6WCYZU6BL5R7CQBJG",
         "sku": "551575P",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -357,6 +391,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Bee Mine",
     "handle": "bee-mine",
+    "unitsSold": 13,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -374,6 +409,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "ZYG464GO4G5MOFUTY4G7S7M7",
         "sku": "9284103",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_bee_mine.jpg?v=1778004452",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_1_Image_0010.jpg?v=1778002816"
@@ -385,6 +421,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "7SDKP5L5XLMUMBO2ZCMCKQSU",
         "sku": "V673131",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Bee_Mine.jpg?v=1778004466",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_1_Image_0010.jpg?v=1778002816"
@@ -396,6 +433,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "GLWT33EZ4OYLA2JN6IBILUSQ",
         "sku": "654330X",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_bee_mine.jpg?v=1778004494",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_1_Image_0010.jpg?v=1778002816"
@@ -407,6 +445,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "WITHZ6OZOOSQ2TSTSF4ZY7HZ",
         "sku": "7922709",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_bee_mine.jpg?v=1778004580",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_1_Image_0010.jpg?v=1778002816"
@@ -418,6 +457,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "SFLUPT44G36FMTS5SZAR6LJQ",
         "sku": "2986733",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_1_Image_0010.jpg?v=1778002816"
         ]
@@ -427,6 +467,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Bewitched",
     "handle": "bewitched",
+    "unitsSold": 11,
     "tags": [
       "Earthy",
       "fall",
@@ -442,6 +483,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "HKTPRST5RJSEDR6DAPPVQQCT",
         "sku": "504086Z",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -450,6 +492,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "U4H5DNRWMHIQR57SRHUOV4YS",
         "sku": "824451R",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -458,6 +501,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "NAVWTAUJBWZAAYA44IA3LOPO",
         "sku": "M052716",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -466,6 +510,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "PQIDM2ZBDZQTCN5HPQDBQXDT",
         "sku": "924394D",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_bewitched.jpg?v=1778004548"
         ]
@@ -476,6 +521,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "TFPM5BLBLVQFKKZQPRREZ4KW",
         "sku": "7271004",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -483,6 +529,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Black Tie",
     "handle": "black-tie",
+    "unitsSold": 19,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -500,6 +547,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "GSJEW353BDGPRTWHTBIJGXEQ",
         "sku": "C762341",
+        "unitsSold": 9,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/3oz_black_tie_f4f3f78e-43c7-40f4-8ff9-0bf0b3abdd88.jpg?v=1778006554"
         ]
@@ -510,6 +558,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "H3GLRUV5MPGEEBI3W7HWPCIB",
         "sku": "J762540",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -518,6 +567,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "ALYUK2ZX6TMRZ76W4TXAV6VO",
         "sku": "7044956",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/8oz_black_tie.jpg?v=1778006540"
         ]
@@ -528,6 +578,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "VV3XRN4TFA66REGAGTVS5MEQ",
         "sku": "L884341",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14oz_black_tie_545a9800-804a-4906-bdd3-c4965bfd9c85.jpg?v=1778006554"
         ]
@@ -538,6 +589,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "T2NB5ZM74YPYE4K7WDHQWCDS",
         "sku": "9826915",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_blacktie2_b2c2d9d3-ec3f-40bb-9078-6b0c1e131b3a.jpg?v=1778004541"
         ]
@@ -547,6 +599,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Black Violet and Saffron",
     "handle": "black-violet-and-saffron",
+    "unitsSold": 14,
     "tags": [
       "Earthy",
       "Floral",
@@ -562,6 +615,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "LBPPAG747PAYDQ3LKEJOTRSS",
         "sku": "Y479768",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_black_violet_and_soffron.jpg?v=1778004453"
         ]
@@ -572,6 +626,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "SJRK5UYZ4YVLVJOZXBY3IJXO",
         "sku": "W307241",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Black_Violet_Saffron.jpg?v=1778004465"
         ]
@@ -582,6 +637,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "6V6PNDQQ7QIYN4QO6XVUWELQ",
         "sku": "925172F",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_black_violet_saffron.jpg?v=1778004494"
         ]
@@ -592,6 +648,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "REKXEI3D4CCCFZ2QSWKEVSM7",
         "sku": "6541085",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_black_violet_and_saffron.jpg?v=1778004580"
         ]
@@ -602,6 +659,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "UVWDXW5KSHAS4E3ZCU6C4RJ6",
         "sku": "592386S",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -609,6 +667,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "BOoOoo...Berry",
     "handle": "booberry",
+    "unitsSold": 5,
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -625,6 +684,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "EPQEQOZ7MXBVBGHOV3O7N36F",
         "sku": "162718X",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_boo_berry.jpg?v=1778004454"
         ]
@@ -635,6 +695,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "C3EYX6CNO5ZCJX7UZTPBNQ2J",
         "sku": "N492314",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Boo_Berry.jpg?v=1778004464"
         ]
@@ -645,6 +706,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "NVT46XG5PCK3O6MO7SWXWLYR",
         "sku": "K806270",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_boo_berry.jpg?v=1778004495"
         ]
@@ -655,6 +717,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "KLURVR326VVHYWXCEM4C6E2A",
         "sku": "284592N",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_booBerry2.png?v=1753914664",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_boo_berry.jpg?v=1778004580"
@@ -666,6 +729,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "KJANKAVX2S3VOCQSBXN5G7VI",
         "sku": "X958714",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -673,6 +737,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "By the Fireside",
     "handle": "by-the-fireside",
+    "unitsSold": 5,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -690,6 +755,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -698,6 +764,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "65DJGFSGPSVDAHQZ2U32UCTC",
         "sku": "9000126",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -706,6 +773,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -714,6 +782,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -722,6 +791,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "NQJZIEEVCQL66KVXBYFFGOOJ",
         "sku": "Q944203",
+        "unitsSold": 3,
         "images": []
       }
     ]
@@ -729,6 +799,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Cabin in the Woods",
     "handle": "cabin-in-the-woods",
+    "unitsSold": 53,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -747,6 +818,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "A5R6LVJKTOM4HZCVU44JD3GM",
         "sku": "L287601",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_cabin_in_the_woods.jpg?v=1778004453"
         ]
@@ -757,6 +829,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "BODK6QHDT6CLZ5SAA4M7DMU5",
         "sku": "8218651",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Cabin_in_the_Woods.jpg?v=1778004466"
         ]
@@ -767,6 +840,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "QD3HNOA4WSTUB3O7KNPELNAK",
         "sku": "459750G",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_cabin_in_the_woods.jpg?v=1778004494"
         ]
@@ -777,6 +851,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "ZVKVJKJ25QKB2BFHTKTWAOFS",
         "sku": "664295H",
+        "unitsSold": 19,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_cabin_in_the_woods.jpg?v=1778004578"
         ]
@@ -787,6 +862,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "62ZCEO6G34ZGXTPNV62OJISZ",
         "sku": "Cabitw",
+        "unitsSold": 4,
         "images": []
       }
     ]
@@ -794,6 +870,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Candied Heart",
     "handle": "candied-heart",
+    "unitsSold": 8,
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -809,6 +886,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "T75POZCY6SHV6IYGNPKH4AKA",
         "sku": "906552S",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_candied_heart.jpg?v=1778004453"
         ]
@@ -819,6 +897,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "T3FXG6TY2V6YR6NZ4ISYI6FH",
         "sku": "345730L",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Candied_Heart.jpg?v=1778004465"
         ]
@@ -829,6 +908,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "LI77AZUNUYKSU4R6CMIQDPGU",
         "sku": "616282G",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_candied_heart.jpg?v=1778004494"
         ]
@@ -839,6 +919,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "VJ4M4X3Z4KRWZIVBXWT6UEEY",
         "sku": "760904H",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_candied_heart.jpg?v=1778004579"
         ]
@@ -849,6 +930,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "NMNAPL4NHLDKPLYRELY2LHHZ",
         "sku": "Q948186",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -856,6 +938,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Charmed",
     "handle": "charmed",
+    "unitsSold": 14,
     "tags": [
       "Earthy",
       "fall",
@@ -872,6 +955,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "KBK2NQKRH6IGDQRXR5EXAOKF",
         "sku": "A264113",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -880,6 +964,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "2L3BW5B5X6YEYNAGUAQJKES3",
         "sku": "G405086",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -888,6 +973,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "AQ5HRGZMO5HVYWE3BCGOEKHA",
         "sku": "X572870",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -896,6 +982,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "D2FLYFWDQWTSU5VAJKJXYGMA",
         "sku": "X248095",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_charmed.jpg?v=1778004548"
         ]
@@ -906,6 +993,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "PGO4ZVSDCI5TILYEBCERT55S",
         "sku": "841815Z",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -913,6 +1001,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Cinnamon Broom",
     "handle": "cinnamon-broom",
+    "unitsSold": 48,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -930,6 +1019,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "YSKUNZTKT7KGUHEG53UFDRZA",
         "sku": "Z095684",
+        "unitsSold": 15,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_cinnamon_broom.jpg?v=1778004452"
         ]
@@ -940,6 +1030,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "UKUIKYPVV7BUAXLOSDNUFKYA",
         "sku": "1525512",
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Cinnamon_Broom.jpg?v=1778004465"
         ]
@@ -950,6 +1041,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "WPXZKC7BWIJJ46PPROBZ6LZG",
         "sku": "W697283",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_cinnamon_broom.jpg?v=1778004495"
         ]
@@ -960,6 +1052,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "IOJM7GSPSOJAZGNVIVNUFARW",
         "sku": "D465975",
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_cinnamon_broom.jpg?v=1778004579"
         ]
@@ -970,6 +1063,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "DBRRRLAUOQ6WQOFCKDU2AWCU",
         "sku": "L904438",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -977,6 +1071,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Citrus & Sage",
     "handle": "citrus-and-sage",
+    "unitsSold": 39,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -996,6 +1091,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "ZQ3QMP3KV5IAWAABPOVBW7IY",
         "sku": "651175G",
+        "unitsSold": 14,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/3oz_citrus_sage_9a7fb9c7-faeb-46fe-8df6-652223a6f1f9.jpg?v=1778006554"
         ]
@@ -1006,6 +1102,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "TPU7OZHIPGHMMH55N7UGXNGH",
         "sku": "Q164549",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -1014,6 +1111,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "44R2Y7LGQLQQM6NW5W24XDR6",
         "sku": "842766V",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/8oz_citrus_sage.jpg?v=1778006540"
         ]
@@ -1024,6 +1122,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "KQNYXC57XCKGMAVR46A2GRTI",
         "sku": "P604045",
+        "unitsSold": 11,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14oz_citrus_sage_ea0e027a-846f-4dfc-a9a4-e5af1e5b34d0.jpg?v=1778006554"
         ]
@@ -1034,6 +1133,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "M535FMFBWXYXXY5CELBLTGCD",
         "sku": "2613532",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_citrus_sage2.jpg?v=1778004542"
         ]
@@ -1043,6 +1143,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Clementine",
     "handle": "clementine",
+    "unitsSold": 49,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1059,6 +1160,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "FJOWJ2BK2SWFRFGSGDWLEBSX",
         "sku": "795463Y",
+        "unitsSold": 15,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozClementine_205d897e-b85f-492d-84ac-478063813129.jpg?v=1778002844"
         ]
@@ -1069,6 +1171,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "PRGCTPLDARCUEKRZFJO2HRTD",
         "sku": "Z140620",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozClementine_205d897e-b85f-492d-84ac-478063813129.jpg?v=1778002844"
         ]
@@ -1079,6 +1182,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "F746IEGYCQJTC3VRBXXKZ73R",
         "sku": "952998R",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozClementine_205d897e-b85f-492d-84ac-478063813129.jpg?v=1778002844"
         ]
@@ -1089,6 +1193,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "FFDEU53I5YEZTZINAZT55KQM",
         "sku": "163684N",
+        "unitsSold": 16,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozClementine_205d897e-b85f-492d-84ac-478063813129.jpg?v=1778002844"
         ]
@@ -1099,6 +1204,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "DENC6RP2SI5MLC5WQICFFV5S",
         "sku": "5645859",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozClementine_205d897e-b85f-492d-84ac-478063813129.jpg?v=1778002844"
         ]
@@ -1108,6 +1214,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Coal Fire Farm",
     "handle": "coal-fire-farm",
+    "unitsSold": 13,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -1124,6 +1231,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "IYK6ELZWFVBEYZB4XHEQNT3S",
         "sku": "4273853",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -1132,6 +1240,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -1140,6 +1249,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "XS2VGZS3FKLBYGVIFRRJS4OP",
         "sku": "E561682",
+        "unitsSold": 3,
         "images": []
       },
       {
@@ -1148,6 +1258,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "RJ7NI3FLBZQQPVWOKMS4UFJW",
         "sku": "4390449",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_coal_fire_farm.jpg?v=1778004548"
         ]
@@ -1158,6 +1269,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1165,6 +1277,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Coffee House",
     "handle": "coffee-house",
+    "unitsSold": 38,
     "tags": [
       "fall",
       "Gourmand",
@@ -1179,6 +1292,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "WMDMNIMAVJCU5NWYMVFHSHFY",
         "sku": "M308816",
+        "unitsSold": 16,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_coffee_house.jpg?v=1778004454",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_2_Image_0012.jpg?v=1778002849"
@@ -1190,6 +1304,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "QWV7XQSHSSJ26LMRHT3TAC7E",
         "sku": "B507623",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Coffee_House.jpg?v=1778004465",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_2_Image_0012.jpg?v=1778002849"
@@ -1201,6 +1316,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "KUCIGAFB3IEVTKOKYYP737SC",
         "sku": "1690691",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_coffee_house.jpg?v=1778004494",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_2_Image_0012.jpg?v=1778002849"
@@ -1212,6 +1328,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "GVDX5LKKV4NUZVJBZMA3GSBV",
         "sku": "3617311",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_coffee_house.jpg?v=1778004579",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_2_Image_0012.jpg?v=1778002849"
@@ -1223,6 +1340,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "IJFMUBBBAMNF2QSAPXFGWAVB",
         "sku": "Z764750",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_2_Image_0012.jpg?v=1778002849"
         ]
@@ -1232,6 +1350,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Cookie Jar",
     "handle": "cookie-jar",
+    "unitsSold": 12,
     "tags": [
       "fall",
       "Gourmand",
@@ -1247,6 +1366,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "X4W7CZNW36IHNCJGXMRKVIRZ",
         "sku": "P640819",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_cookie_jar.jpg?v=1778004452"
         ]
@@ -1257,6 +1377,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "U3LASRG6FO2UEYC6YHFJ5Q4L",
         "sku": "N651715",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Cookie_Jar.jpg?v=1778004465"
         ]
@@ -1267,6 +1388,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "UP73GKKLYGGDIOWOJTLTN2SX",
         "sku": "L957324",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_cookie_jar.jpg?v=1778004494"
         ]
@@ -1277,6 +1399,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "FLZZWSNN2NBFFX2WLSYXH4RT",
         "sku": "R134021",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_cookie_jar.jpg?v=1778004580"
         ]
@@ -1287,6 +1410,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "JZUHINQXT2OSJD37JNOHMYVL",
         "sku": "L617442",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1294,6 +1418,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Cottage Holiday",
     "handle": "cottage-holiday",
+    "unitsSold": 31,
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -1309,6 +1434,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "NLYHWO76ZKZNV6XMJ2BQRWD3",
         "sku": "6817909",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_cottage_holiday.jpg?v=1778004454"
         ]
@@ -1319,6 +1445,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "KYNBS6LYLBA2RWMSI26BGS3E",
         "sku": "4131703",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Cottage_Holiday.jpg?v=1778004465"
         ]
@@ -1329,6 +1456,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "VOI2WMTBCBXGT4LGSK7PH6RO",
         "sku": "Y641099",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_cottage_holiday.jpg?v=1778004494"
         ]
@@ -1339,6 +1467,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "MJHSATGM26L44S5K3N22N36L",
         "sku": "F007394",
+        "unitsSold": 11,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_Cottage_Holiday-Camera_2.png?v=1778004586",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_cottage_holiday.jpg?v=1778004578"
@@ -1350,6 +1479,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "SBZ53OXIGVXS67EYSXLBKYKQ",
         "sku": "346325V",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1357,6 +1487,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Crewhouse",
     "handle": "crewhouse",
+    "unitsSold": 84,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -1377,6 +1508,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "QMYAW6T66TUA7HQ6XZLM2UF7",
         "sku": "M399038",
+        "unitsSold": 14,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/3oz_crewhouse_2625f8bc-e041-4cfd-945b-00ac18a5a819.jpg?v=1778006555"
         ]
@@ -1387,6 +1519,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "AGSLXL5KUPSMFYW3GABZEQSX",
         "sku": "C729395",
+        "unitsSold": 7,
         "images": []
       },
       {
@@ -1395,6 +1528,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "LRSFZ7XFZN5GUOL4FFDJABGR",
         "sku": "929081X",
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/8oz_crewhouse_b8fdcded-e57a-4f47-9462-536245be16fd.jpg?v=1778006554"
         ]
@@ -1405,6 +1539,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "LDBOBH5DYIGJBDUXDZ6VEQFO",
         "sku": "7463570",
+        "unitsSold": 46,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14oz_crewhouse_dba7a7e7-07a4-4191-8cfd-3fc3dabe9611.jpg?v=1778006554"
         ]
@@ -1415,6 +1550,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "EBR3CMC5QFIMBYRHTAIB7QWW",
         "sku": "L350038",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_crewhouse2.jpg?v=1778004542"
         ]
@@ -1424,6 +1560,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Cucumber Water & Melon",
     "handle": "cucumber-water-and-melon",
+    "unitsSold": 28,
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -1441,6 +1578,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "MG6MN3CZ6XBGPP264IU67BZM",
         "sku": "837018M",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_cucumber_water_and_melon.jpg?v=1778004453"
         ]
@@ -1451,6 +1589,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "5NY3NYPS3ADPT753RPN6HJGX",
         "sku": "147224G",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Cucumber_Water_Melon.jpg?v=1778004465"
         ]
@@ -1461,6 +1600,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "ZZSDVWZW4FNZPCW7R7CKDDB6",
         "sku": "M873166",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_cucumber_water_melon.jpg?v=1778004495"
         ]
@@ -1471,6 +1611,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "HTRAH3FPCWCA3GLZWWQBSXKL",
         "sku": "6405373",
+        "unitsSold": 11,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_cucumber_water_and_melon.jpg?v=1778004580"
         ]
@@ -1481,6 +1622,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "FJ5IDYMDN75IOACBPQN4TR3B",
         "sku": "287465C",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1488,6 +1630,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Dapper Trappings",
     "handle": "dapper-trappings",
+    "unitsSold": 8,
     "tags": [
       "Earthy",
       "fall",
@@ -1503,6 +1646,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "ZECWCQMK4AGJZ75IHASBLDFD",
         "sku": "900191B",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_dapper_trappings.jpg?v=1778004453"
         ]
@@ -1513,6 +1657,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "N7X7RG6V6UPN7A66FMNZ24ZM",
         "sku": "T141188",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Dapper_Trappings.jpg?v=1778004465"
         ]
@@ -1523,6 +1668,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "SWHIQ5RODK5S5BYZXBKUGN37",
         "sku": "383328C",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_dapper_trappings.jpg?v=1778004495"
         ]
@@ -1533,6 +1679,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "UPOPNVLELUB54KZT2FVO5XCD",
         "sku": "A007032",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_dapper_trappings.jpg?v=1778004579"
         ]
@@ -1543,6 +1690,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "HBTEIEHVFRUPPZ2HXTSHL22I",
         "sku": "325933L",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1550,6 +1698,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Deck the Halls",
     "handle": "deck-the-halls",
+    "unitsSold": 50,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1566,6 +1715,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "SWX4B56ZPLDGHOEOK5XUDA6A",
         "sku": "V527169",
+        "unitsSold": 18,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_deck_the_halls.jpg?v=1778004454"
         ]
@@ -1576,6 +1726,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "4R4RMQRIRXHVYUILW2VZ32FF",
         "sku": "4612164",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Deck_the_Halls.jpg?v=1778004465"
         ]
@@ -1586,6 +1737,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "VM75CSKB3KD3G3LWI5WBW5L6",
         "sku": "M320578",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_deck_the_halls.jpg?v=1778004494"
         ]
@@ -1596,6 +1748,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "HSPL56MTR5IG7Q4PY5K2QFS4",
         "sku": "470688K",
+        "unitsSold": 17,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_Deck_the_halls-Camera_2.png?v=1778004586",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_deck_the_halls.jpg?v=1778004579"
@@ -1607,6 +1760,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "SIWWK7DHYB3PKPF3USGISPT3",
         "sku": "719656S",
+        "unitsSold": 3,
         "images": []
       }
     ]
@@ -1614,6 +1768,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Desert Bloom",
     "handle": "desert-bloom",
+    "unitsSold": 9,
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -1631,6 +1786,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "IGB6XTMWH3LUU5KKWVISMTHM",
         "sku": "934969M",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_desert_bloom.jpg?v=1778004455"
         ]
@@ -1641,6 +1797,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "L4B4DSOSBD4IQEUWADJQ62TV",
         "sku": "W042635",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Desert_Bloom.jpg?v=1778004465"
         ]
@@ -1651,6 +1808,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "PODLIQKRRJMPGGT4T7FX7FVU",
         "sku": "962955W",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_desert_bloom.jpg?v=1778004494"
         ]
@@ -1661,6 +1819,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "HZEPHGEESWSXKH6TEHNSNNK2",
         "sku": "492587G",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_desert_bloom.jpg?v=1778004578"
         ]
@@ -1671,6 +1830,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "M3I2EHLEIRF35MPIURJS3PIP",
         "sku": "Q538399",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1678,6 +1838,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Dragon's Breath",
     "handle": "dragons-breath",
+    "unitsSold": 16,
     "tags": [
       "Earthy",
       "fall",
@@ -1693,6 +1854,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "BQPCGRXWQDRTU3KM2R53T6E3",
         "sku": "415588D",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -1701,6 +1863,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "2RVDRQECWZBDRBLISGVQHJNM",
         "sku": "Q665428",
+        "unitsSold": 3,
         "images": []
       },
       {
@@ -1709,6 +1872,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "NKJCTZZXKU3A2ES5Q6WVU42Z",
         "sku": "W168796",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -1717,6 +1881,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "VN4R3GV7I7SOCYRULJO2LZLH",
         "sku": "H940170",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_dragons_breath.jpg?v=1778004547"
         ]
@@ -1727,6 +1892,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "AO4NU2ZT5VQ4AKGALK7Y3MDL",
         "sku": "6052755",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -1734,6 +1900,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Dressed in White",
     "handle": "dressed-in-white",
+    "unitsSold": 13,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1754,6 +1921,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "PMGAKRMDJY5UX6RSOIP4CPUM",
         "sku": "W479715",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -1762,6 +1930,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "VRZBKYS6GC7JIGQHPGKK7EAL",
         "sku": "9277687",
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -1770,6 +1939,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "DNGJGBLT6M4KOIG5UCX3G2DG",
         "sku": "P013101",
+        "unitsSold": 3,
         "images": []
       },
       {
@@ -1778,6 +1948,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "ZU37YV6B6JNVLMJFGDTN5TLO",
         "sku": "354536T",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14oz_dressed_in_white.jpg?v=1778002868"
         ]
@@ -1788,6 +1959,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "YLT54BSRSQFJ5ZWVYNHE5T66",
         "sku": "671413W",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_dressedinwhite2.jpg?v=1778004541"
         ]
@@ -1797,6 +1969,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Driftwood & Cotton",
     "handle": "driftwood-and-cotton",
+    "unitsSold": 29,
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -1814,6 +1987,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "TZOHZIEGV5KR4QNTQGE5LEYM",
         "sku": "289411R",
+        "unitsSold": 9,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_driftwood_and_cotton.jpg?v=1778004453"
         ]
@@ -1824,6 +1998,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "YLFZGAUM36MQ2ZMUNC267D4W",
         "sku": "N137702",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Driftwood_Cotton.jpg?v=1778004465"
         ]
@@ -1834,6 +2009,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "XA4LGEU5Z3WH4LENLEZOFMIB",
         "sku": "C523568",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_driftwood_cotton.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_driftwood_cotton_seaside.jpg?v=1778004489"
@@ -1845,6 +2021,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "MKFCQFEYQTGLTLLSNEIENH3U",
         "sku": "T008160",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_driftwood_and_cotton_seaside.jpg?v=1753984803",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_driftwood_and_cotton.jpg?v=1778004579"
@@ -1856,6 +2033,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "QEY4L2GDAHICCCLBKI64DT72",
         "sku": "1261513",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -1863,6 +2041,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Earth & Air",
     "handle": "earth-and-air",
+    "unitsSold": 15,
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -1881,6 +2060,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "GIZFURXZRQRV5SZWR4EZ43TJ",
         "sku": "K821183",
+        "unitsSold": 8,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_earth_and_air.jpg?v=1778004451"
         ]
@@ -1891,6 +2071,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "C6SQAMRNHGCF5RFA36MKRXWN",
         "sku": "7492934",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Earth_Air.jpg?v=1778004466"
         ]
@@ -1901,6 +2082,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "C5A6EPWULOPGHIPQWFEL2GBH",
         "sku": "6907186",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_earth_air.jpg?v=1778004495"
         ]
@@ -1911,6 +2093,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "TR62VE6YIYWVKBNUCDK6LQQB",
         "sku": "L202907",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_earth_and_air.jpg?v=1778004579"
         ]
@@ -1921,6 +2104,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "QHZWCJROLY7FBT5GX2QYOLQP",
         "sku": "5659889",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1928,6 +2112,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Edgewood Manor",
     "handle": "edgewood-manor",
+    "unitsSold": 11,
     "tags": [
       "Earthy",
       "fall",
@@ -1945,6 +2130,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "CYVY3ALQJHODWLVHPWMEF74N",
         "sku": "R947008",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_edgewood_manor.jpg?v=1778004431"
         ]
@@ -1955,6 +2141,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "NNYMZDOJRHAFXBX6QOMZ5H7X",
         "sku": "H661653",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -1963,6 +2150,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "YPZ4DJFGNJSMBH3OUEQAK4J3",
         "sku": "V555603",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_edgewood_manor.jpg?v=1778004495"
         ]
@@ -1973,6 +2161,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "G3KX7EGM7A5EBIGSSNZOIF5W",
         "sku": "Z014377",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_edgewood_manor.jpg?v=1778004564"
         ]
@@ -1983,6 +2172,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "PACVCBXEQ25FAJL23KEQPX5H",
         "sku": "7023779",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -1990,6 +2180,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Eucalyptus & Jade",
     "handle": "eucalyptus-and-jade",
+    "unitsSold": 9,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -2008,6 +2199,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "4QKVT5VTNZVYUCYITLSEBZP7",
         "sku": "8056656",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_euclyptus_and_jade.jpg?v=1778004415"
         ]
@@ -2018,6 +2210,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "B26IPGTZUJIB2W7KVDXQRU7I",
         "sku": "3922821",
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -2026,6 +2219,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "AMWTZNBQROL3BB2IU3YKODF4",
         "sku": "2611053",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -2034,6 +2228,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "4PTTG3CH6YWBWUBIXVZH5JP4",
         "sku": "K215620",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_eucalyptus_and_jade.jpg?v=1778004547"
         ]
@@ -2044,6 +2239,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "OBMS6Z6ZGZX6KKQ5KB7Z6NTM",
         "sku": "760493S",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_eucalyptus_jade2.jpg?v=1778004542"
         ]
@@ -2053,6 +2249,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Evergreen",
     "handle": "evergreen",
+    "unitsSold": 24,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -2069,6 +2266,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "TNEN45XL5GH4YR2WA6ZMLXOA",
         "sku": "3368595",
+        "unitsSold": 8,
         "images": []
       },
       {
@@ -2077,6 +2275,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "F6NUZNU4AKR7QRJNLFRNTVD5",
         "sku": "H523993",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -2085,6 +2284,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "D2MIJDKBZJW4G7VEG6XW3KQ7",
         "sku": "806606D",
+        "unitsSold": 10,
         "images": []
       },
       {
@@ -2093,6 +2293,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "75GRDQBS4PXDFMF3VKSO7PYJ",
         "sku": "119494Q",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_ever_green.jpg?v=1753914670"
         ]
@@ -2103,6 +2304,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "INTA5E45INFUTPWQJAEN7JUY",
         "sku": "719560E",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -2110,6 +2312,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Farmhouse Kitchen",
     "handle": "farmhouse-kitchen",
+    "unitsSold": 20,
     "tags": [
       "fall",
       "Gourmand",
@@ -2124,6 +2327,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "2UYLZOQTVHAZRXNXYWV52ICW",
         "sku": "784472M",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_farmhouse_kitchen.jpg?v=1778004454",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_4_Image_0007.jpg?v=1778002880"
@@ -2135,6 +2339,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "M37GTF3LTBOCJLVEX747FJGT",
         "sku": "Z033770",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Farmhouse_Kitchen.jpg?v=1778004465",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_4_Image_0007.jpg?v=1778002880"
@@ -2146,6 +2351,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "6PUDNRKNGNRCL2HH44UX5PPP",
         "sku": "772729F",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_farmhouse_kitchen.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_4_Image_0007.jpg?v=1778002880"
@@ -2157,6 +2363,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "HNN6AQDHE3TUPXR65TBMSKVR",
         "sku": "Z117749",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_farmhouse_kitchen.jpg?v=1778004579",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_4_Image_0007.jpg?v=1778002880"
@@ -2168,6 +2375,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "HP24LLE5JHXXFAGBYJKRD7C2",
         "sku": "5801678",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_4_Image_0007.jpg?v=1778002880"
         ]
@@ -2177,6 +2385,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Fig & Ginger",
     "handle": "fig-and-ginger",
+    "unitsSold": 14,
     "tags": [
       "Gourmand",
       "Woody / Evergreen"
@@ -2190,6 +2399,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "XRINVW53LLNLWX4VWO3DRVTQ",
         "sku": "788672H",
+        "unitsSold": 8,
         "images": []
       },
       {
@@ -2198,6 +2408,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "MLEYNELTZRRQU7OEJW6GWG2V",
         "sku": "X774356",
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -2206,6 +2417,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "5UPTMWDYTA7HTT45X7VN7VB5",
         "sku": "449075G",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -2214,6 +2426,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "BTDZQH6T5UV3CQSAKS6V4X3Y",
         "sku": "S518175",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_fig_and_ginger.jpg?v=1778004547"
         ]
@@ -2224,6 +2437,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "U5ZYXLS6GJWU6SB4OZBPBGOJ",
         "sku": "127871K",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -2231,6 +2445,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Fire & Water",
     "handle": "fire-and-water",
+    "unitsSold": 8,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -2248,6 +2463,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "KORZA2EMS6R4OSV7YUJLULOP",
         "sku": "H278769",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_fire_and_water.jpg?v=1778004454"
         ]
@@ -2258,6 +2474,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "H5TZAHXZXHN5WJXKPA3WODIT",
         "sku": "967527N",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Fire_Water.jpg?v=1778004465"
         ]
@@ -2268,6 +2485,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "TLPDAJCYCXALAW4PHNEGTJ5I",
         "sku": "V050083",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_fire_water.jpg?v=1778004494"
         ]
@@ -2278,6 +2496,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "IXKI23ADMSJOUWVFALSOCDXE",
         "sku": "660407M",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_fire_and_water.jpg?v=1778004578"
         ]
@@ -2288,6 +2507,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "MMKGB2KHTVWMFLXBBCRC5CXM",
         "sku": "429908M",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -2295,6 +2515,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "First Avenue",
     "handle": "first-avenue",
+    "unitsSold": 14,
     "tags": [
       "best seller",
       "Earthy",
@@ -2312,6 +2533,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "NR53KHZ27HJD5C5FH4Q4PIEU",
         "sku": "954030C",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_first_avenue.jpg?v=1778004454"
         ]
@@ -2322,6 +2544,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "EGUV7XTMJEDQYSSZOQYD6TNS",
         "sku": "929663G",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_First_Avenue.jpg?v=1778004464"
         ]
@@ -2332,6 +2555,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "ENPENSSVY47WLX3GXR3UKZZ4",
         "sku": "P953039",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_first_avenue.jpg?v=1778004495"
         ]
@@ -2342,6 +2566,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "EAV3TPPIDP6DSUI6TNT5IJWV",
         "sku": "F040666",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_first_avenue.jpg?v=1778002886"
         ]
@@ -2352,6 +2577,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "KQ3SP22RR56CUEHGV36C76IT",
         "sku": "1400585",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -2359,6 +2585,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Frosty Night",
     "handle": "frosty-night",
+    "unitsSold": 285,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -2374,6 +2601,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "372MZV77C2FZJWQVLMN2LDRQ",
         "sku": "2942278",
+        "unitsSold": 55,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_frosty_night.jpg?v=1778004452",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/frostynight.jpg?v=1778002888"
@@ -2385,6 +2613,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "FXSZQE6VYX7DV2M6D7QGABQU",
         "sku": "E760674",
+        "unitsSold": 64,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Frosty_Night.jpg?v=1778004465",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/frostynight.jpg?v=1778002888"
@@ -2396,6 +2625,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "CCQXHBLCDF3HJ23DWJ4YQU5A",
         "sku": "Z631294",
+        "unitsSold": 56,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_frosty_night.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/frostynight.jpg?v=1778002888"
@@ -2407,6 +2637,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "34WKPOJ7F72CP7H3WQYZP6C7",
         "sku": "793402K",
+        "unitsSold": 98,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_Frosty_Night-Camera_2.png?v=1778004586",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_frosty_night.jpg?v=1778004579",
@@ -2419,6 +2650,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "MIZA6D7N6LA47JG4O2YIJKZ7",
         "sku": "731865F",
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/frostynight.jpg?v=1778002888"
         ]
@@ -2428,6 +2660,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Hallowed",
     "handle": "hallowed",
+    "unitsSold": 32,
     "tags": [
       "fall",
       "Gourmand",
@@ -2443,6 +2676,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "PLE7NJAZFYHOYRG2HDONU6RL",
         "sku": "280608C",
+        "unitsSold": 9,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozHallowed-Camera2.png?v=1778008225"
         ]
@@ -2453,6 +2687,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "744OSVNAANF7GHO5KY5S3BWR",
         "sku": "410651Z",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozHallowed-Camera2.png?v=1778008225"
         ]
@@ -2463,6 +2698,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "2HS4AVEES7LJYERBPXCKHJ2R",
         "sku": "M611819",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozHallowed-Camera2.png?v=1778008225"
         ]
@@ -2473,6 +2709,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "5P4EQLP4SXSCG3VVKG22W2PH",
         "sku": "6772571",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozHallowed-Camera2.png?v=1778008225"
         ]
@@ -2483,6 +2720,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "HBHJER7I6OLBVMQPVHYJERNO",
         "sku": "6588872",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14ozHallowed-Camera2.png?v=1778008225"
         ]
@@ -2492,6 +2730,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Hanzel & Gretyl",
     "handle": "hanzel-gretyl",
+    "unitsSold": 11,
     "tags": [
       "fall",
       "Gourmand",
@@ -2506,6 +2745,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "MQXIMDGJQAK3LMXDTQRPCZGH",
         "sku": "W138740",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_hanzel_and_gretyl.jpg?v=1778004453"
         ]
@@ -2516,6 +2756,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "4KU6PV6LXBLWOUS5A2UVKIQT",
         "sku": "5020419",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Hanzel_Gretyl.jpg?v=1778004466"
         ]
@@ -2526,6 +2767,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "7XJXNZZ64UPBLJPW55KJTWJ4",
         "sku": "863677H",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_hanzel_gretyl.jpg?v=1778004495"
         ]
@@ -2536,6 +2778,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "GAFFWQADIV5NCMUXJZBQP3HE",
         "sku": "1801727",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_hanzel_and_gretyl.jpg?v=1778004580"
         ]
@@ -2546,6 +2789,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "TDHT22P7T4IGDN6C6XL4S6RT",
         "sku": "P485205",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -2553,6 +2797,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Harvest Table",
     "handle": "harvest-table",
+    "unitsSold": 10,
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -2569,6 +2814,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "EHFJ4MQ6XLX4NNUOVKF4B5AG",
         "sku": "8426139",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_harvest_table.jpg?v=1778004452"
         ]
@@ -2579,6 +2825,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "GY23ACHSB7ZMSLQ5PCQBQEW5",
         "sku": "7318061",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Harvest_Table.jpg?v=1778004466"
         ]
@@ -2589,6 +2836,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "VTXYNCMQIHVH6JBUIT5FKLNZ",
         "sku": "8483404",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_harvest_table.jpg?v=1778004495"
         ]
@@ -2599,6 +2847,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "LF5WKZ42LPFPZKABULNWB3BX",
         "sku": "T544223",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_harvest_table.jpg?v=1778004579"
         ]
@@ -2609,6 +2858,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "7OSMLROJGZMRIJ7O5UVUTGGI",
         "sku": "939394D",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -2616,6 +2866,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Haunting",
     "handle": "haunting",
+    "unitsSold": 29,
     "tags": [
       "Earthy",
       "fall",
@@ -2630,6 +2881,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "N2YW4GASIBHVKJEZWLI3RM2X",
         "sku": "1521587",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_haunting.jpg?v=1778004413"
         ]
@@ -2640,6 +2892,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "OBTROK7VMRWR4EL4SWR4GVBF",
         "sku": "B466967",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Haunting.jpg?v=1778004453"
         ]
@@ -2650,6 +2903,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "H6U337PE3B6R3NPTINGWI5SB",
         "sku": "464869Y",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_haunting.jpg?v=1778004482"
         ]
@@ -2660,6 +2914,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "5VR5RZ2PJVYQX7XKBNXC7RRD",
         "sku": "468536V",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_haunting.jpg?v=1778004543",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_Haunting2-Camera_2.png?v=1778004585"
@@ -2671,6 +2926,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "Y4ZOVGVAIEC2YIGMHAAP5ELV",
         "sku": "K206268",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_haunting3.jpg?v=1778004541"
         ]
@@ -2680,6 +2936,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Hearth & Home",
     "handle": "hearth-and-home",
+    "unitsSold": 32,
     "tags": [
       "fall",
       "Gourmand",
@@ -2695,6 +2952,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "DSUGQJDONSQCKRGBDH4SANLZ",
         "sku": "654600N",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_hearth_and_home.jpg?v=1778004452"
         ]
@@ -2705,6 +2963,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "KYXQYZA3O2DGR4FZYDQDQKJU",
         "sku": "K798032",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Hearth_Home.jpg?v=1778004465"
         ]
@@ -2715,6 +2974,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "SUSNPT5R65NKGHY66LXDWM75",
         "sku": "495665W",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_hearth_home.jpg?v=1778004494"
         ]
@@ -2725,6 +2985,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "SRWHY63QKIWWKUPHW66FG4IQ",
         "sku": "261861W",
+        "unitsSold": 15,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_hearth_and_home.jpg?v=1778004579"
         ]
@@ -2735,6 +2996,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "POHTS3TLB6VSZPKWDCNTFDDJ",
         "sku": "681477Z",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -2742,6 +3004,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Heirloom",
     "handle": "heirloom",
+    "unitsSold": 21,
     "tags": [
       "Earthy",
       "Floral",
@@ -2758,6 +3021,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "PWTUWAMCAJYMD6EFOPFW4DJT",
         "sku": "G956042",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_heirloom.jpg?v=1778004454"
         ]
@@ -2768,6 +3032,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "3FA3BN5DGBFNAWFGMLETCTY6",
         "sku": "6991371",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Heirloom.jpg?v=1778004465"
         ]
@@ -2778,6 +3043,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "OVQEPY66O3XZBCDW3HRNSBJ5",
         "sku": "7907899",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_heirloom.jpg?v=1778004495"
         ]
@@ -2788,6 +3054,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "AO24HISLJNNZOQSGBNF6NIMG",
         "sku": "824637X",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_heirloom.jpg?v=1778004579"
         ]
@@ -2798,6 +3065,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "XP4BLIK2QD4NOLE33CZYITYQ",
         "sku": "8805612",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -2805,6 +3073,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Holiday Traditions",
     "handle": "holiday-traditions",
+    "unitsSold": 15,
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -2820,6 +3089,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -2828,6 +3098,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "56JLS6LM35LHT26WXHLPXFGN",
         "sku": "7451677",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -2836,6 +3107,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "K4RIFUS7AR63X4DCANA6RJ23",
         "sku": "220153P",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -2844,6 +3116,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "LY72C67BFRMVYTUFMCGUHUOY",
         "sku": "X705018",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -2852,6 +3125,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "AXKV4VUEAXXTYBGCR4FATTQV",
         "sku": "R005926",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -2859,6 +3133,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Houndstooth",
     "handle": "houndstooth",
+    "unitsSold": 17,
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -2875,6 +3150,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "S5277653TXSLQT22DZH4NH3F",
         "sku": "V224898",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_houndstooth.jpg?v=1778004452"
         ]
@@ -2885,6 +3161,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "PPRJTEVOHNWZUMKQJYUGJRWC",
         "sku": "548332J",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Houndstooth.jpg?v=1778004465"
         ]
@@ -2895,6 +3172,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "6XMFBVVTQDFDJRXPJ2LW7JAC",
         "sku": "4698814",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_houndstooth.jpg?v=1778004495"
         ]
@@ -2905,6 +3183,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "I52LFO62HYMOIRW4XFIYPCAO",
         "sku": "S443510",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_houndstooth.jpg?v=1778004579"
         ]
@@ -2915,6 +3194,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "IEVJ5WE4GT2QFSDYDZOKM2AB",
         "sku": "K595422",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -2922,6 +3202,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Iced Pine",
     "handle": "iced-pine",
+    "unitsSold": 49,
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -2937,6 +3218,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "5OPLY5QGCM7YL77V7KODUCS2",
         "sku": "7708274",
+        "unitsSold": 24,
         "images": []
       },
       {
@@ -2945,6 +3227,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "KLM76CP33CNYBY4X6JSAU6JA",
         "sku": "X132802",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -2953,6 +3236,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "WD7VL7EUZJ2UONWWNOVRXXR7",
         "sku": "6887969",
+        "unitsSold": 9,
         "images": []
       },
       {
@@ -2961,6 +3245,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "JDHILEZ6DYGJCOXICQE2UIVA",
         "sku": "5590485",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14oz_Iced_Pine-Camera_2.png?v=1778007707"
         ]
@@ -2971,6 +3256,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "SVFLFZFIEKJBOFDJHEJVW4I7",
         "sku": "6495646",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -2978,6 +3264,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Indigo Blue",
     "handle": "indigo-blue",
+    "unitsSold": 7,
     "tags": [
       "Earthy",
       "fall",
@@ -2996,6 +3283,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "MN74BFIONNYE23TJ6VC5WBA5",
         "sku": "J505755",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -3004,6 +3292,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "CZJNZNEXORIICICE75KL6N5I",
         "sku": "8441178",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -3012,6 +3301,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "L3NVQR3QN4BSUTLNJA63AOIT",
         "sku": "764932b",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -3020,6 +3310,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "FLMS2OX2GOIM7B66VV5AEIHJ",
         "sku": "122743C",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_indigo_blue.jpg?v=1778004548"
         ]
@@ -3030,6 +3321,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "SOMO4RGZQ7D4N475NTQFXKE5",
         "sku": "F731157",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -3037,6 +3329,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Jack O'Lantern",
     "handle": "jack-o-lantern",
+    "unitsSold": 67,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3053,6 +3346,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "IVJ2YCD7NLXGBOPS6BYAINIY",
         "sku": "7897641",
+        "unitsSold": 25,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_jack_o_lantern.jpg?v=1778004453"
         ]
@@ -3063,6 +3357,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "ONULQ2IPXZUBMU2NMMA374CU",
         "sku": "M523062",
+        "unitsSold": 12,
         "images": []
       },
       {
@@ -3071,6 +3366,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "6U2ON5N7NUALEJBIRJXYWNCS",
         "sku": "467053V",
+        "unitsSold": 8,
         "images": []
       },
       {
@@ -3079,6 +3375,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "JJTXW3QU2JWQDBNCR32Y7TWB",
         "sku": "D512336",
+        "unitsSold": 20,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_jack-o-lantern_2.png?v=1753990932",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_jack_o_lantern.jpg?v=1778004579"
@@ -3090,6 +3387,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "IIQK5H2PUHBCUHZPESTJN5JM",
         "sku": "E890374",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -3097,6 +3395,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Lavender Locks",
     "handle": "lavender-locks",
+    "unitsSold": 36,
     "tags": [
       "best seller",
       "Earthy",
@@ -3114,6 +3413,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "3VFYB5NPD7OBD6MVFNKTO63E",
         "sku": "5082568",
+        "unitsSold": 17,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_lavender_locks.jpg?v=1778004452"
         ]
@@ -3124,6 +3424,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "C6RXIXVQNJ2HXETHAJ7BQ4X3",
         "sku": "835991E",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Lavender_Locks.jpg?v=1778004465"
         ]
@@ -3134,6 +3435,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "ZIRZ4AOCIZRRCA4MOOTNC3JU",
         "sku": "721263E",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_lavender_locks.jpg?v=1778004495"
         ]
@@ -3144,6 +3446,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "XEFFH5FTLZGSIRMG6HPJV3PI",
         "sku": "W755804",
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_lavender_locks.jpg?v=1778004580"
         ]
@@ -3154,6 +3457,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "UQBQIADFZTXLPMTD25HBWOZW",
         "sku": "C028743",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -3161,6 +3465,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Lemon Chai",
     "handle": "lemon-chai",
+    "unitsSold": 51,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3178,6 +3483,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "T5TY5BARWAKD47PGX5KQ7TAI",
         "sku": "548186N",
+        "unitsSold": 15,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_lemon_chai.jpg?v=1778004453"
         ]
@@ -3188,6 +3494,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "7N4FGDIHI3DADCIBZFOVP5XK",
         "sku": "L827297",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Lemon_Chai.jpg?v=1778004465"
         ]
@@ -3198,6 +3505,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "L6WTE52QTXHEMKRBB2S2RP5Y",
         "sku": "5964418",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_lemon_chai.jpg?v=1778004495"
         ]
@@ -3208,6 +3516,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "SQWIFEDRCOJRUQD4X2AU2MGP",
         "sku": "996140P",
+        "unitsSold": 15,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_lemon_chai.jpg?v=1778004579"
         ]
@@ -3218,6 +3527,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "SHGTD3FMR3MGC7F5GXYKTE27",
         "sku": "3270162",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -3225,6 +3535,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Lilac Bloom",
     "handle": "lilac-bloom",
+    "unitsSold": 36,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -3242,6 +3553,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "TMCCQHTXJZGQWXGEPZ2FM7TI",
         "sku": "296219P",
+        "unitsSold": 14,
         "images": []
       },
       {
@@ -3250,6 +3562,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "MA546OXCMMD2OO5ID3N5CGID",
         "sku": "R249073",
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -3258,6 +3571,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "LEMZYFBNWX3TZRGMY2VWPONK",
         "sku": "799253J",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -3266,6 +3580,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "AV5ZSPSMWRUZ7VAJKIZZUNOQ",
         "sku": "9863931",
+        "unitsSold": 14,
         "images": []
       },
       {
@@ -3274,6 +3589,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "QSUIKS2VCVP526PP4TE5AESD",
         "sku": "M108946",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -3281,6 +3597,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Love Letter",
     "handle": "love-letter",
+    "unitsSold": 23,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3297,6 +3614,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "GUQOOGOF6FZLV3KWAN6BBSEB",
         "sku": "L097285",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/3oz_Love_Letter.png?v=1753934967"
         ]
@@ -3307,6 +3625,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "B5HLH5Q23NSI3GZUBDOP7PVG",
         "sku": "9626128",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Love_Letter.png?v=1753934974"
         ]
@@ -3317,6 +3636,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "2MH2O6JBIB5LLYNFHYIEKBQG",
         "sku": "715826Z",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/8_Love_Letter.jpg?v=1778006490",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_Love_Letter.png?v=1753934989"
@@ -3328,6 +3648,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "B7P4EUUC2DNYHSZQB6LM6PXE",
         "sku": "K445360",
+        "unitsSold": 8,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_Love_Letter.jpg?v=1778006490"
         ]
@@ -3338,6 +3659,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "3ABNS2HBJA6TFKGYPHIFG37C",
         "sku": "442769L",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -3345,6 +3667,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Low Tide",
     "handle": "low-tide",
+    "unitsSold": 18,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3362,6 +3685,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "J5OVB55W4ZA6EZCP36GKONE6",
         "sku": "564321S",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_low_tide.jpg?v=1778004452"
         ]
@@ -3372,6 +3696,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "HX6UOPE44HKL6DRUJATGP5LT",
         "sku": "826492X",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Low_Tide.jpg?v=1778004465"
         ]
@@ -3382,6 +3707,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "WBCXY5CGOT4ZKOCIRDT7VFBR",
         "sku": "H260043",
+        "unitsSold": 8,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_low_tide.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_low_tide_seaside.jpg?v=1778004487"
@@ -3393,6 +3719,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "KKTQAKV2XLG6YG4HV2IZZW66",
         "sku": "269184K",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_low_tide.jpg?v=1778004580",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_low_tide_seaside.jpg?v=1778004568"
@@ -3404,6 +3731,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "IS72O3XMLKLANQASZHWRUNI6",
         "sku": "2491105",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -3411,6 +3739,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Magnolia & Rose",
     "handle": "magnolia-and-rose",
+    "unitsSold": 12,
     "tags": [
       "Floral",
       "spring",
@@ -3425,6 +3754,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "OZWZHA6FFANL2P52RIROV43D",
         "sku": "605931W",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_magnolia_and_rose.jpg?v=1778004451"
         ]
@@ -3435,6 +3765,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "5EHKDTS4KXMDNTI4HBXNU4Y4",
         "sku": "5420624",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Magnolia_Rose.jpg?v=1778004465"
         ]
@@ -3445,6 +3776,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "AU7LPQXBXQPYFT47JXFVZMH5",
         "sku": "9042134",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_magnolia_rose.jpg?v=1778004495"
         ]
@@ -3455,6 +3787,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "KK7PHVWZGE345VDXJRZSZAPN",
         "sku": "S533700",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_magnolia_and_rose.jpg?v=1778004580"
         ]
@@ -3465,6 +3798,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "E6CJLHKICYMDFIKINBV7TNSP",
         "sku": "337208G",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -3472,6 +3806,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Mango Road",
     "handle": "mango-road",
+    "unitsSold": 34,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3492,6 +3827,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "6LOUZKDDYH7PAJFKJRXXPKEF",
         "sku": "Y861562",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_mango_road.jpg?v=1778004452"
         ]
@@ -3502,6 +3838,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "4KQ474IN4O6YL7STA5RYEAEW",
         "sku": "8626728",
+        "unitsSold": 9,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Mango_Road.jpg?v=1778004465"
         ]
@@ -3512,6 +3849,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "QQM2GFKSVGZX4UMCPVH6JJUQ",
         "sku": "S022383",
+        "unitsSold": 9,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_mango_road.jpg?v=1778004495"
         ]
@@ -3522,6 +3860,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "6LXAH3H5PWOXMXWTSJYHBH7O",
         "sku": "253595J",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_mango_road.jpg?v=1778004579"
         ]
@@ -3532,6 +3871,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "OMES7UIHCSKIWSYAJQUTA6A2",
         "sku": "T244374",
+        "unitsSold": 4,
         "images": []
       }
     ]
@@ -3539,6 +3879,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Mistletoe Kisses",
     "handle": "mistletoe-kisses",
+    "unitsSold": 31,
     "tags": [
       "best seller",
       "Earthy",
@@ -3555,6 +3896,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "UUNBOJFIKGM2QY2L6JBWAVDU",
         "sku": "945659P",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_mistletoe_kisses.jpg?v=1778004454"
         ]
@@ -3565,6 +3907,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "PBSMQX34IGAGONRZZNNWTBMX",
         "sku": "446314K",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Mistletoe_Kisses.jpg?v=1778004465"
         ]
@@ -3575,6 +3918,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "KZHAUICU6CNNUS4S4GB24UYK",
         "sku": "6635891",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_mistletoe_kisses.jpg?v=1778004494"
         ]
@@ -3585,6 +3929,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "24AOV27665OJBYOA74O2BPSP",
         "sku": "Y744826",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_mistletoe_kisses.jpg?v=1778004579"
         ]
@@ -3595,6 +3940,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "VCTRF4UZMDFPJEJDJV6ZP3MN",
         "sku": "V051761",
+        "unitsSold": 2,
         "images": []
       }
     ]
@@ -3602,6 +3948,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Mount Rainier",
     "handle": "mount-rainier",
+    "unitsSold": 16,
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -3618,6 +3965,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "I5PL3WQA6MBIC4GXHIWCRK2T",
         "sku": "857324Y",
+        "unitsSold": 3,
         "images": []
       },
       {
@@ -3626,6 +3974,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "SPEQHGC5HJKG6VORJM5CKXTP",
         "sku": "X311903",
+        "unitsSold": 3,
         "images": []
       },
       {
@@ -3634,6 +3983,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "762CP7VLMES7IWEV73XR5F6L",
         "sku": "178458G",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -3642,6 +3992,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "MDYHUVA7UMN2OVVSIE525RL5",
         "sku": "967448Q",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_mount_rainier.jpg?v=1778004548"
         ]
@@ -3652,6 +4003,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "5REIK4ZPKSJVCPSUP3VGK76V",
         "sku": "9148864",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -3659,6 +4011,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Noir Blanc",
     "handle": "noir-blanc",
+    "unitsSold": 17,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3678,6 +4031,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "5FJDQ22BTKGWEPJ4MCIG7JZY",
         "sku": "W942308",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_noir_blanc.jpg?v=1778004453"
         ]
@@ -3688,6 +4042,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "5VJBKYV3M224BV3KJCOEQLBA",
         "sku": "5114514",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Noir_Blanc.jpg?v=1778004465"
         ]
@@ -3698,6 +4053,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "N2NYVFRXAN2XAJMSDCYNHOBX",
         "sku": "5911126",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_noir_blanc.jpg?v=1778004495"
         ]
@@ -3708,6 +4064,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "34EI3QB3YGZKGY4S65HP2OH3",
         "sku": "M007771",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_noir_blanc.jpg?v=1778004578"
         ]
@@ -3718,6 +4075,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "P5Q73LOGM5W2WV6DMZJC6M7X",
         "sku": "6366935",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -3725,6 +4083,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Oak & Moss",
     "handle": "oak-and-moss",
+    "unitsSold": 35,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3745,6 +4104,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "MGMZELVO3MGQ7HPCX25LDLGE",
         "sku": "1094911",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/oak_moss.jpg?v=1778002942"
         ]
@@ -3755,6 +4115,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "5L43ZQQI65XWLFT47NVD47JV",
         "sku": "B765003",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/oak_moss.jpg?v=1778002942"
         ]
@@ -3765,6 +4126,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "KFFY3H7IWGXHBN7CMMSQFI4U",
         "sku": "354227S",
+        "unitsSold": 10,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/oak_moss.jpg?v=1778002942"
         ]
@@ -3775,6 +4137,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "2BEAOO7I47AKJ5MGOV4MJZQF",
         "sku": "8002035",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_oak_and_moss.jpg?v=1778004547",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/oak_moss.jpg?v=1778002942"
@@ -3786,6 +4149,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "TPQLAYP2RJZ27KU6QZAZHQ6Y",
         "sku": "9550170",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/oak_moss.jpg?v=1778002942"
         ]
@@ -3795,6 +4159,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Palo Santo & Patchouli",
     "handle": "palo-santo-and-patchouli",
+    "unitsSold": 32,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -3811,6 +4176,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "C7KS4MQLJUISH2KP4W2W4S4C",
         "sku": "Z945163",
+        "unitsSold": 14,
         "images": []
       },
       {
@@ -3819,6 +4185,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "A3AODVMPOJNMDXGSMXRRISZL",
         "sku": "V572050",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -3827,6 +4194,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "ZNQ765M54NFJB326PGKMVE65",
         "sku": "443808G",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/8_Palo_Santo_Patchouli.jpg?v=1778006490"
         ]
@@ -3837,6 +4205,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "QKWFWRF2XBSXTVY3775M5FT5",
         "sku": "811630S",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_Palo_Santo_Patchouli.jpg?v=1778006490"
         ]
@@ -3847,6 +4216,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "CMG6LZUZFXRX6SNP5XLUGCBG",
         "sku": "447970L",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -3854,6 +4224,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Peppermint Trail",
     "handle": "peppermint-trail",
+    "unitsSold": 9,
     "tags": [
       "Gourmand",
       "winter",
@@ -3868,6 +4239,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "E42HEO7ZSMNPWMDDKL4ZPH7C",
         "sku": "9441092",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_peppermint_trail.jpg?v=1778004454",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0009.jpg?v=1778002946"
@@ -3879,6 +4251,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "D73V5KIWC2PTZG5CQO3JTFFU",
         "sku": "Q926341",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Peppermint_Trail.jpg?v=1778004465",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0009.jpg?v=1778002946"
@@ -3890,6 +4263,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "66TNLDSXU4SBOG55SH4HPPCD",
         "sku": "811697S",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_peppermint_trail.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0009.jpg?v=1778002946"
@@ -3901,6 +4275,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "G7B53FFUKUU4WDYYC423TSQ3",
         "sku": "322941M",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_peppermint_trail.jpg?v=1778004579",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0009.jpg?v=1778002946"
@@ -3912,6 +4287,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "PMR5HRWE2ZY3D4TPQ4N77ENE",
         "sku": "N317252",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0009.jpg?v=1778002946"
         ]
@@ -3921,6 +4297,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Pumpkin Chai",
     "handle": "pumpkin-chai",
+    "unitsSold": 9,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -3936,6 +4313,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "6LHJNNKVNKVARQRV32XGVBCT",
         "sku": "132245D",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -3944,6 +4322,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       },
       {
@@ -3952,6 +4331,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "PRFNB57M7I4SQ27JNIXT3QYG",
         "sku": "9202913",
+        "unitsSold": 2,
         "images": []
       },
       {
@@ -3960,6 +4340,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "XHOE2XWKUEB2B5PHIZIL6GIH",
         "sku": "2003802",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_pumpkin_chai.jpg?v=1778004548"
         ]
@@ -3970,6 +4351,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": null,
         "sku": null,
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -3977,6 +4359,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Rainbow Sherbet",
     "handle": "rainbow-sherbet",
+    "unitsSold": 15,
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -3991,6 +4374,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "E3PNDM3CMT4JUDQSJ7U7U537",
         "sku": "808775N",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_rainbow_sherbet.jpg?v=1778004453",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0005.jpg?v=1778002951"
@@ -4002,6 +4386,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "TQPLCV52W4Q2RGOC26WR567A",
         "sku": "641595P",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Rainbow_Sherbet.jpg?v=1778004465",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0005.jpg?v=1778002951"
@@ -4013,6 +4398,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "JOYE5RY7B76WKM2YZWXFHKH3",
         "sku": "R323038",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_rainbow_sherbet.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0005.jpg?v=1778002951"
@@ -4024,6 +4410,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "ETKGSKP2J6BW4OB6VE673SXM",
         "sku": "2988838",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_rainbow_sherbet.jpg?v=1778004580",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0005.jpg?v=1778002951"
@@ -4035,6 +4422,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "L3QHHY4LMHUM2XQAEZMR773Z",
         "sku": "833711S",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/bumblin_bee_catalog_022422_Page_7_Image_0005.jpg?v=1778002951"
         ]
@@ -4044,6 +4432,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Rainy Afternoon",
     "handle": "rainy-afternoon",
+    "unitsSold": 24,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -4062,6 +4451,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "7LOYMTFO3ZHH3DJGZOZEWPYF",
         "sku": "9501047",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_rainy_afternoon.jpg?v=1778004453"
         ]
@@ -4072,6 +4462,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "QHC4G6ZIKEKGLN2J5LKQMKOO",
         "sku": "6223721",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Rainy_Afternoon.jpg?v=1778004466"
         ]
@@ -4082,6 +4473,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "OPW6QZCRBK6FESGR7WNHLXUL",
         "sku": "988331X",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_rainy_afternoon.jpg?v=1778004494"
         ]
@@ -4092,6 +4484,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "KZZIT2MXG65N6CLSW7PXOMTF",
         "sku": "6824240",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_rainy_afternoon.jpg?v=1778004579"
         ]
@@ -4102,6 +4495,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "LDHSAGMKU3GUQQW5XT7ZFTNJ",
         "sku": "Z136013",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4109,6 +4503,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Sand & Sea",
     "handle": "sand-and-sea",
+    "unitsSold": 24,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -4125,6 +4520,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "6AEDRTMCZ5ZWX2755V23SHFC",
         "sku": "H527708",
+        "unitsSold": 8,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_sand_and_sea.jpg?v=1778004453"
         ]
@@ -4135,6 +4531,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "K5GI5K7VVGSGJPB73KYYDCWA",
         "sku": "379371Y",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Sand_Sea.jpg?v=1778004466"
         ]
@@ -4145,6 +4542,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "VNFEBZXT7JFY4YLUFEOVFX4N",
         "sku": "5435674",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_sand_sea.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_sand_sea_seaside.jpg?v=1778004487"
@@ -4156,6 +4554,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "MIORP5WWYPDG3QOPO54KP62K",
         "sku": "5808096",
+        "unitsSold": 8,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_sand_and_sea_seaside.jpg?v=1778004565",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_sand_and_sea.jpg?v=1778004578"
@@ -4167,6 +4566,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "MQEMTAUO7VDUCDLH57X54V6Q",
         "sku": "P995511",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4174,6 +4574,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Sea Witch",
     "handle": "sea-witch",
+    "unitsSold": 31,
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -4190,6 +4591,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "LYAGRRU4OYYAPMDJ2JGCTTTV",
         "sku": "G864950",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -4198,6 +4600,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "NCYPJ7LUN7AOKHOPWOUHAR3C",
         "sku": "P630399",
+        "unitsSold": 4,
         "images": []
       },
       {
@@ -4206,6 +4609,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "MEWBTU5ROQPANXQPDGG5IZMW",
         "sku": "A891947",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_sea_witch_seaside.jpg?v=1778004487"
         ]
@@ -4216,6 +4620,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "5Y3VLNUQQ6UJ3WG3EANRG3GD",
         "sku": "875803E",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_sea_witch_seaside.jpg?v=1778004569"
         ]
@@ -4226,6 +4631,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "O3QCAYT6I3BJ7OYYZNMWYHVO",
         "sku": "W732825",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -4233,6 +4639,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Snickerdoodle",
     "handle": "snickerdoodle",
+    "unitsSold": 6,
     "tags": [
       "fall",
       "Gourmand",
@@ -4247,6 +4654,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "2JBUJUBRMGIOZE4C4I2OYHHW",
         "sku": "A812755",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_snickerdoodle.jpg?v=1778004453"
         ]
@@ -4257,6 +4665,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "5PLOOMOI27C2HSIQKLKYDGSV",
         "sku": "585203L",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Snickerdoodle.jpg?v=1778004465"
         ]
@@ -4267,6 +4676,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "FUKSNHHCXLETF32PEPW74PPI",
         "sku": "E739634",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_snickerdoodle.jpg?v=1778004495"
         ]
@@ -4277,6 +4687,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "A6AP2RV67RHY5D4NM33VGHWB",
         "sku": "5300347",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_snickerdoodle.jpg?v=1778004579"
         ]
@@ -4287,6 +4698,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "RO3GRKBJM2HQNZDBPG5MK5DL",
         "sku": "455994F",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4294,6 +4706,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Sugared Pumpkin Fig",
     "handle": "sugared-pumpkin-fig",
+    "unitsSold": 21,
     "tags": [
       "Earthy",
       "fall",
@@ -4309,6 +4722,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "V4S4LD2DJCW6Z7JNWPRUVMF5",
         "sku": "490337D",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_sugared_pumpkin_fig.jpg?v=1778004414"
         ]
@@ -4319,6 +4733,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "ELXQQAKG52F4O46NGBI7GNEF",
         "sku": "N072224",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Sugared_Pumpkin_Fig.jpg?v=1778004457"
         ]
@@ -4329,6 +4744,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "AEB2PP3M3P3Q2MMXMM4Y7BDL",
         "sku": "1829454",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_sugared_pumpkin_fig.jpg?v=1778004482"
         ]
@@ -4339,6 +4755,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "XIYMAW5YLRFTUOBLMOLQTJE5",
         "sku": "155812Z",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_sugared_pumpkin_and_fig.jpg?v=1778004542"
         ]
@@ -4349,6 +4766,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "6WNCYWN3V5FPXA6MGGPX6PKP",
         "sku": "3815511",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_sugared_pumpkin_fig3.jpg?v=1778004542"
         ]
@@ -4358,6 +4776,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Taffy Apple",
     "handle": "taffy-apple",
+    "unitsSold": 38,
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -4374,6 +4793,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "QT4DOPAEP664YXWXVXZTK76V",
         "sku": "L962265",
+        "unitsSold": 13,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_taffy_apple.jpg?v=1778004454"
         ]
@@ -4384,6 +4804,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "VDB6LSPBOQNH3YBPBRNXJ62I",
         "sku": "P901819",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Taffy_Apple.jpg?v=1778004466"
         ]
@@ -4394,6 +4815,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "IAONMCB4KPP5MU6GNVC4ZN5D",
         "sku": "S515008",
+        "unitsSold": 9,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_taffy_apple.jpg?v=1778004495"
         ]
@@ -4404,6 +4826,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "Q5RMXES47IGMOVLTCJKLXYX7",
         "sku": "1330182",
+        "unitsSold": 11,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_taffy_apple.jpg?v=1778004580"
         ]
@@ -4414,6 +4837,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "IY5GGGZ75R55G2OKTUZO4GPA",
         "sku": "R050198",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4421,6 +4845,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Toffee Coffee",
     "handle": "toffee-coffee",
+    "unitsSold": 29,
     "tags": [
       "fall",
       "Gourmand",
@@ -4435,6 +4860,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "F5RN7KBILUJYQYCUNBPLJIEQ",
         "sku": "T262857",
+        "unitsSold": 12,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_toffee_coffee.jpg?v=1778004454"
         ]
@@ -4445,6 +4871,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "L3F5N6A3MC4XU5X32S4QRADD",
         "sku": "M407424",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Toffee_Coffee.jpg?v=1778004466"
         ]
@@ -4455,6 +4882,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "QMOZLSM5R4UOZQG7SZWUYSD3",
         "sku": "Y109391",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_toffee_coffee.jpg?v=1778004495"
         ]
@@ -4465,6 +4893,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "CPLUSYSGJNHV4BWGBMCLF5ID",
         "sku": "258806X",
+        "unitsSold": 7,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_toffee_coffee.jpg?v=1778004579"
         ]
@@ -4475,6 +4904,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "NB7NUPD5SF2XHND2USBDDBYL",
         "sku": "S705279",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -4482,6 +4912,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Top Drawer",
     "handle": "top-drawer",
+    "unitsSold": 16,
     "tags": [
       "Earthy",
       "fall",
@@ -4497,6 +4928,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "C7YGIJOVR7LER7OIXJKWTESC",
         "sku": "G990162",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_top_drawer.jpg?v=1778004452"
         ]
@@ -4507,6 +4939,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "CRJLGQ6XG4ZAQOIZOG3KIFHX",
         "sku": "M680771",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Top_Drawer.jpg?v=1778004466"
         ]
@@ -4517,6 +4950,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "QHORBQANZBQCRYNUMN4HLPMN",
         "sku": "995845F",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_top_drawer.jpg?v=1778004495"
         ]
@@ -4527,6 +4961,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "YEZG4T44CZZQICHAKV4B7FY5",
         "sku": "N975394",
+        "unitsSold": 6,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_top_drawer.jpg?v=1778004579"
         ]
@@ -4537,6 +4972,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "OZFN3LFAG5W55HBMRFWOXUFO",
         "sku": "Q366560",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4544,6 +4980,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Vanilla Latte",
     "handle": "vanilla-latte",
+    "unitsSold": 13,
     "tags": [
       "fall",
       "Gourmand",
@@ -4558,6 +4995,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "SG7PIRZRDZQGKJ2UZCL4UXAC",
         "sku": "6356679",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_vanilla_latte.jpg?v=1778004453"
         ]
@@ -4568,6 +5006,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "KY2DMHDRJKOG6CFVVCG3JIFW",
         "sku": "L146636",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Vanilla_Latte.jpg?v=1778004466"
         ]
@@ -4578,6 +5017,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "COBNK5A253KXOKRGTYXVHXRW",
         "sku": "8377749",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_vanilla_latte.jpg?v=1778004494"
         ]
@@ -4588,6 +5028,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "6JATYOOMJPDB42YY7Z7IXE2G",
         "sku": "K702007",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_vanilla_latte.jpg?v=1778004579"
         ]
@@ -4598,6 +5039,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "ISNAIUXU7OMZ6HJRZ5I7CJRD",
         "sku": "L273501",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4605,6 +5047,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Whispering Embers",
     "handle": "whispering-embers",
+    "unitsSold": 6,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -4621,6 +5064,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "23OODQYIUN2XPVXSUVLK7LIG",
         "sku": "2929025",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_whispering_embers.jpg?v=1778004454"
         ]
@@ -4631,6 +5075,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "3HPSAENXKGFTUH43IH53S3AT",
         "sku": "H438585",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Whispering_Embers.jpg?v=1778004466"
         ]
@@ -4641,6 +5086,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "56E4STH566TK4FH77BTHNMX6",
         "sku": "7015872",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_whispering_embers.jpg?v=1778004495"
         ]
@@ -4651,6 +5097,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "MD7PNRWMVDXDQTMTZ2DL57BJ",
         "sku": "9235949",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_whispering_embers.jpg?v=1778004580"
         ]
@@ -4661,6 +5108,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "66AMYIJB4P6WKO2LJJPG35VY",
         "sku": "992965W",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4668,6 +5116,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "White Cedar & Cactus",
     "handle": "white-cedar-and-cactus",
+    "unitsSold": 12,
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -4685,6 +5134,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "RFDYDR4TNWA375YDBKFNKVBY",
         "sku": "8943790",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/3oz_white_cedar_cactus_257ec045-ddc0-4d91-bb17-b94ea1e8df4d.jpg?v=1778006554"
         ]
@@ -4695,6 +5145,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "BF32GG3NJOS63WP4QWQ6CIFU",
         "sku": "618772M",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -4703,6 +5154,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "RBCRVZEBS6GXCCHKOTAH4F3L",
         "sku": "B590340",
+        "unitsSold": 4,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/8oz_whiecedar_cactus.jpg?v=1778007178"
         ]
@@ -4713,6 +5165,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "FLWK5EK27IPJT42BMKVZLU52",
         "sku": "8627947",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14oz_whitecedar_cactus.jpg?v=1778006836"
         ]
@@ -4723,6 +5176,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "XRLNNNEVANV3KUUHRPLEUZAS",
         "sku": "700622S",
+        "unitsSold": 0,
         "images": []
       }
     ]
@@ -4730,6 +5184,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "White Cranberry",
     "handle": "white-cranberry",
+    "unitsSold": 23,
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -4748,6 +5203,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "ZJZOJM53FJWP2XSBY7BXADGQ",
         "sku": "R225458",
+        "unitsSold": 3,
         "images": []
       },
       {
@@ -4756,6 +5212,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "MHTCIR7SBRICWSXFTM557KQC",
         "sku": "1927469",
+        "unitsSold": 3,
         "images": []
       },
       {
@@ -4764,6 +5221,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "EKDBSXDNBHLDHU4INX23JRPV",
         "sku": "772478K",
+        "unitsSold": 10,
         "images": []
       },
       {
@@ -4772,6 +5230,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "J6I53XH5K3W5LHMHC2MW4UIQ",
         "sku": "B001917",
+        "unitsSold": 6,
         "images": []
       },
       {
@@ -4780,6 +5239,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "WYNQ5KM5Q5X6GGWFWFUEYOPD",
         "sku": "J851633",
+        "unitsSold": 1,
         "images": []
       }
     ]
@@ -4787,6 +5247,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "White Fig",
     "handle": "white-fig",
+    "unitsSold": 9,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -4806,6 +5267,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "FJSXCTOCWIQYSQMEFLYLTJEI",
         "sku": "2093467",
+        "unitsSold": 1,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/3oz_whitefig.jpg?v=1778006836"
         ]
@@ -4816,6 +5278,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "AGEBBI5KHZS7H6YUJEW7GTM2",
         "sku": "200984Q",
+        "unitsSold": 1,
         "images": []
       },
       {
@@ -4824,6 +5287,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "DV3HTXQHTFZQ55YHKMXTAQZU",
         "sku": "221994S",
+        "unitsSold": 5,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/8_White_Fig.jpg?v=1778006490"
         ]
@@ -4834,6 +5298,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "L6HH7PXJOWWIYMHZ3DP6EDTP",
         "sku": "A644056",
+        "unitsSold": 2,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14oz_whitecedar_cactus.jpg?v=1778006836"
         ]
@@ -4844,6 +5309,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "ZHJ54RSHY2MWIHJYQUWRFTGH",
         "sku": "764530W",
+        "unitsSold": 0,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/48_whitefig2.jpg?v=1753914679"
         ]
@@ -4853,6 +5319,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Witching Hour",
     "handle": "witching-hour",
+    "unitsSold": 79,
     "tags": [
       "Earthy",
       "fall",
@@ -4867,6 +5334,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "7.00",
         "squareVariationId": "6BIICEUBE2NNTNZ7BLMZCSWG",
         "sku": "2326074",
+        "unitsSold": 15,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/melt_witching_hour.jpg?v=1778004452",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/witchinghourbg.jpg?v=1754001941"
@@ -4878,6 +5346,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "12.50",
         "squareVariationId": "2FKSKVEXILATF26TBO7DG77R",
         "sku": "855830X",
+        "unitsSold": 15,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/4oz_Witching_Hour.jpg?v=1778004466",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/witchinghourbg.jpg?v=1754001941"
@@ -4889,6 +5358,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "17.50",
         "squareVariationId": "H2PZRDMWOGT7M4BSPBFV7MZI",
         "sku": "957097R",
+        "unitsSold": 18,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/7oz_short_witching_hour.jpg?v=1778004495",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/witchinghourbg.jpg?v=1754001941"
@@ -4900,6 +5370,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "25.00",
         "squareVariationId": "RQYZUPZE7HEJBR535LWTM46N",
         "sku": "3106548",
+        "unitsSold": 28,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_witching_hour_2.png?v=1753914681",
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/14_witching_hour.jpg?v=1778004578",
@@ -4912,6 +5383,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "AI56FGB3WEMI6FHMNTHQMIZO",
         "sku": "402185Y",
+        "unitsSold": 3,
         "images": [
           "https://cdn.shopify.com/s/files/1/0765/4503/2430/files/witchinghourbg.jpg?v=1754001941"
         ]
@@ -4941,6 +5413,52 @@ export const scentTags: string[] = Array.from(
 
 export function scentBySlug(handle: string): BumblinScent | undefined {
   return bumblinScents.find((s) => s.handle === handle);
+}
+
+/**
+ * Genuine best sellers, ranked by Square sales — NOT Shopify's "best seller"
+ * tag, which is only about half accurate (6 of the real top 20 are untagged).
+ */
+export function topSellers(limit = 4, opts: { withImage?: boolean } = {}): BumblinScent[] {
+  const list = opts.withImage === false
+    ? [...bumblinScents]
+    : bumblinScents.filter((s) => s.sizes.some((v) => v.images.length > 0));
+  return list.sort((a, b) => b.unitsSold - a.unitsSold).slice(0, limit);
+}
+
+export const seasonTags = ["spring", "summer", "fall", "winter"] as const;
+
+/**
+ * The tag that best expresses what the shopper is here for.
+ *
+ * A scent carrying exactly ONE season is unambiguously seasonal (18 of 78 are),
+ * and that is the strongest statement of intent we have — someone reading
+ * Witching Hour is shopping autumn. Otherwise fall back to the scent family
+ * that fewest others share, so the group stays tight rather than matching on
+ * something as broad as "Woody / Evergreen" (56 of 78 carry it).
+ */
+export function definingTag(s: BumblinScent): string | null {
+  const seasons = s.tags.filter((t) => (seasonTags as readonly string[]).includes(t));
+  if (seasons.length === 1) return seasons[0] ?? null;
+
+  const counts = new Map<string, number>();
+  for (const t of scentTags) {
+    counts.set(t, bumblinScents.filter((x) => x.tags.includes(t)).length);
+  }
+  const families = s.tags.filter(
+    (t) => t !== "best seller" && !(seasonTags as readonly string[]).includes(t),
+  );
+  const pool = families.length ? families : s.tags.filter((t) => t !== "best seller");
+  if (!pool.length) return null;
+  return pool.sort((a, b) => (counts.get(a) ?? 0) - (counts.get(b) ?? 0))[0] ?? null;
+}
+
+/** Scents sharing a tag, most-sold first. */
+export function scentsByTag(tag: string, exclude?: string, limit = 4): BumblinScent[] {
+  return bumblinScents
+    .filter((s) => s.tags.includes(tag) && s.handle !== exclude)
+    .sort((a, b) => b.unitsSold - a.unitsSold)
+    .slice(0, limit);
 }
 
 /** Sizes that have at least one image — what we can responsibly show today. */

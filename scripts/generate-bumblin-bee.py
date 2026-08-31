@@ -130,6 +130,50 @@ def sq_items():
     return out
 
 
+def square_units(location_id, days=365):
+    """Units sold per catalog variation over the window, from COMPLETED orders."""
+    from datetime import datetime, timedelta, timezone
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+    units, cursor, pages = {}, None, 0
+    while True:
+        body = {
+            "location_ids": [location_id],
+            "limit": 500,
+            "query": {
+                "filter": {
+                    "date_time_filter": {"closed_at": {"start_at": since}},
+                    # Square REQUIRES a closed-state filter when sorting on CLOSED_AT
+                    "state_filter": {"states": ["COMPLETED"]},
+                },
+                "sort": {"sort_field": "CLOSED_AT", "sort_order": "DESC"},
+            },
+        }
+        if cursor:
+            body["cursor"] = cursor
+        rq = urllib.request.Request(
+            "https://connect.squareup.com/v2/orders/search",
+            data=json.dumps(body).encode(),
+            headers={**H, "Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(rq, timeout=90) as r:
+            d = json.loads(r.read())
+        for o in d.get("orders", []):
+            for li in o.get("line_items", []) or []:
+                cid = li.get("catalog_object_id")
+                if not cid:
+                    continue
+                try:
+                    units[cid] = units.get(cid, 0) + float(li.get("quantity", "0"))
+                except ValueError:
+                    pass
+        cursor = d.get("cursor")
+        pages += 1
+        if not cursor or pages > 60:
+            break
+    return units
+
+
 def norm(s):
     return re.sub(r"[^a-z0-9]+", "", (s or "").lower().replace("&", "and"))
 
@@ -150,6 +194,9 @@ for it in sq_items():
         k = norm(vn)
         square[(size, SQ_ALIAS.get(k, k))] = {"id": v["id"], "sku": vd.get("sku"), "name": vn}
 print(f"square bumblin bee variations indexed: {len(square)}")
+
+UNITS = square_units(env["SQUARE_LOCATION_ID"])
+print(f"square variations with sales in the last 365d: {len(UNITS)}")
 
 # ---------- build ----------
 out, stats = [], {"sizes": 0, "with_img": 0, "sq_linked": 0, "no_img": 0}
@@ -195,11 +242,13 @@ for p in products:
             "size": sk, "label": SIZE_LABEL[sk], "price": v["price"],
             "squareVariationId": sq["id"] if sq else None,
             "sku": (sq or {}).get("sku"),
+            "unitsSold": round(UNITS.get(sq["id"], 0)) if sq else 0,
             "images": imgs[:4],
         })
     sizes.sort(key=lambda s: SIZE_ORDER.index(s["size"]))
     out.append({
         "scent": scent, "handle": p["handle"],
+        "unitsSold": sum(x["unitsSold"] for x in sizes),
         "tags": [t for t in p.get("tags", [])],
         "notes": notes_of(p.get("descriptionHtml")),
         "description": body_of(p.get("descriptionHtml")),
@@ -235,6 +284,8 @@ export type BumblinSize = {
   /** Square variation id — the join key for live price and stock. */
   squareVariationId: string | null;
   sku: string | null;
+  /** Units sold in Square over the last 365 days. */
+  unitsSold: number;
   /** Shopify CDN urls, most size-appropriate first. May be empty. */
   images: string[];
 };
@@ -246,6 +297,8 @@ export type BumblinScent = {
   /** Scent-note line, e.g. "Lavender, Violet, Cardamom, Powder & Wood". */
   notes: string;
   description: string;
+  /** Units sold in Square over the last 365 days, summed across sizes. */
+  unitsSold: number;
   sizes: BumblinSize[];
 };
 
@@ -280,6 +333,52 @@ export const scentTags: string[] = Array.from(
 
 export function scentBySlug(handle: string): BumblinScent | undefined {
   return bumblinScents.find((s) => s.handle === handle);
+}
+
+/**
+ * Genuine best sellers, ranked by Square sales — NOT Shopify's "best seller"
+ * tag, which is only about half accurate (6 of the real top 20 are untagged).
+ */
+export function topSellers(limit = 4, opts: { withImage?: boolean } = {}): BumblinScent[] {
+  const list = opts.withImage === false
+    ? [...bumblinScents]
+    : bumblinScents.filter((s) => s.sizes.some((v) => v.images.length > 0));
+  return list.sort((a, b) => b.unitsSold - a.unitsSold).slice(0, limit);
+}
+
+export const seasonTags = ["spring", "summer", "fall", "winter"] as const;
+
+/**
+ * The tag that best expresses what the shopper is here for.
+ *
+ * A scent carrying exactly ONE season is unambiguously seasonal (18 of 78 are),
+ * and that is the strongest statement of intent we have — someone reading
+ * Witching Hour is shopping autumn. Otherwise fall back to the scent family
+ * that fewest others share, so the group stays tight rather than matching on
+ * something as broad as "Woody / Evergreen" (56 of 78 carry it).
+ */
+export function definingTag(s: BumblinScent): string | null {
+  const seasons = s.tags.filter((t) => (seasonTags as readonly string[]).includes(t));
+  if (seasons.length === 1) return seasons[0] ?? null;
+
+  const counts = new Map<string, number>();
+  for (const t of scentTags) {
+    counts.set(t, bumblinScents.filter((x) => x.tags.includes(t)).length);
+  }
+  const families = s.tags.filter(
+    (t) => t !== "best seller" && !(seasonTags as readonly string[]).includes(t),
+  );
+  const pool = families.length ? families : s.tags.filter((t) => t !== "best seller");
+  if (!pool.length) return null;
+  return pool.sort((a, b) => (counts.get(a) ?? 0) - (counts.get(b) ?? 0))[0] ?? null;
+}
+
+/** Scents sharing a tag, most-sold first. */
+export function scentsByTag(tag: string, exclude?: string, limit = 4): BumblinScent[] {
+  return bumblinScents
+    .filter((s) => s.tags.includes(tag) && s.handle !== exclude)
+    .sort((a, b) => b.unitsSold - a.unitsSold)
+    .slice(0, limit);
 }
 
 /** Sizes that have at least one image — what we can responsibly show today. */

@@ -211,10 +211,11 @@ EXTRA_NOTES = [
 #   * "frasier fir" is interchangeable with plain "fir" (owner, 2026-08-31), so
 #     they collapse to one note; on its own "frasier fir" hit a single scent and
 #     could never drive a recommendation.
-#   * "balsam" is deliberately NOT merged into "fir" — it is its own note, and
-#     Frosty Night genuinely carries both ("a fresh fir balsam core"). It
-#     appears in Candied Heart, Frosty Night, Heirloom and Iced Pine, and
-#     notably NOT in Mistletoe Kisses.
+#   * "balsam" is deliberately NOT merged into "fir". Per the owner it is a
+#     component note WITHIN the Frasier Fir fragrance oil, which is why Frosty
+#     Night carries both ("a fresh fir balsam core"). Merging would collapse a
+#     component into its parent and lose the link to Candied Heart, Heirloom and
+#     Iced Pine, which carry balsam without being fir scents.
 NOTE_ALIAS = {
     "fraser fir": "fir",
     "frasier fir": "fir",

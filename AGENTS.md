@@ -384,9 +384,11 @@ Owner-supplied corrections so far (2026-08-31):
 - **`frasier fir` is interchangeable with plain `fir`** and collapses into it.
   Note the shop spells it "frasier", not the usual "fraser"; both alias to
   `fir`. Alone it matched a single scent and could never drive a recommendation.
-- **`balsam` is NOT merged into `fir`.** Separate note; Frosty Night carries
-  both ("a fresh fir balsam core"). It appears in Candied Heart, Frosty Night,
-  Heirloom and Iced Pine - and NOT in Mistletoe Kisses.
+- **`balsam` is NOT merged into `fir`.** Per the owner it is a component note
+  *within* the Frasier Fir fragrance oil, which is why Frosty Night carries
+  both ("a fresh fir balsam core"). Merging would collapse a component into its
+  parent and lose the link to Candied Heart, Heirloom and Iced Pine, which
+  carry balsam without being fir scents.
 - Multi-word notes must sit in `EXTRA_NOTES` and are matched longest-first, or
   "lily of the valley" degrades into "lily".
 

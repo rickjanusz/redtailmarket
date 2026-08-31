@@ -2,10 +2,11 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Hammer, MapPin, Recycle, Sparkles } from "lucide-react";
 
 import heroImage from "@/assets/hero-market.jpg";
-import { makers, products } from "@/lib/placeholder-data";
+import { bumblinScents } from "@/lib/bumblin-bee";
+import { makers } from "@/lib/placeholder-data";
 import makersImage from "@/assets/makers.jpg";
 import { MakerCard } from "@/components/site/MakerCard";
-import { ProductCard } from "@/components/site/ProductCard";
+import { ScentCard } from "@/components/site/ScentCard";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
@@ -57,6 +58,10 @@ const categories = [
   { name: "Soft Goods", note: "Embroidered & stitched by hand" },
   { name: "Pottery", note: "Wheel-thrown stoneware" },
 ];
+
+const featuredScents = bumblinScents
+  .filter((s) => s.tags.includes("best seller") && s.sizes.some((v) => v.images.length > 0))
+  .slice(0, 4);
 
 function Index() {
   return (
@@ -174,9 +179,9 @@ function Index() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-[0.7rem] uppercase tracking-[0.32em] text-accent">
-                Fresh on the shelves
+                Hand-poured by Bumblin Bee
               </p>
-              <h2 className="mt-3 text-4xl text-foreground sm:text-5xl">New arrivals</h2>
+              <h2 className="mt-3 text-4xl text-foreground sm:text-5xl">Best-selling scents</h2>
             </div>
             <Link
               to="/shop"
@@ -187,8 +192,8 @@ function Index() {
             </Link>
           </div>
           <div className="mt-10 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {products.slice(0, 4).map((product) => (
-              <ProductCard key={product.slug} product={product} />
+            {featuredScents.map((scent) => (
+              <ScentCard key={scent.handle} scent={scent} />
             ))}
           </div>
         </section>

@@ -1,22 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 
 import { PageShell } from "@/components/site/PageShell";
-import { ProductCard } from "@/components/site/ProductCard";
-import { categories, makers, products } from "@/lib/placeholder-data";
+import { ScentCard } from "@/components/site/ScentCard";
+import { bumblinScents, scentTags } from "@/lib/bumblin-bee";
 
 export const Route = createFileRoute("/shop/")({
   head: () => ({
     meta: [
-      { title: "Shop Handcrafted Decor & Gifts | Redtail Market" },
+      { title: "Shop Hand-Poured Candles & Wax Melts | Redtail Market" },
       {
         name: "description",
         content:
-          "Browse every handcrafted piece in the market: reclaimed wood signs, primitive decor, small-batch candles, pottery and gifts.",
+          "Shop Bumblin Bee hand-poured soy candles and wax melts — 78 scents in mason jars, apothecary jars and melts, made in Illinois.",
       },
-      { property: "og:title", content: "Shop Handcrafted Decor & Gifts | Redtail Market" },
+      {
+        property: "og:title",
+        content: "Shop Hand-Poured Candles & Wax Melts | Redtail Market",
+      },
       {
         property: "og:description",
-        content: "Every maker's goods from the Redtail Market floor, available online.",
+        content: "Hand-poured soy candles and wax melts from Bumblin Bee, our parent shop.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -25,80 +29,115 @@ export const Route = createFileRoute("/shop/")({
   component: Shop,
 });
 
+type Sort = "az" | "za" | "low" | "high";
+
+function minPrice(prices: string[]) {
+  const n = prices.map((p) => Number.parseFloat(p)).filter(Number.isFinite);
+  return n.length ? Math.min(...n) : Number.POSITIVE_INFINITY;
+}
+
 function Shop() {
+  const [tag, setTag] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<Sort>("az");
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const list = bumblinScents.filter((s) => {
+      if (tag && !s.tags.includes(tag)) return false;
+      if (!q) return true;
+      return (
+        s.scent.toLowerCase().includes(q) ||
+        s.notes.toLowerCase().includes(q) ||
+        s.description.toLowerCase().includes(q)
+      );
+    });
+
+    const sorted = [...list];
+    sorted.sort((a, b) => {
+      if (sort === "az") return a.scent.localeCompare(b.scent);
+      if (sort === "za") return b.scent.localeCompare(a.scent);
+      const pa = minPrice(a.sizes.map((s) => s.price));
+      const pb = minPrice(b.sizes.map((s) => s.price));
+      return sort === "low" ? pa - pb : pb - pa;
+    });
+    return sorted;
+  }, [tag, query, sort]);
+
   return (
     <PageShell
       eyebrow="The market floor"
-      title="Shop every maker"
-      intro="Browse handcrafted goods from our makers."
+      title="Hand-poured candles & wax melts"
+      intro="Every Bumblin Bee scent, hand-poured in Illinois and stocked on our shelves in Frankfort. Choose a mason jar, an apothecary jar or a pack of melts."
     >
       {/* Filters */}
-      <div className="mt-10 flex flex-col gap-5 border-y border-border py-5 lg:flex-row lg:items-center lg:justify-between">
+      <div className="mt-10 flex flex-col gap-5 border-y border-border py-5">
         <div className="flex flex-wrap gap-2">
-          <span className="border border-accent px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] text-accent">
-            All
-          </span>
-          {categories.map((category) => (
-            <span
-              key={category}
-              className="cursor-pointer border border-border px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+          <button
+            type="button"
+            onClick={() => setTag(null)}
+            className={`border px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] transition-colors ${
+              tag === null
+                ? "border-accent text-accent"
+                : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+            }`}
+          >
+            All scents
+          </button>
+          {scentTags.map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTag(t === tag ? null : t)}
+              className={`border px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] transition-colors ${
+                t === tag
+                  ? "border-accent text-accent"
+                  : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+              }`}
             >
-              {category}
-            </span>
+              {t}
+            </button>
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search scents or notes…"
+            aria-label="Search scents"
+            className="min-w-[14rem] flex-1 border border-border bg-card px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none"
+          />
           <select
-            aria-label="Filter by maker"
+            aria-label="Sort scents"
+            value={sort}
+            onChange={(e) => setSort(e.target.value as Sort)}
             className="border border-border bg-card px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground"
-            defaultValue=""
           >
-            <option value="">All makers</option>
-            {makers.map((maker) => (
-              <option key={maker.slug} value={maker.slug}>
-                {maker.name} — {maker.craft}
-              </option>
-            ))}
-          </select>
-          <select
-            aria-label="Sort products"
-            className="border border-border bg-card px-4 py-2 text-[0.72rem] uppercase tracking-[0.16em] text-muted-foreground"
-            defaultValue="new"
-          >
-            <option value="new">Newest</option>
+            <option value="az">Name: A–Z</option>
+            <option value="za">Name: Z–A</option>
             <option value="low">Price: low to high</option>
             <option value="high">Price: high to low</option>
-            <option value="az">Name: A–Z</option>
           </select>
+          <p className="text-[0.72rem] uppercase tracking-[0.2em] text-muted-foreground">
+            {results.length} {results.length === 1 ? "scent" : "scents"}
+          </p>
         </div>
       </div>
 
       {/* Grid */}
-      <div className="mt-px grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-        {products.map((product) => (
-          <ProductCard key={product.slug} product={product} />
-        ))}
-      </div>
-
-      {/* Pagination */}
-      <div className="mt-10 flex items-center justify-center gap-2">
-        {["1", "2", "3"].map((page) => (
-          <span
-            key={page}
-            className={`border px-4 py-2 text-[0.72rem] tracking-[0.16em] ${
-              page === "1"
-                ? "border-accent text-accent"
-                : "border-border text-muted-foreground"
-            }`}
-          >
-            {page}
-          </span>
-        ))}
-        <span className="border border-border px-4 py-2 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
-          Next
-        </span>
-      </div>
+      {results.length ? (
+        <div className="mt-px grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {results.map((scent) => (
+            <ScentCard key={scent.handle} scent={scent} />
+          ))}
+        </div>
+      ) : (
+        <p className="mt-16 text-center text-sm text-muted-foreground">
+          No scents match that search.
+        </p>
+      )}
     </PageShell>
   );
 }

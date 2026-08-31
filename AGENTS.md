@@ -268,6 +268,51 @@ regardless of which is chosen.
    no images in Square.
 3. **Zero wholesale items have descriptions.**
 
+## Bumblin Bee product data (built 2026-08-31)
+
+`src/lib/bumblin-bee.ts` is **generated** - do not hand-edit. Regenerate with
+`scripts/generate-bumblin-bee.py` (it reads saved Shopify GraphQL responses plus
+the live Square catalog).
+
+**Shopify is the content source; Square stays the commerce source.**
+
+- Shopify store: `bumblinbee.com` (Bumblin Bee, LLC) - reachable via the Shopify
+  MCP connector. Product = SCENT, variants = SIZE. Square is the inverse:
+  item = size line, variation = scent. Join on (size, scent).
+- Shopify supplies imagery (its CDN), descriptions and scent tags. Square has
+  none of these.
+- **Images are attached to the product, not the variant** (`variant.image` is
+  null on all sizes), but the FILENAME encodes the size (`14_`, `7oz_short_`,
+  `4oz_`, `melt_`, `48_`), so the generator buckets them by filename prefix.
+- Shopify CDN resizes via `?width=` - `img(url, 800)` in the module.
+- Images are hotlinked, NOT committed. The 293 source files are 327 MB, far too
+  large for a Lovable-synced repo. Long term these belong in object storage;
+  a rename or delete on Shopify breaks them here.
+- **Prices in the generated file are Shopify list prices, shown only until the
+  Square catalog is wired in. Square is the source of truth for price and stock**
+  - Shopify tracks its own inventory that has no relation to the Frankfort shelf.
+  Each size carries `squareVariationId` as the join key.
+
+### Results
+- 78 scents, 390 size rows; 264 have an image, 382 of 390 (98%) link to a Square
+  variation.
+- 8 scent/size combos exist on Shopify but NOT in Square - the two systems
+  disagree: By the Fireside (14oz/7oz/melt), Coal Fire Farm (4oz/48oz),
+  Holiday Traditions (melt), Pumpkin Chai (4oz/48oz).
+- Placeholder images (`product_placeholder*`, `placeholder*`) are filtered out,
+  so a few scents legitimately render the "Photo coming" state.
+- Square spells it `BOooOo...Berry`, Shopify `BOoOoo...Berry` - aliased in the
+  generator.
+
+### Dev server
+`bun run dev` serves on **http://localhost:8080** (port set by the Lovable vite
+config), not Vite's default 5173.
+
+### Debugging note
+Rendered HTML contains NUL bytes in the TanStack hydration payload, so `grep`
+treats page dumps as binary and silently reports nothing. Use `grep -a` or
+parse with Python when checking SSR output.
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

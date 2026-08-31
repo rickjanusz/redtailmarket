@@ -225,6 +225,47 @@ yet rather than being lost.
   Sea Witch) at 1200x1200. Use renders to fill gaps only, and expect a visible
   difference in a mixed grid.
 
+## Online catalog scope (undecided as of 2026-08-31)
+
+Two options are live. **Bumblin Bee is in every version**, so work on it is safe
+regardless of which is chosen.
+
+| Group | Items | Variations | Priced | With description |
+| --- | --- | --- | --- | --- |
+| House (Bumblin Bee + RedTail) | 8 | 625 | 621 | 5 |
+| Wholesale brands | 14 | 772 | 767 | 0 |
+| Local makers | 45 | 2,378 | 2,343 | 5 |
+| Categories | 14 | 795 | 790 | 0 |
+
+- **Option A - house + wholesale only** (~1,456 variations, ~32%). Skipping local
+  makers also eliminates the entire item-is-not-a-maker mapping problem, since
+  all 45 offending items are local makers.
+- **Option B - everything** (4,570 variations).
+- **Hybrid worth considering:** keep makers as CONTENT (stories, directory, SEO,
+  in-store draw) but sell online only Bumblin Bee + permitted wholesale. Maker
+  pages say "available in store" instead of carrying a cart. This preserves the
+  maker-market brand the site is designed around.
+
+### Supplier notes (user, 2026-08-31)
+- **`Toys & Games` (59) is Toysmith** - a wholesale supplier, NOT a generic
+  category. Imagery can be sourced from them. Reclassify it as wholesale.
+- **`Artisan Jewelry` (34) is mixed** - several local makers PLUS wholesale.
+  DEFERRED - do not build against it; revisit later.
+- => Other "category-looking" items may likewise be single wholesale suppliers
+  (`Dried Florals` 243, `Lamps & Lighting` 150, `Home Decor 1-4`,
+  `Amish Furniture & Home Decor`, `Wholesale Home Decor`). Audit with the user
+  before assuming any of them is a generic category.
+
+### Blockers to resolve before committing to wholesale
+1. **Reseller agreements** - wholesale terms often restrict online resale (MAP
+   pricing, authorized-dealer clauses). Dr. Squatch is notably strict. Confirm
+   per brand BEFORE building; this could invalidate the option.
+2. **Wholesale imagery is not free.** The 263 NobleWorks images in Square are
+   supplier stock and at least some are the BACK of the card (barcode,
+   copyright) - audit front-vs-back before counting them. The other brands have
+   no images in Square.
+3. **Zero wholesale items have descriptions.**
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

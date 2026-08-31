@@ -364,6 +364,27 @@ note_counts = {n: c for n, c in note_counts.items() if n not in DROP}
 print(f"note vocabulary: {len(note_counts)} notes; "
       f"median per scent {sorted(len(r['noteList']) for r in out)[len(out)//2]}")
 
+# ---- hand-curated tag overrides ------------------------------------------
+# The Shopify tags are broadly over-applied (winter on 62% of scents,
+# Woody / Evergreen on 72%), which makes every tag-driven filter weak. The
+# editor at /admin/tags writes data/tag-overrides.json; it wins over Shopify.
+OVERRIDES_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "tag-overrides.json")
+overrides = {}
+if os.path.exists(OVERRIDES_PATH):
+    with open(OVERRIDES_PATH) as fh:
+        try:
+            overrides = json.load(fh)
+        except json.JSONDecodeError:
+            print("WARNING: data/tag-overrides.json is not valid JSON — ignoring")
+applied = 0
+for row in out:
+    ov = overrides.get(row["handle"])
+    if ov is not None and sorted(ov) != sorted(row["tags"]):
+        row["tags"] = sorted(ov)
+        applied += 1
+print(f"tag overrides applied: {applied} scent(s)")
+
 out.sort(key=lambda x: x["scent"].lower())
 print(f"\nscents: {len(out)}")
 print(f"size rows: {stats['sizes']}  with image: {stats['with_img']}  "

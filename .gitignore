@@ -35,3 +35,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Local tag-editor output is intentionally COMMITTED (it is curated data),
+# so nothing is ignored here — this note exists to stop anyone adding it.

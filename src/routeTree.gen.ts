@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as MakersRouteImport } from './routes/makers'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as VisitRouteImport } from './routes/visit'
+import { Route as AdminTagsRouteImport } from './routes/admin.tags'
 import { Route as MakersIndexRouteImport } from './routes/makers.index'
 import { Route as MakersSlugRouteImport } from './routes/makers.$slug'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
@@ -50,6 +51,11 @@ const VisitRoute = VisitRouteImport.update({
   path: '/visit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminTagsRoute = AdminTagsRouteImport.update({
+  id: '/admin/tags',
+  path: '/admin/tags',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MakersIndexRoute = MakersIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/makers': typeof MakersRouteWithChildren
   '/shop': typeof ShopRouteWithChildren
   '/visit': typeof VisitRoute
+  '/admin/tags': typeof AdminTagsRoute
   '/makers/$slug': typeof MakersSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/makers/': typeof MakersIndexRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/visit': typeof VisitRoute
+  '/admin/tags': typeof AdminTagsRoute
   '/makers/$slug': typeof MakersSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/makers': typeof MakersIndexRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/makers': typeof MakersRouteWithChildren
   '/shop': typeof ShopRouteWithChildren
   '/visit': typeof VisitRoute
+  '/admin/tags': typeof AdminTagsRoute
   '/makers/$slug': typeof MakersSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
   '/makers/': typeof MakersIndexRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/makers'
     | '/shop'
     | '/visit'
+    | '/admin/tags'
     | '/makers/$slug'
     | '/shop/$slug'
     | '/makers/'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/visit'
+    | '/admin/tags'
     | '/makers/$slug'
     | '/shop/$slug'
     | '/makers'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '/makers'
     | '/shop'
     | '/visit'
+    | '/admin/tags'
     | '/makers/$slug'
     | '/shop/$slug'
     | '/makers/'
@@ -150,6 +162,7 @@ export interface RootRouteChildren {
   MakersRoute: typeof MakersRouteWithChildren
   ShopRoute: typeof ShopRouteWithChildren
   VisitRoute: typeof VisitRoute
+  AdminTagsRoute: typeof AdminTagsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -194,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/visit'
       fullPath: '/visit'
       preLoaderRoute: typeof VisitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/tags': {
+      id: '/admin/tags'
+      path: '/admin/tags'
+      fullPath: '/admin/tags'
+      preLoaderRoute: typeof AdminTagsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/makers/': {
@@ -259,6 +279,7 @@ const rootRouteChildren: RootRouteChildren = {
   MakersRoute: MakersRouteWithChildren,
   ShopRoute: ShopRouteWithChildren,
   VisitRoute: VisitRoute,
+  AdminTagsRoute: AdminTagsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -108,6 +108,118 @@ too, same as the access token.
 Longer plan docs live in `.lovable/plan/`. Note their copy predates the
 "Redtail is one word" decision and the `/vendors` → `/makers` rename.
 
+## Square catalog reality (surveyed 2026-08-31)
+
+The catalog is an **in-store POS inventory, not an e-commerce catalog**. Verified
+against the live production account, location `LWW0PTR4PKB97` ("Bumblin Bee, LLC").
+
+**81 items / 4,570 variations.** Findings that contradict the original plan:
+
+1. **ITEM = maker does not hold.** Only ~60% of items are makers. The rest are
+   categories (`Dried Florals` 243, `Lamps & Lighting` 150, `Home Decor 1-4`,
+   `Toys & Games`, `Artisan Jewelry`), wholesale brands (`Dr. Squatch`,
+   `Earth Rugs`, `Irvins Country Tinware`, `Myra Bags`, `Candle Warmers`,
+   `Paine's`, `WT Collection`), or single products (`Mystery Melt`,
+   `Free T-Shirt`, `Burlap Flag`).
+   Several makers are split across items: Oak Hill Studio x6 (seasonal),
+   Bumblin Bee x6 (jar size), Christine's Home Furnishings x3 - and those three
+   use TWO different apostrophe characters, so they will not group by string
+   match. Hearthside Collection x3.
+   => the makers table needs a `kind` (maker/category/brand/house) so non-makers
+   stay out of the directory, and a group key to merge splits. Building
+   `/makers` naively from items would list "Home Decor 3" as an artisan.
+
+2. **21 CATEGORY objects also encode maker names** (Brennans Woodworking,
+   Papernickety, Ri Ri's Corner) mixed with jar sizes (4oz, 14oz, 48oz).
+   Maker identity lives in two places, inconsistently.
+
+3. **Not everything is sellable online**: 49 variations are `VARIABLE_PRICING`
+   (no price), only 12 of 81 items have a description, and items carry
+   `ecom_available: false`.
+
+**Do not build the flat 4,570-product grid.** Drive the storefront from a
+curated allowlist - products with a photo, a fixed price and a description.
+
+## Product photography (surveyed 2026-08-31)
+
+**Square holds NO product imagery.** 334 IMAGE objects exist but 0 are attached
+to any item or variation (checked both `image_ids` and legacy `image_id`).
+263 of those 334 are NobleWorks wholesale stock, many showing the BACK of a
+card. The rest are Bumblin Bee.
+
+**Square's images are redundant** - every scent they cover is also in iCloud, so
+the image pipeline reads from iCloud only and needs no `ITEMS_WRITE` scope and
+no mutation of the live catalog. This matches the project principle: Square owns
+price and stock, the site owns everything Square cannot hold.
+
+### Source of truth: iCloud
+`~/Library/Mobile Documents/com~apple~CloudDocs/Documents/bumblin bee working files/`
+
+| Folder | Supplies |
+| --- | --- |
+| `_website/2.7` | 3oz Wax Melt |
+| `_website/4` | 4oz Mason Jar |
+| `_website/7 short` | 7oz Mason Jar |
+| `_website/14` | 14oz Mason Jar |
+| `_website/48` | 48oz Apothecary |
+| ` _ 2023 products/website product exports` | mixed, prefix decides |
+| ` _ 2023 products/2023 barn` | mixed, prefix decides |
+| ` _ 2023 products/14` | 14oz |
+| `__ 3d /_ export renders/{3oz,4oz,8oz,14oz,48oz}` | gap-fill renders |
+
+**Size aliases (user-confirmed):** `3` and `2.7` both mean the 3oz Wax Melt
+(verified visually - melter pack, Net Wt 2.7oz/75g). `8` means the current 7oz
+Mason Jar. `_website/7` is a STALE duplicate of `7 short` - exclude it.
+Note the leading space in ` _ 2023 products` and the trailing space in `__ 3d `.
+
+### Coverage: 263 of 427 Bumblin Bee variations (62%)
+
+| Line | Covered | Missing |
+| --- | --- | --- |
+| 14oz | 83% | 15 |
+| 3oz Melt | 72% | 24 |
+| 7oz | 72% | 24 |
+| 4oz | 67% | 26 |
+| **48oz** | **13%** | **75** |
+
+**48oz is 46% of the entire gap** - one shoot there is the highest-leverage
+action available. Scents absent in every size are the newest ones (1776 series,
+`60423`, Fallfest 2026, Queen of Hearts, The Looking Glass, Mad Tea Party),
+which line up with in-progress work in `_ 2026 products` - they may not exist
+yet rather than being lost.
+
+### Image selection rules (user-decided 2026-08-31)
+
+- **Numbered files are REVISIONS, not angles.** `48_haunting.jpg` /
+  `48_haunting2.jpg` / `48_haunting3.jpg` -> keep `haunting3` ONLY. Never
+  include all takes.
+- Same revision in two formats (`.png` + `.jpeg`) -> keep one, prefer `.png`.
+- **3D renders are SECONDARY images** behind the photograph, per scent. Where no
+  photograph exists the render becomes the only image (11 variations today).
+- `_seaside` suffix marks an alternate scene of the same scent, kept as its own
+  secondary image. Confirm this is wanted before shipping.
+- Result: 268 variations carry 293 image files (1.09 avg) - 247 with one image,
+  17 with two, 4 with three or more; 19 have a render behind a photo.
+
+### Pipeline gotchas
+- Matching is by scent name agreeing between filename and Square. It MUST report
+  unmatched variations rather than silently skipping them.
+- Known filename typos needing an override map: `soffron`->Saffron,
+  `euclyptus`->Eucalyptus, `whie cedar`->White Cedar,
+  `magnolia rose`->Magnolia & Rose, `sugared pumpkin and fig`->Sugared Pumpkin Fig,
+  and `boo berry` -> Square's `BOooOo...Berry`.
+- Some files put the size at the END (`charmed_48oz.png`), not the start.
+- Scents with photos but no matching variation (likely discontinued): Bourbon
+  Street, Box of Chocolates, Lavender Woods, Pacific Cove, Sugar & Spice,
+  Valor. Unexplained: a `bats` key in the 14oz set.
+- Filename conventions differ per folder: `melt_x`, `4oz_x`, `7oz_short_x`,
+  `14_x`, `48_xnospaces2`. The `48` set strips spaces and appends take numbers.
+- Strip `-Camera N` suffixes.
+- **Style is not uniform.** Photographed sets are a single product on barn wood
+  at 2600x2600; the 3D renders are themed scenes (e.g. three jars on a beach for
+  Sea Witch) at 1200x1200. Use renders to fill gaps only, and expect a visible
+  difference in a mixed grid.
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

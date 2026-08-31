@@ -1,1 +1,556 @@
-{}
+{
+  "absinthe-and-santal": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "summer"
+  ],
+  "american-pie": [
+    "Citrus / Berry",
+    "Gourmand",
+    "best seller",
+    "fall",
+    "summer"
+  ],
+  "apothecary": [
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "bamboo-forest": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "bats-in-the-belfry": [
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "summer",
+    "winter"
+  ],
+  "bee-mine": [
+    "Citrus / Berry",
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "bewitched": [
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall"
+  ],
+  "black-tie": [
+    "Citrus / Berry",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "black-violet-and-saffron": [
+    "Earthy",
+    "Floral",
+    "spring",
+    "summer"
+  ],
+  "booberry": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "by-the-fireside": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "winter"
+  ],
+  "cabin-in-the-woods": [
+    "Citrus / Berry",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "winter"
+  ],
+  "candied-heart": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "spring"
+  ],
+  "charmed": [
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "cinnamon-broom": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "winter"
+  ],
+  "citrus-and-sage": [
+    "Citrus / Berry",
+    "Earthy",
+    "Gourmand",
+    "best seller",
+    "fall",
+    "summer"
+  ],
+  "clementine": [
+    "Citrus / Berry",
+    "Gourmand",
+    "best seller",
+    "spring",
+    "summer"
+  ],
+  "coal-fire-farm": [
+    "Citrus / Berry",
+    "Earthy",
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "coffee-house": [
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "cookie-jar": [
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "cottage-holiday": [
+    "Citrus / Berry",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "crewhouse": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "summer"
+  ],
+  "cucumber-water-and-melon": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Earthy",
+    "Gourmand",
+    "spring",
+    "summer"
+  ],
+  "dapper-trappings": [
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "deck-the-halls": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "winter"
+  ],
+  "desert-bloom": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Earthy",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "dragons-breath": [
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "dressed-in-white": [
+    "Citrus / Berry",
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "spring",
+    "summer"
+  ],
+  "driftwood-and-cotton": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Floral",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "earth-and-air": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "edgewood-manor": [
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "spring",
+    "summer",
+    "winter"
+  ],
+  "eucalyptus-and-jade": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "best seller",
+    "spring",
+    "summer"
+  ],
+  "evergreen": [
+    "Citrus / Berry",
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "farmhouse-kitchen": [
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "fig-and-ginger": [
+    "Gourmand",
+    "Woody / Evergreen"
+  ],
+  "fire-and-water": [
+    "Citrus / Berry",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "first-avenue": [
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "best seller",
+    "spring",
+    "summer"
+  ],
+  "frosty-night": [
+    "Clean / Ozonic",
+    "Woody / Evergreen",
+    "best seller",
+    "winter"
+  ],
+  "hallowed": [
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "hanzel-gretyl": [
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "harvest-table": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "haunting": [
+    "Earthy",
+    "Woody / Evergreen",
+    "fall"
+  ],
+  "hearth-and-home": [
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "heirloom": [
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "holiday-traditions": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "winter"
+  ],
+  "houndstooth": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "iced-pine": [
+    "Citrus / Berry",
+    "Gourmand",
+    "Woody / Evergreen",
+    "winter"
+  ],
+  "indigo-blue": [
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "fall",
+    "spring",
+    "summer",
+    "winter"
+  ],
+  "jack-o-lantern": [
+    "Citrus / Berry",
+    "Gourmand",
+    "best seller",
+    "fall"
+  ],
+  "lavender-locks": [
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "best seller",
+    "spring",
+    "summer"
+  ],
+  "lemon-chai": [
+    "Citrus / Berry",
+    "Earthy",
+    "Gourmand",
+    "best seller",
+    "spring",
+    "summer"
+  ],
+  "lilac-bloom": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "best seller",
+    "spring"
+  ],
+  "love-letter": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Gourmand",
+    "best seller",
+    "spring"
+  ],
+  "low-tide": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Earthy",
+    "Woody / Evergreen",
+    "best seller",
+    "summer"
+  ],
+  "magnolia-and-rose": [
+    "Floral",
+    "Woody / Evergreen",
+    "spring"
+  ],
+  "mango-road": [
+    "Citrus / Berry",
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "spring",
+    "summer",
+    "winter"
+  ],
+  "mistletoe-kisses": [
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "winter"
+  ],
+  "mount-rainier": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "winter"
+  ],
+  "noir-blanc": [
+    "Citrus / Berry",
+    "Earthy",
+    "Floral",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "spring",
+    "summer"
+  ],
+  "oak-and-moss": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Earthy",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "spring",
+    "summer",
+    "winter"
+  ],
+  "palo-santo-and-patchouli": [
+    "Citrus / Berry",
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "peppermint-trail": [
+    "Gourmand",
+    "Woody / Evergreen",
+    "winter"
+  ],
+  "pumpkin-chai": [
+    "Citrus / Berry",
+    "Earthy",
+    "Gourmand",
+    "fall"
+  ],
+  "rainbow-sherbet": [
+    "Citrus / Berry",
+    "Gourmand",
+    "summer"
+  ],
+  "rainy-afternoon": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "best seller",
+    "fall",
+    "spring",
+    "summer"
+  ],
+  "sand-and-sea": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "best seller",
+    "summer"
+  ],
+  "sea-witch": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "spring",
+    "summer"
+  ],
+  "snickerdoodle": [
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "sugared-pumpkin-fig": [
+    "Earthy",
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "taffy-apple": [
+    "Citrus / Berry",
+    "Gourmand",
+    "fall",
+    "summer",
+    "winter"
+  ],
+  "toffee-coffee": [
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "top-drawer": [
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "vanilla-latte": [
+    "Gourmand",
+    "fall",
+    "winter"
+  ],
+  "whispering-embers": [
+    "Citrus / Berry",
+    "Earthy",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "white-cedar-and-cactus": [
+    "Clean / Ozonic",
+    "Earthy",
+    "Floral",
+    "Woody / Evergreen",
+    "spring",
+    "summer"
+  ],
+  "white-cranberry": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "fall",
+    "winter"
+  ],
+  "white-fig": [
+    "Citrus / Berry",
+    "Clean / Ozonic",
+    "Earthy",
+    "Gourmand",
+    "Woody / Evergreen",
+    "best seller",
+    "fall",
+    "winter"
+  ],
+  "witching-hour": [
+    "Earthy",
+    "Woody / Evergreen",
+    "fall"
+  ]
+}

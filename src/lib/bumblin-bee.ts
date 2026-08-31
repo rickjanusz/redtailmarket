@@ -136,13 +136,11 @@ export const bumblinScents: BumblinScent[] = [
     "unitsSold": 31,
     "peakSeason": "summer",
     "tags": [
-      "best seller",
       "Citrus / Berry",
-      "fall",
       "Gourmand",
-      "spring",
-      "summer",
-      "winter"
+      "best seller",
+      "fall",
+      "summer"
     ],
     "notes": "Apples & Maple Bourbon",
     "description": "This mouthwatering, intoxicating scent starts with top notes of apple, cinnamon, and a hint of orange. Coconut and butter are the heart of this fragrance, while rich, sweet maple and vanilla finish off this irresistible baked apple dessert. Slice yourself a piece of this American pie.",
@@ -1104,7 +1102,7 @@ export const bumblinScents: BumblinScent[] = [
   {
     "scent": "Charmed",
     "handle": "charmed",
-    "unitsSold": 14,
+    "unitsSold": 15,
     "peakSeason": "winter",
     "tags": [
       "Earthy",
@@ -1160,7 +1158,7 @@ export const bumblinScents: BumblinScent[] = [
         "price": "65.00",
         "squareVariationId": "PGO4ZVSDCI5TILYEBCERT55S",
         "sku": "841815Z",
-        "unitsSold": 0,
+        "unitsSold": 1,
         "images": []
       }
     ],
@@ -1267,14 +1265,12 @@ export const bumblinScents: BumblinScent[] = [
     "unitsSold": 39,
     "peakSeason": "summer",
     "tags": [
-      "best seller",
       "Citrus / Berry",
       "Earthy",
-      "fall",
       "Gourmand",
-      "spring",
-      "summer",
-      "winter"
+      "best seller",
+      "fall",
+      "summer"
     ],
     "notes": "Grapefruit, Orange, Lemon Peel & Sage",
     "description": "Citrus takes on a new life in this fragrant foil. Rays of grapefruit, orange peel, lemon peel, eucalyptus and pine emit at open. After lighting, green leaves, mandarin, pomegranate, rosemary and green floral harmoniously blend together to create this special scent. On extinction, remnants of vetiver, sage and cedar will leave their mark. Delicious.",
@@ -1768,15 +1764,13 @@ export const bumblinScents: BumblinScent[] = [
     "unitsSold": 84,
     "peakSeason": null,
     "tags": [
-      "best seller",
       "Clean / Ozonic",
       "Earthy",
-      "fall",
       "Gourmand",
-      "spring",
-      "summer",
-      "winter",
-      "Woody / Evergreen"
+      "Woody / Evergreen",
+      "best seller",
+      "fall",
+      "summer"
     ],
     "notes": "Marine, White Eucalyptus, Sea Salt & Whiskey",
     "description": "The crew awaits within this intoxicatingly fresh foil. Let your senses go wild as notes of marine, citrus, palm and aloe waft about on top. In the stretch, notes of lavender, eucalyptus, oak, leather and patchouli take lead. At the finish, cedar, sea salt, vanilla and whiskey will win over the room after the oars are down. Hands on, rowers.",
@@ -2257,15 +2251,13 @@ export const bumblinScents: BumblinScent[] = [
     "unitsSold": 13,
     "peakSeason": "spring",
     "tags": [
-      "best seller",
       "Citrus / Berry",
       "Earthy",
-      "fall",
       "Gourmand",
+      "Woody / Evergreen",
+      "best seller",
       "spring",
-      "summer",
-      "winter",
-      "Woody / Evergreen"
+      "summer"
     ],
     "notes": "White Oak, White Cedar, Leather & Vanilla",
     "description": "The perfect day is dressed in white oak and white cedar enchanting elegant and rustic memories. Opening notes of palm, aloe and bergamot take their lead and while the flame flickers oak, leather, patchouli and camphor will abound. Finish the special day with hints of smoke, vanilla, whiskey, amber and cedar that will settle as a reminder. No RSVP required.",
@@ -2909,10 +2901,10 @@ export const bumblinScents: BumblinScent[] = [
     "tags": [
       "Citrus / Berry",
       "Earthy",
-      "fall",
       "Floral",
-      "winter",
-      "Woody / Evergreen"
+      "Woody / Evergreen",
+      "spring",
+      "summer"
     ],
     "notes": "Lily of the Valley, Rose, Smoke, & Clove",
     "description": "Fire and Water signs unite in this elemental collision. Saffron, lemon peel and bergamot commingle on the top of this heavenly scent while lily of the valley, rose, sandalwood and cedar make their presence known throughout the burn. Ozone, amber, smoke, dark musk and vetiver linger at the end. Aries / Leo / Sagittarius / Cancer / Pisces / Scorpio",
@@ -3956,11 +3948,10 @@ export const bumblinScents: BumblinScent[] = [
     "unitsSold": 66,
     "peakSeason": "fall",
     "tags": [
-      "best seller",
       "Citrus / Berry",
-      "fall",
       "Gourmand",
-      "winter"
+      "best seller",
+      "fall"
     ],
     "notes": "",
     "description": "The All Hallows Eve celebration is underway with this enchanting fragrance. The scent starts with notes of butter and orange peel, then blends in accords of scrumptious caramel, maple, and pumpkin. A nutty, pecan aroma lingers on the dry down. This gourmand fragrance will fill any space with the delicious scents of the season.",

@@ -248,7 +248,9 @@ regardless of which is chosen.
 
 ### Supplier notes (user, 2026-08-31)
 - **`Toys & Games` (59) is Toysmith** - a wholesale supplier, NOT a generic
-  category. Imagery can be sourced from them. Reclassify it as wholesale.
+  category. Reclassify it as wholesale. Only the **Neato** brand line is
+  carried, so any supplier asset request should be scoped to Neato, not the
+  whole Toysmith catalog.
 - **`Artisan Jewelry` (34) is mixed** - several local makers PLUS wholesale.
   DEFERRED - do not build against it; revisit later.
 - => Other "category-looking" items may likewise be single wholesale suppliers

@@ -20,10 +20,11 @@ export function ScentCard({
 }) {
   const picked = sizeKey ? scent.sizes.find((s) => s.size === sizeKey) : undefined;
 
-  // Prefer the chosen size's own photo; fall back to any photo we have.
-  const fallback = scent.sizes.find((s) => s.images.length > 0);
-  const usingFallback = Boolean(picked && picked.images.length === 0 && fallback);
-  const hero = picked?.images[0] ?? fallback?.images[0];
+  // With a size selected we show ONLY that size's photo — never another size's,
+  // which would misrepresent the product. No photo for it means the placeholder.
+  const hero = sizeKey
+    ? picked?.images[0]
+    : scent.sizes.find((s) => s.images.length > 0)?.images[0];
 
   const from = priceFrom(scent);
 
@@ -43,7 +44,10 @@ export function ScentCard({
           className="aspect-square w-full border border-border object-cover"
         />
       ) : (
-        <PlaceholderImage className="aspect-square w-full" label="Photo coming" />
+        <PlaceholderImage
+          className="aspect-square w-full"
+          label={picked ? `No ${picked.label.split(" ")[0]} photo` : "Photo coming"}
+        />
       )}
 
       <div className="flex flex-1 flex-col">
@@ -66,12 +70,6 @@ export function ScentCard({
               ? `From $${from.toFixed(2)}`
               : "—"}
         </p>
-
-        {usingFallback ? (
-          <p className="mt-1 text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground/70">
-            Photo shows another size
-          </p>
-        ) : null}
       </div>
     </Link>
   );

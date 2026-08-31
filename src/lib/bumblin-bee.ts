@@ -31,6 +31,12 @@ export type BumblinScent = {
   description: string;
   /** Units sold in Square over the last 365 days, summed across sizes. */
   unitsSold: number;
+  /**
+   * The season this scent measurably sells in, from Square orders, as lift over
+   * the shop's own seasonal trade. `null` when sales are too thin or too even
+   * to call. This BEATS the Shopify season tags, which are unreliable.
+   */
+  peakSeason: string | null;
   sizes: BumblinSize[];
 };
 
@@ -47,6 +53,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Absinthe & Santal",
     "handle": "absinthe-and-santal",
     "unitsSold": 42,
+    "peakSeason": "winter",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -111,6 +118,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "American Pie",
     "handle": "american-pie",
     "unitsSold": 31,
+    "peakSeason": "summer",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -182,6 +190,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Apothecary",
     "handle": "apothecary",
     "unitsSold": 4,
+    "peakSeason": null,
     "tags": [
       "Earthy",
       "fall",
@@ -250,6 +259,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Bamboo Forest",
     "handle": "bamboo-forest",
     "unitsSold": 10,
+    "peakSeason": null,
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -320,6 +330,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Bats in the Belfry",
     "handle": "bats-in-the-belfry",
     "unitsSold": 8,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Earthy",
@@ -392,6 +403,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Bee Mine",
     "handle": "bee-mine",
     "unitsSold": 13,
+    "peakSeason": "summer",
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -468,6 +480,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Bewitched",
     "handle": "bewitched",
     "unitsSold": 11,
+    "peakSeason": null,
     "tags": [
       "Earthy",
       "fall",
@@ -530,6 +543,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Black Tie",
     "handle": "black-tie",
     "unitsSold": 19,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -600,6 +614,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Black Violet and Saffron",
     "handle": "black-violet-and-saffron",
     "unitsSold": 14,
+    "peakSeason": "spring",
     "tags": [
       "Earthy",
       "Floral",
@@ -668,6 +683,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "BOoOoo...Berry",
     "handle": "booberry",
     "unitsSold": 5,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -738,6 +754,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "By the Fireside",
     "handle": "by-the-fireside",
     "unitsSold": 5,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -800,6 +817,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Cabin in the Woods",
     "handle": "cabin-in-the-woods",
     "unitsSold": 52,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -871,6 +889,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Candied Heart",
     "handle": "candied-heart",
     "unitsSold": 8,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -939,6 +958,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Charmed",
     "handle": "charmed",
     "unitsSold": 14,
+    "peakSeason": "winter",
     "tags": [
       "Earthy",
       "fall",
@@ -1002,6 +1022,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Cinnamon Broom",
     "handle": "cinnamon-broom",
     "unitsSold": 48,
+    "peakSeason": "fall",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1072,6 +1093,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Citrus & Sage",
     "handle": "citrus-and-sage",
     "unitsSold": 39,
+    "peakSeason": "summer",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1144,6 +1166,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Clementine",
     "handle": "clementine",
     "unitsSold": 49,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1215,6 +1238,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Coal Fire Farm",
     "handle": "coal-fire-farm",
     "unitsSold": 13,
+    "peakSeason": "fall",
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -1278,6 +1302,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Coffee House",
     "handle": "coffee-house",
     "unitsSold": 38,
+    "peakSeason": null,
     "tags": [
       "fall",
       "Gourmand",
@@ -1351,6 +1376,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Cookie Jar",
     "handle": "cookie-jar",
     "unitsSold": 12,
+    "peakSeason": null,
     "tags": [
       "fall",
       "Gourmand",
@@ -1419,6 +1445,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Cottage Holiday",
     "handle": "cottage-holiday",
     "unitsSold": 31,
+    "peakSeason": "winter",
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -1488,6 +1515,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Crewhouse",
     "handle": "crewhouse",
     "unitsSold": 84,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -1561,6 +1589,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Cucumber Water & Melon",
     "handle": "cucumber-water-and-melon",
     "unitsSold": 28,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -1631,6 +1660,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Dapper Trappings",
     "handle": "dapper-trappings",
     "unitsSold": 8,
+    "peakSeason": null,
     "tags": [
       "Earthy",
       "fall",
@@ -1699,6 +1729,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Deck the Halls",
     "handle": "deck-the-halls",
     "unitsSold": 50,
+    "peakSeason": "winter",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1769,6 +1800,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Desert Bloom",
     "handle": "desert-bloom",
     "unitsSold": 9,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -1839,6 +1871,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Dragon's Breath",
     "handle": "dragons-breath",
     "unitsSold": 16,
+    "peakSeason": "summer",
     "tags": [
       "Earthy",
       "fall",
@@ -1901,6 +1934,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Dressed in White",
     "handle": "dressed-in-white",
     "unitsSold": 13,
+    "peakSeason": "spring",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -1970,6 +2004,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Driftwood & Cotton",
     "handle": "driftwood-and-cotton",
     "unitsSold": 29,
+    "peakSeason": "spring",
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -2042,6 +2077,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Earth & Air",
     "handle": "earth-and-air",
     "unitsSold": 15,
+    "peakSeason": "spring",
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -2113,6 +2149,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Edgewood Manor",
     "handle": "edgewood-manor",
     "unitsSold": 11,
+    "peakSeason": null,
     "tags": [
       "Earthy",
       "fall",
@@ -2181,6 +2218,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Eucalyptus & Jade",
     "handle": "eucalyptus-and-jade",
     "unitsSold": 9,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -2250,6 +2288,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Evergreen",
     "handle": "evergreen",
     "unitsSold": 24,
+    "peakSeason": "fall",
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -2313,6 +2352,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Farmhouse Kitchen",
     "handle": "farmhouse-kitchen",
     "unitsSold": 20,
+    "peakSeason": "winter",
     "tags": [
       "fall",
       "Gourmand",
@@ -2386,6 +2426,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Fig & Ginger",
     "handle": "fig-and-ginger",
     "unitsSold": 14,
+    "peakSeason": "spring",
     "tags": [
       "Gourmand",
       "Woody / Evergreen"
@@ -2446,6 +2487,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Fire & Water",
     "handle": "fire-and-water",
     "unitsSold": 8,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -2516,6 +2558,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "First Avenue",
     "handle": "first-avenue",
     "unitsSold": 14,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Earthy",
@@ -2586,6 +2629,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Frosty Night",
     "handle": "frosty-night",
     "unitsSold": 285,
+    "peakSeason": "winter",
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -2661,6 +2705,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Hallowed",
     "handle": "hallowed",
     "unitsSold": 32,
+    "peakSeason": "fall",
     "tags": [
       "fall",
       "Gourmand",
@@ -2731,6 +2776,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Hanzel & Gretyl",
     "handle": "hanzel-gretyl",
     "unitsSold": 11,
+    "peakSeason": null,
     "tags": [
       "fall",
       "Gourmand",
@@ -2798,6 +2844,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Harvest Table",
     "handle": "harvest-table",
     "unitsSold": 10,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -2867,6 +2914,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Haunting",
     "handle": "haunting",
     "unitsSold": 28,
+    "peakSeason": null,
     "tags": [
       "Earthy",
       "fall",
@@ -2937,6 +2985,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Hearth & Home",
     "handle": "hearth-and-home",
     "unitsSold": 32,
+    "peakSeason": "fall",
     "tags": [
       "fall",
       "Gourmand",
@@ -3005,6 +3054,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Heirloom",
     "handle": "heirloom",
     "unitsSold": 21,
+    "peakSeason": "summer",
     "tags": [
       "Earthy",
       "Floral",
@@ -3074,6 +3124,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Holiday Traditions",
     "handle": "holiday-traditions",
     "unitsSold": 15,
+    "peakSeason": "winter",
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -3134,6 +3185,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Houndstooth",
     "handle": "houndstooth",
     "unitsSold": 17,
+    "peakSeason": "spring",
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -3203,6 +3255,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Iced Pine",
     "handle": "iced-pine",
     "unitsSold": 49,
+    "peakSeason": "fall",
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -3265,6 +3318,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Indigo Blue",
     "handle": "indigo-blue",
     "unitsSold": 7,
+    "peakSeason": null,
     "tags": [
       "Earthy",
       "fall",
@@ -3330,6 +3384,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Jack O'Lantern",
     "handle": "jack-o-lantern",
     "unitsSold": 66,
+    "peakSeason": "fall",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3396,6 +3451,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Lavender Locks",
     "handle": "lavender-locks",
     "unitsSold": 36,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Earthy",
@@ -3466,6 +3522,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Lemon Chai",
     "handle": "lemon-chai",
     "unitsSold": 51,
+    "peakSeason": "spring",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3536,6 +3593,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Lilac Bloom",
     "handle": "lilac-bloom",
     "unitsSold": 36,
+    "peakSeason": "spring",
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -3598,6 +3656,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Love Letter",
     "handle": "love-letter",
     "unitsSold": 23,
+    "peakSeason": "spring",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3668,6 +3727,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Low Tide",
     "handle": "low-tide",
     "unitsSold": 18,
+    "peakSeason": "summer",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3740,6 +3800,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Magnolia & Rose",
     "handle": "magnolia-and-rose",
     "unitsSold": 12,
+    "peakSeason": null,
     "tags": [
       "Floral",
       "spring",
@@ -3807,6 +3868,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Mango Road",
     "handle": "mango-road",
     "unitsSold": 34,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -3880,6 +3942,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Mistletoe Kisses",
     "handle": "mistletoe-kisses",
     "unitsSold": 31,
+    "peakSeason": "fall",
     "tags": [
       "best seller",
       "Earthy",
@@ -3949,6 +4012,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Mount Rainier",
     "handle": "mount-rainier",
     "unitsSold": 16,
+    "peakSeason": "winter",
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -4012,6 +4076,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Noir Blanc",
     "handle": "noir-blanc",
     "unitsSold": 17,
+    "peakSeason": "spring",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -4084,6 +4149,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Oak & Moss",
     "handle": "oak-and-moss",
     "unitsSold": 35,
+    "peakSeason": "spring",
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -4160,6 +4226,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Palo Santo & Patchouli",
     "handle": "palo-santo-and-patchouli",
     "unitsSold": 32,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -4225,6 +4292,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Peppermint Trail",
     "handle": "peppermint-trail",
     "unitsSold": 9,
+    "peakSeason": null,
     "tags": [
       "Gourmand",
       "winter",
@@ -4298,6 +4366,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Pumpkin Chai",
     "handle": "pumpkin-chai",
     "unitsSold": 9,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -4360,6 +4429,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Rainbow Sherbet",
     "handle": "rainbow-sherbet",
     "unitsSold": 15,
+    "peakSeason": "spring",
     "tags": [
       "Citrus / Berry",
       "Gourmand",
@@ -4433,6 +4503,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Rainy Afternoon",
     "handle": "rainy-afternoon",
     "unitsSold": 24,
+    "peakSeason": "summer",
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -4504,6 +4575,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Sand & Sea",
     "handle": "sand-and-sea",
     "unitsSold": 23,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Clean / Ozonic",
@@ -4575,6 +4647,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Sea Witch",
     "handle": "sea-witch",
     "unitsSold": 31,
+    "peakSeason": "spring",
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -4640,6 +4713,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Snickerdoodle",
     "handle": "snickerdoodle",
     "unitsSold": 6,
+    "peakSeason": null,
     "tags": [
       "fall",
       "Gourmand",
@@ -4707,6 +4781,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Sugared Pumpkin Fig",
     "handle": "sugared-pumpkin-fig",
     "unitsSold": 21,
+    "peakSeason": "fall",
     "tags": [
       "Earthy",
       "fall",
@@ -4777,6 +4852,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Taffy Apple",
     "handle": "taffy-apple",
     "unitsSold": 38,
+    "peakSeason": "fall",
     "tags": [
       "Citrus / Berry",
       "fall",
@@ -4846,6 +4922,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Toffee Coffee",
     "handle": "toffee-coffee",
     "unitsSold": 29,
+    "peakSeason": "winter",
     "tags": [
       "fall",
       "Gourmand",
@@ -4913,6 +4990,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Top Drawer",
     "handle": "top-drawer",
     "unitsSold": 16,
+    "peakSeason": "spring",
     "tags": [
       "Earthy",
       "fall",
@@ -4981,6 +5059,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Vanilla Latte",
     "handle": "vanilla-latte",
     "unitsSold": 13,
+    "peakSeason": "spring",
     "tags": [
       "fall",
       "Gourmand",
@@ -5048,6 +5127,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Whispering Embers",
     "handle": "whispering-embers",
     "unitsSold": 6,
+    "peakSeason": null,
     "tags": [
       "Citrus / Berry",
       "Earthy",
@@ -5117,6 +5197,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "White Cedar & Cactus",
     "handle": "white-cedar-and-cactus",
     "unitsSold": 12,
+    "peakSeason": "spring",
     "tags": [
       "Clean / Ozonic",
       "Earthy",
@@ -5185,6 +5266,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "White Cranberry",
     "handle": "white-cranberry",
     "unitsSold": 23,
+    "peakSeason": "winter",
     "tags": [
       "Citrus / Berry",
       "Clean / Ozonic",
@@ -5248,6 +5330,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "White Fig",
     "handle": "white-fig",
     "unitsSold": 9,
+    "peakSeason": null,
     "tags": [
       "best seller",
       "Citrus / Berry",
@@ -5320,6 +5403,7 @@ export const bumblinScents: BumblinScent[] = [
     "scent": "Witching Hour",
     "handle": "witching-hour",
     "unitsSold": 79,
+    "peakSeason": null,
     "tags": [
       "Earthy",
       "fall",
@@ -5439,7 +5523,18 @@ export const seasonTags = ["spring", "summer", "fall", "winter"] as const;
  */
 export function definingTag(s: BumblinScent): string | null {
   const seasons = s.tags.filter((t) => (seasonTags as readonly string[]).includes(t));
+
+  // The season TAGS are authoritative about what a scent IS. Sales data only
+  // breaks a tie between seasons a scent is already tagged with.
+  //
+  // Measurement must never override the tags, because when a scent SELLS is not
+  // what season it IS: winter and holiday scents sell hard in Sept-Nov on
+  // pre-Christmas shopping, so Iced Pine (a winter scent) measures as "fall".
+  // Eight scents show exactly that skew.
   if (seasons.length === 1) return seasons[0] ?? null;
+  if (seasons.length > 1 && s.peakSeason && seasons.includes(s.peakSeason)) {
+    return s.peakSeason;
+  }
 
   const counts = new Map<string, number>();
   for (const t of scentTags) {
@@ -5461,6 +5556,23 @@ export function definingTag(s: BumblinScent): string | null {
       return a.localeCompare(b);
     })[0] ?? null
   );
+}
+
+/**
+ * Scents that belong with this one, most-sold first.
+ *
+ * Grouped on the same key the heading uses, and always on TAG membership —
+ * a "More fall scents" list must contain scents that ARE autumnal, not ones
+ * that merely happen to sell in autumn (which is most of the winter range,
+ * thanks to pre-holiday shopping).
+ */
+export function scentsLike(scent: BumblinScent, limit = 4): BumblinScent[] {
+  const key = definingTag(scent);
+  if (!key) return [];
+  return bumblinScents
+    .filter((s) => s.handle !== scent.handle && s.tags.includes(key))
+    .sort((a, b) => b.unitsSold - a.unitsSold)
+    .slice(0, limit);
 }
 
 /** Scents sharing a tag, most-sold first. */

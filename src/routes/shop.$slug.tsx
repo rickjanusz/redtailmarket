@@ -7,7 +7,7 @@ import { ScentCard } from "@/components/site/ScentCard";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { useScentProfile } from "@/hooks/use-scent-profile";
-import { definingTag, img, scentBySlug, scentsByTag } from "@/lib/bumblin-bee";
+import { definingTag, img, scentBySlug, scentsLike } from "@/lib/bumblin-bee";
 
 export const Route = createFileRoute("/shop/$slug")({
   loader: ({ params }) => {
@@ -55,7 +55,7 @@ function ScentDetail() {
   } = useScentProfile({
     view: scent.handle,
     exclude: scent.handle,
-    fallback: baseTag ? scentsByTag(baseTag, scent.handle, 4) : [],
+    fallback: scentsLike(scent, 4),
     fallbackTag: baseTag,
   });
 

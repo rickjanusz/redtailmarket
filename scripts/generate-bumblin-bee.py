@@ -130,11 +130,24 @@ def sq_items():
     return out
 
 
+SEASON_OF_MONTH = {3: "spring", 4: "spring", 5: "spring", 6: "summer", 7: "summer",
+                   8: "summer", 9: "fall", 10: "fall", 11: "fall", 12: "winter",
+                   1: "winter", 2: "winter"}
+SEASONS = ["spring", "summer", "fall", "winter"]
+
+
 def square_units(location_id, days=365):
-    """Units sold per catalog variation over the window, from COMPLETED orders."""
+    """Units per variation, plus per-season units and the shop's own baseline.
+
+    The baseline matters: ~31% of units sell in autumn against ~20% in spring,
+    so raw season share would label almost everything a fall scent.
+    """
+    from collections import defaultdict
     from datetime import datetime, timedelta, timezone
     since = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
     units, cursor, pages = {}, None, 0
+    per_var_season = defaultdict(lambda: defaultdict(float))
+    baseline = defaultdict(float)
     while True:
         body = {
             "location_ids": [location_id],
@@ -159,19 +172,29 @@ def square_units(location_id, days=365):
         with urllib.request.urlopen(rq, timeout=90) as r:
             d = json.loads(r.read())
         for o in d.get("orders", []):
+            stamp = o.get("closed_at") or o.get("created_at") or ""
+            try:
+                season = SEASON_OF_MONTH[
+                    datetime.fromisoformat(stamp.replace("Z", "+00:00")).month]
+            except Exception:
+                season = None
             for li in o.get("line_items", []) or []:
                 cid = li.get("catalog_object_id")
                 if not cid:
                     continue
                 try:
-                    units[cid] = units.get(cid, 0) + float(li.get("quantity", "0"))
+                    q = float(li.get("quantity", "0"))
                 except ValueError:
-                    pass
+                    continue
+                units[cid] = units.get(cid, 0) + q
+                if season:
+                    per_var_season[cid][season] += q
+                    baseline[season] += q
         cursor = d.get("cursor")
         pages += 1
         if not cursor or pages > 60:
             break
-    return units
+    return units, per_var_season, baseline
 
 
 def norm(s):
@@ -195,8 +218,14 @@ for it in sq_items():
         square[(size, SQ_ALIAS.get(k, k))] = {"id": v["id"], "sku": vd.get("sku"), "name": vn}
 print(f"square bumblin bee variations indexed: {len(square)}")
 
-UNITS = square_units(env["SQUARE_LOCATION_ID"])
+UNITS, VAR_SEASON, BASELINE = square_units(env["SQUARE_LOCATION_ID"])
 print(f"square variations with sales in the last 365d: {len(UNITS)}")
+_btot = sum(BASELINE.values()) or 1
+BSHARE = {s2: (BASELINE.get(s2, 0) / _btot) or 0.25 for s2 in SEASONS}
+print("store seasonal baseline: " + "  ".join(f"{k}={v*100:.1f}%" for k, v in BSHARE.items()))
+
+MIN_SEASON_UNITS = 12   # below this a "peak" is noise
+MIN_SEASON_LIFT = 1.6   # must clearly beat the shop's own seasonality
 
 # ---------- build ----------
 out, stats = [], {"sizes": 0, "with_img": 0, "sq_linked": 0, "no_img": 0}
@@ -246,9 +275,25 @@ for p in products:
             "images": imgs[:4],
         })
     sizes.sort(key=lambda s: SIZE_ORDER.index(s["size"]))
+
+    # Real seasonality: when this scent actually sells, as lift over baseline.
+    agg = {}
+    for row in sizes:
+        vid = row["squareVariationId"]
+        if vid and vid in VAR_SEASON:
+            for k2, n2 in VAR_SEASON[vid].items():
+                agg[k2] = agg.get(k2, 0) + n2
+    tot_season = sum(agg.values())
+    peak_season = None
+    if tot_season >= MIN_SEASON_UNITS:
+        lifts = {k2: (agg.get(k2, 0) / tot_season) / BSHARE[k2] for k2 in SEASONS}
+        best = max(lifts, key=lifts.get)
+        if lifts[best] >= MIN_SEASON_LIFT:
+            peak_season = best
     out.append({
         "scent": scent, "handle": p["handle"],
         "unitsSold": sum(x["unitsSold"] for x in sizes),
+        "peakSeason": peak_season,
         "tags": [t for t in p.get("tags", [])],
         "notes": notes_of(p.get("descriptionHtml")),
         "description": body_of(p.get("descriptionHtml")),
@@ -299,6 +344,12 @@ export type BumblinScent = {
   description: string;
   /** Units sold in Square over the last 365 days, summed across sizes. */
   unitsSold: number;
+  /**
+   * The season this scent measurably sells in, from Square orders, as lift over
+   * the shop's own seasonal trade. `null` when sales are too thin or too even
+   * to call. This BEATS the Shopify season tags, which are unreliable.
+   */
+  peakSeason: string | null;
   sizes: BumblinSize[];
 };
 
@@ -359,7 +410,18 @@ export const seasonTags = ["spring", "summer", "fall", "winter"] as const;
  */
 export function definingTag(s: BumblinScent): string | null {
   const seasons = s.tags.filter((t) => (seasonTags as readonly string[]).includes(t));
+
+  // The season TAGS are authoritative about what a scent IS. Sales data only
+  // breaks a tie between seasons a scent is already tagged with.
+  //
+  // Measurement must never override the tags, because when a scent SELLS is not
+  // what season it IS: winter and holiday scents sell hard in Sept-Nov on
+  // pre-Christmas shopping, so Iced Pine (a winter scent) measures as "fall".
+  // Eight scents show exactly that skew.
   if (seasons.length === 1) return seasons[0] ?? null;
+  if (seasons.length > 1 && s.peakSeason && seasons.includes(s.peakSeason)) {
+    return s.peakSeason;
+  }
 
   const counts = new Map<string, number>();
   for (const t of scentTags) {
@@ -381,6 +443,23 @@ export function definingTag(s: BumblinScent): string | null {
       return a.localeCompare(b);
     })[0] ?? null
   );
+}
+
+/**
+ * Scents that belong with this one, most-sold first.
+ *
+ * Grouped on the same key the heading uses, and always on TAG membership —
+ * a "More fall scents" list must contain scents that ARE autumnal, not ones
+ * that merely happen to sell in autumn (which is most of the winter range,
+ * thanks to pre-holiday shopping).
+ */
+export function scentsLike(scent: BumblinScent, limit = 4): BumblinScent[] {
+  const key = definingTag(scent);
+  if (!key) return [];
+  return bumblinScents
+    .filter((s) => s.handle !== scent.handle && s.tags.includes(key))
+    .sort((a, b) => b.unitsSold - a.unitsSold)
+    .slice(0, limit);
 }
 
 /** Scents sharing a tag, most-sold first. */

@@ -318,10 +318,28 @@ parse with Python when checking SSR output.
 Two layers, deliberately separated:
 
 1. **`definingTag(scent)`** (in the generated `bumblin-bee.ts`) - the tag a page
-   is "about". A scent carrying exactly ONE season is unambiguously seasonal, so
-   that wins outright. Otherwise the rarest tag wins because it groups most
-   tightly - **and on a tie the season always wins**, since seasonal intent is
-   the clearer signal. 31 of 78 scents resolve to a season.
+   is "about", in strict order:
+   1. exactly one season tag -> that season;
+   2. several season tags -> the one `peakSeason` measures, if it is among them;
+   3. otherwise the rarest tag, **season winning any tie**.
+   Group members come from `scentsLike()`, which matches the same key on TAG
+   membership.
+
+   **The Shopify season tags are authoritative about what a scent IS. Sales data
+   only breaks a tie between seasons a scent is ALREADY tagged with - it must
+   never override or invent one.** This is the crucial rule (user-confirmed
+   2026-08-31): *when* a scent sells is not *what* it is. Winter and holiday
+   scents sell hard in Sept-Nov on pre-Christmas shopping, so Iced Pine - a
+   winter scent, correctly tagged - measures a "fall" peak. Eight scents show
+   that skew (Iced Pine, Mistletoe Kisses, Absinthe & Santal, Dragon's Breath,
+   Houndstooth, Rainbow Sherbet, Top Drawer, Vanilla Latte). An earlier version
+   trusted measurement over tags and put winter scents in fall lists.
+
+   Jack O'Lantern is the case this exists for: tagged `fall` + `winter`, sales
+   say fall, so it reads "More Fall scents". Its rare `Citrus / Berry` tag - the
+   old rule's pick - comes from an orange-peel note, which is how Shopify tags
+   work: they mark notes PRESENT, not the scent's character. Never treat a rare
+   tag as the defining one without this ordering.
 2. **`src/lib/scent-affinity.ts`** - session profile. Every scent opened and
    every filter chip pressed adds recency-decayed weight to its tags (an
    explicit chip counts 2.5x a passive view). `dominantTag()` breaks ties the
@@ -354,6 +372,14 @@ Frosty Night alone is 285 units / $5,122, ~14% of all units.
 Square's `SearchOrders` REQUIRES a `state_filter` of closed states when sorting
 on `CLOSED_AT`; omitting it returns a 400 that looks like a permissions error
 but is not.
+
+### Seasonality must be baseline-corrected
+`peakSeason` is lift over the shop's OWN seasonal trade, not raw share. The
+baseline is uneven - fall 30.9% of units, winter 27.2%, summer 21.9%, spring
+20.1% - so raw share labels almost everything a fall scent. A season is only
+called at >= 12 units and >= 1.6x lift; 43 of 78 scents qualify. Skipping the
+correction produced two false "mis-tagged" findings that vanished once it was
+applied.
 
 ## Secrets
 

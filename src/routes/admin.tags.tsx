@@ -204,23 +204,30 @@ function TagEditor() {
           ) : null}
 
           {/* Grid */}
-          <div className="mt-8 overflow-x-auto border border-border">
+          <div className="mt-8 max-h-[72vh] overflow-auto border border-border">
             <table className="w-full border-collapse text-sm">
               <thead>
-                <tr className="bg-card">
-                  <th className="sticky left-0 z-10 bg-card px-4 py-3 text-left text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground">
+                <tr>
+                  {/* Corner cell pins on both axes, so it must outrank both. */}
+                  <th className="sticky left-0 top-0 z-30 border-b border-border bg-card px-4 py-3 text-left text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground">
                     Scent
                   </th>
-                  {scentTags.map((t) => (
-                    <th
-                      key={t}
-                      className={`px-2 py-3 text-center text-[0.6rem] uppercase tracking-[0.12em] ${
-                        SEASONS.includes(t) ? "text-accent" : "text-muted-foreground"
-                      }`}
-                    >
-                      {t.replace(" / ", "/")}
-                    </th>
-                  ))}
+                  {scentTags.map((t) => {
+                    const n = counts[t] ?? 0;
+                    return (
+                      <th
+                        key={t}
+                        className={`sticky top-0 z-20 border-b border-border bg-card px-2 py-3 text-center text-[0.6rem] uppercase tracking-[0.12em] ${
+                          SEASONS.includes(t) ? "text-accent" : "text-muted-foreground"
+                        }`}
+                      >
+                        {t.replace(" / ", "/")}
+                        <span className="mt-1 block text-[0.6rem] font-normal opacity-50">
+                          {n}
+                        </span>
+                      </th>
+                    );
+                  })}
                 </tr>
               </thead>
               <tbody>
@@ -231,7 +238,11 @@ function TagEditor() {
                       key={s.handle}
                       className={`border-t border-border ${dirty ? "bg-secondary/40" : ""}`}
                     >
-                      <td className="sticky left-0 z-10 bg-background px-4 py-2">
+                      <td
+                        className={`sticky left-0 z-10 px-4 py-2 ${
+                          dirty ? "bg-[oklch(0.24_0.012_42)]" : "bg-background"
+                        }`}
+                      >
                         <span className="block text-foreground">{s.scent}</span>
                         <span className="block text-[0.66rem] text-muted-foreground">
                           {s.notes || s.noteList.slice(0, 4).join(", ")}

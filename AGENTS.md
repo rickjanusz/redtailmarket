@@ -209,9 +209,14 @@ yet rather than being lost.
   `magnolia rose`->Magnolia & Rose, `sugared pumpkin and fig`->Sugared Pumpkin Fig,
   and `boo berry` -> Square's `BOooOo...Berry`.
 - Some files put the size at the END (`charmed_48oz.png`), not the start.
-- Scents with photos but no matching variation (likely discontinued): Bourbon
-  Street, Box of Chocolates, Lavender Woods, Pacific Cove, Sugar & Spice,
-  Valor. Unexplained: a `bats` key in the 14oz set.
+- **Discontinued scents (user-confirmed 2026-08-31)** - photos exist but the
+  scent is no longer in the Square catalog. Expect these to match nothing; do
+  NOT treat them as pipeline failures: Bourbon Street, Box of Chocolates,
+  Lavender Woods, Pacific Cove, Sugar & Spice, Valor.
+  Note `Lavender Woods` is discontinued and is a DIFFERENT scent from the
+  current `Lavender Locks` - not a rename.
+- Unexplained: a `bats` key in the 14oz set matching no variation. Every
+  "Bats in the Belfry" file found lives in the melt/7oz/4oz folders.
 - Filename conventions differ per folder: `melt_x`, `4oz_x`, `7oz_short_x`,
   `14_x`, `48_xnospaces2`. The `48` set strips spaces and appends take numbers.
 - Strip `-Camera N` suffixes.

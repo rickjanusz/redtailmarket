@@ -415,6 +415,23 @@ called at >= 12 units and >= 1.6x lift; 43 of 78 scents qualify. Skipping the
 correction produced two false "mis-tagged" findings that vanished once it was
 applied.
 
+## Square sandbox is unusable
+
+`SQUARE_ENVIRONMENT=production` is deliberate, not an oversight: **Square's
+sandbox API is broken** (owner, 2026-09-01). Do not suggest switching to
+sandbox as the "safe" option - it is not available.
+
+Consequences:
+
+- Every Square call in this project hits the **live store**. Reads (catalog,
+  inventory, orders) are harmless and are what the generator relies on.
+- **Phase 4 checkout cannot be rehearsed in sandbox.** Any Orders or Payments
+  write would create a real order and a real charge against the Frankfort shop.
+  Before building checkout, agree an explicit guard with the owner - and never
+  issue a write to Orders/Payments without their direct, specific go-ahead.
+- The same applies to `ITEMS_WRITE` if attaching images to the catalogue is ever
+  revisited; the current design deliberately avoids needing it.
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 
 import wordmark from "@/assets/brand/redtail-wordmark.png";
 
@@ -17,32 +17,56 @@ export function SiteHeader() {
 
   return (
     <header className="header-wood sticky top-0 z-50 border-b border-border">
-      <div className="mx-auto flex h-36 max-w-7xl items-center justify-between gap-6 px-5">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-6 px-5">
         {/*
-          The wordmark's "Market" script is black on transparency, so it needs
-          lifting off the near-black header. `drop-shadow()` cannot blend, so the
-          glow is a second copy of the logo: `brightness(0) invert(1)` turns every
-          opaque pixel cream while keeping the alpha shape, then it is blurred and
-          composited additively with plus-lighter. --logo-glow is the feather —
-          the one number worth tuning.
+          LOGO GLOW — values are hard-coded inline so they show up under
+          `element.style` in dev tools and can be edited live.
+
+          The wordmark's "Market" script is black on transparency and the header
+          is near-black, so it needs lifting off the wood. drop-shadow() cannot
+          blend, so each glow is a copy of the logo: brightness(0) invert(1)
+          turns every opaque pixel white while keeping the alpha shape, then it
+          is blurred and composited additively with plus-lighter.
+
+          Do NOT add `isolate` here. It creates a stacking context, and the
+          additive blend would then only see this link's transparent background
+          instead of the wood behind it — which is what made the glow invisible.
         */}
         <Link
           to="/"
-          className="relative isolate flex h-full items-center py-3"
+          className="relative flex h-full items-center py-3"
           onClick={() => setOpen(false)}
-          style={{ "--logo-glow": "100px" } as CSSProperties}
         >
-          <img
-            src={wordmark}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-3 left-0 h-[calc(100%-1.5rem)] w-auto object-contain opacity-80 [filter:brightness(0)_invert(1)_blur(var(--logo-glow))] [mix-blend-mode:plus-lighter]"
-          />
-          <img
-            src={wordmark}
-            alt="Redtail Market"
-            className="relative h-full w-auto object-contain drop-shadow-[0_1px_2px_rgba(250,245,235,0.55)]"
-          />
+          <span className="relative block h-full">
+            {/* HALO — wide soft spread at full opacity. */}
+            <img
+              src={wordmark}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 h-full w-full object-contain"
+              style={{
+                filter: "brightness(0) invert(1) blur(36px)",
+                mixBlendMode: "plus-lighter",
+              }}
+            />
+            {/* CORE — tight and half-strength; sharpens the letter edges. */}
+            <img
+              src={wordmark}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 h-full w-full object-contain"
+              style={{
+                filter: "brightness(0) invert(1) blur(3px)",
+                mixBlendMode: "plus-lighter",
+                opacity: 0.5,
+              }}
+            />
+            <img
+              src={wordmark}
+              alt="Redtail Market"
+              className="relative h-full w-auto object-contain"
+            />
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

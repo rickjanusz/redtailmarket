@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useState } from "react";
 
-import wordmarkAsset from "@/assets/redtail-wordmark.png.asset.json";
+import wordmark from "@/assets/brand/redtail-wordmark.png";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -24,7 +24,7 @@ export function SiteHeader() {
           onClick={() => setOpen(false)}
         >
           <img
-            src={wordmarkAsset.url}
+            src={wordmark}
             alt="Redtail Market"
             className="h-full w-auto object-contain drop-shadow-[0_1px_1px_rgba(250,245,235,0.9),0_0_6px_rgba(250,245,235,0.55)]"
           />

@@ -432,6 +432,32 @@ Consequences:
 - The same applies to `ITEMS_WRITE` if attaching images to the catalogue is ever
   revisited; the current design deliberately avoids needing it.
 
+## Brand assets are real files, not Lovable pointers
+
+Images uploaded through Lovable do NOT arrive as files. Lovable commits a
+`<name>.asset.json` manifest pointing at its own asset store via a RELATIVE url
+(`/__l5e/assets-v1/...`), which resolves only on Lovable's infrastructure. Both
+logo manifests 404 locally and would 404 on any self-hosted deploy, so the
+header logo was a broken image everywhere except Lovable's preview.
+
+Real files now live in `src/assets/brand/`, imported normally so Vite hashes and
+bundles them:
+
+- `redtail-wordmark.png` (961x394, RGBA) - the header lockup
+- `redtail_logo.jpg` (1200x1200) - full mark: whitewashed barn board, grey
+  galloping horse behind the wordmark. **Currently unused.**
+
+The stale `.asset.json` manifests are left in `src/assets/` on purpose - Lovable
+may still reference them - but nothing imports them. If any future asset arrives
+as a manifest, pull the bytes down the same way, from
+`https://id-preview--<project_id>.lovable.app/<url from the manifest>`.
+
+### Known issue: the wordmark is a light-background asset
+The "Market" script in the wordmark is BLACK on transparency, and the header is
+near-black. `SiteHeader` compensates with a heavy white glow
+(`drop-shadow-[...rgba(250,245,235,0.9)...]`). That is a workaround, not a fix -
+a proper knockout/light version of the wordmark would remove the need for it.
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

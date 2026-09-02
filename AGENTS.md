@@ -506,10 +506,14 @@ American makers** — some production happens overseas. So:
   it as an overclaim.
 - Earth Rugs qualifies as US-finished: jute is woven in Bangladesh, then
   hand-painted at the Arkansas HQ and in studios across the US.
-- What is NOT safe is "Everything is made in the USA". "Made in USA" is an
-  FTC-regulated claim requiring "all or virtually all" domestic content, and
-  imported goods merely finished here generally fail it. That line was removed
-  and should not come back in that form.
+- **"Made in the USA" is true for most makers and SHOULD be used — applied per
+  maker, where it holds** (owner, 2026-09-01). Most independents work in
+  Illinois, Indiana, Wisconsin, Ohio and Michigan.
+- What is not safe is the BLANKET version — "Everything is made in the USA"
+  across the whole shop. "Made in USA" is FTC-regulated, requiring "all or
+  virtually all" domestic content, and imported goods merely finished here
+  generally fail it. Scope the claim to the maker it is true of, never to the
+  entire catalogue.
 - Still unverified either way: Toysmith/Neato and Myra Bags.
 
 The claim that WAS false and is now fixed: "Every piece is built, poured,

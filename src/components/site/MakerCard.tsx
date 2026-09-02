@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin } from "lucide-react";
 
-import type { Maker } from "@/lib/makers";
+import { originLabel, type Maker } from "@/lib/makers";
 
 export function MakerCard({ maker }: { maker: Maker }) {
+  const origin = originLabel(maker);
+
   return (
     <Link
       to="/makers/$slug"
@@ -37,12 +39,19 @@ export function MakerCard({ maker }: { maker: Maker }) {
         <h3 className="font-display text-xl text-foreground transition-colors group-hover:text-accent">
           {maker.name}
         </h3>
-        {maker.hometown ? (
-          <p className="mt-2 inline-flex items-center gap-1.5 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
-            <MapPin className="h-3 w-3" />
-            {maker.hometown}
-          </p>
-        ) : null}
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+          {maker.hometown ? (
+            <p className="inline-flex items-center gap-1.5 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
+              <MapPin className="h-3 w-3" />
+              {maker.hometown}
+            </p>
+          ) : null}
+          {origin ? (
+            <p className="text-[0.64rem] uppercase tracking-[0.18em] text-accent">
+              {origin}
+            </p>
+          ) : null}
+        </div>
         <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
           {maker.blurb}
         </p>

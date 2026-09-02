@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import { MakerCard } from "@/components/site/MakerCard";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
-import { independentMakers, makerBySlug } from "@/lib/makers";
+import { independentMakers, makerBySlug, originLabel } from "@/lib/makers";
 
 export const Route = createFileRoute("/makers/$slug")({
   loader: ({ params }) => {
@@ -31,6 +31,7 @@ export const Route = createFileRoute("/makers/$slug")({
 
 function MakerDetail() {
   const maker = Route.useLoaderData();
+  const origin = originLabel(maker);
   const others = independentMakers
     .filter((m) => m.slug !== maker.slug)
     .slice(0, 3);
@@ -64,12 +65,19 @@ function MakerDetail() {
               <h1 className="mt-3 font-display text-4xl text-foreground sm:text-5xl">
                 {maker.name}
               </h1>
-              {maker.hometown ? (
-                <p className="mt-4 inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.2em] text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5" />
-                  {maker.hometown}
-                </p>
-              ) : null}
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+                {maker.hometown ? (
+                  <p className="inline-flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.2em] text-muted-foreground">
+                    <MapPin className="h-3.5 w-3.5" />
+                    {maker.hometown}
+                  </p>
+                ) : null}
+                {origin ? (
+                  <p className="border border-accent px-3 py-1 text-[0.66rem] uppercase tracking-[0.18em] text-accent">
+                    {origin}
+                  </p>
+                ) : null}
+              </div>
 
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
                 {maker.blurb}

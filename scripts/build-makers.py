@@ -50,6 +50,18 @@ SQUARE_ITEMS = {
                            "Bumblin Bee, 48oz Apothecary Jar Candle",
                            "Bumblin Bee Accessories"],
 }
+# Country-of-origin, per maker. "usa" = made here. "usa-finished" = produced
+# abroad but finished here, which must NOT be called "Made in the USA" (an
+# FTC-regulated claim needing all-or-virtually-all domestic content).
+# None = not established yet; the badge is simply omitted.
+ORIGIN_OVERRIDE = {
+    # jute grown and hand-woven in Bangladesh, hand-painted at the Arkansas HQ
+    # and in studios across the US (owner, 2026-09-01)
+    "Earth Rugs": "usa-finished",
+    # label reads "Hand-poured in Illinois"
+    "Bumblin Bee Candle": "usa",
+}
+
 # Square items holding more than one maker — a maker page must NOT claim all of it.
 SHARED_ITEMS = {"Artisan Jewelry"}
 # Our own house brand rather than an independent maker.
@@ -104,6 +116,9 @@ for m in makers:
         "blurb": m["body"],
         "photo": slugify(name) + ".jpg",
         "squareItems": SQUARE_ITEMS.get(name, []),
+        # Default: a maker naming a US location in their own copy is US-made.
+        # Anything unestablished stays None rather than being guessed at.
+        "origin": ORIGIN_OVERRIDE.get(name, "usa" if town else None),
         "shared": any(i in SHARED_ITEMS for i in SQUARE_ITEMS.get(name, [])),
         "house": name in HOUSE,
     })
@@ -120,6 +135,7 @@ for r in rows:
         f'    hometown: {json.dumps(r["hometown"])},\n'
         f'    blurb: {json.dumps(r["blurb"])},\n'
         f"    photo: {var},\n"
+        f'    origin: {json.dumps(r["origin"])},\n'
         f'    squareItems: {json.dumps(r["squareItems"])},\n'
         f'    shared: {"true" if r["shared"] else "false"},\n'
         f'    house: {"true" if r["house"] else "false"},\n'
@@ -152,6 +168,14 @@ export type Maker = {{
   hometown: string | null;
   blurb: string;
   photo: string;
+  /**
+   * "usa" — made here, safe to badge "Made in the USA".
+   * "usa-finished" — produced abroad, finished here. Must NOT be badged
+   *   "Made in the USA": that is an FTC-regulated claim requiring all or
+   *   virtually all domestic content.
+   * null — not established; show nothing.
+   */
+  origin: "usa" | "usa-finished" | null;
   /** Square ITEM names holding this maker's products. May be empty. */
   squareItems: string[];
   /** True when a listed item also holds OTHER makers' products. */
@@ -163,6 +187,19 @@ export type Maker = {{
 export const makers: Maker[] = [
 {chr(10).join(entries)}
 ];
+
+/**
+ * Badge text for a maker's origin, or null to show nothing.
+ *
+ * "usa-finished" deliberately does NOT say "Made in the USA" — that is an
+ * FTC-regulated claim requiring all or virtually all domestic content, which
+ * goods produced abroad and finished here do not meet.
+ */
+export function originLabel(m: Maker): string | null {{
+  if (m.origin === "usa") return "Made in the USA";
+  if (m.origin === "usa-finished") return "Hand-finished in the USA";
+  return null;
+}}
 
 export function makerBySlug(slug: string): Maker | undefined {{
   return makers.find((m) => m.slug === slug);

@@ -37,7 +37,7 @@ const pillars = [
   {
     icon: Hammer,
     title: "Made by hand",
-    body: "The heart of the market is work from independent makers — built, poured, stitched and thrown by hand, rough edges and all.",
+    body: "The heart of independent makers — built, poured, stitched and thrown by hand, rough edges and all.",
   },
   {
     icon: Recycle,

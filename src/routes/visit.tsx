@@ -7,13 +7,13 @@ import { PlaceholderImage } from "@/components/site/PlaceholderImage";
 export const Route = createFileRoute("/visit")({
   head: () => ({
     meta: [
-      { title: "Visit Us in Downtown Frankfort, IL | Redtail Market" },
+      { title: "Visit Us in Historic Downtown Frankfort, IL | Redtail Market" },
       {
         name: "description",
         content:
           "Hours, parking and directions to Redtail Market, a handcrafted maker market at 3 West Nebraska Street, Frankfort, Illinois.",
       },
-      { property: "og:title", content: "Visit Redtail Market in Downtown Frankfort, IL" },
+      { property: "og:title", content: "Visit Redtail Market in Historic Downtown Frankfort, IL" },
       {
         property: "og:description",
         content: "Hours and directions to our handcrafted maker market in Frankfort, Illinois.",
@@ -39,8 +39,8 @@ function Visit() {
   return (
     <PageShell
       eyebrow="Come see us"
-      title="Downtown Frankfort, Illinois"
-      intro="Our storefront sits in the heart of historic Downtown Frankfort. Stop by to browse the market in person, or reach out by phone or email."
+      title="Historic Downtown Frankfort, Illinois"
+      intro="Our storefront sits in the heart of Historic Downtown Frankfort. Stop by to browse the market in person, or reach out by phone or email."
     >
       <PlaceholderImage className="mt-12 h-64 w-full sm:h-80" label="Storefront photo" />
 

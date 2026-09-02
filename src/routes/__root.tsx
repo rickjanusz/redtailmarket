@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "A handcrafted maker market in Downtown Frankfort, IL — reclaimed, distressed and primitive decor and gifts.",
+          "A handcrafted maker market in Historic Downtown Frankfort, IL — reclaimed, distressed and primitive decor and gifts.",
       },
       { name: "author", content: "Redtail Market" },
       { property: "og:title", content: "Redtail Market" },

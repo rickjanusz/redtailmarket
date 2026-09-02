@@ -183,7 +183,7 @@ function ScentDetail() {
               </button>
               <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
                 Online checkout is not open yet. Come see us at 3 West Nebraska Street in
-                Downtown Frankfort, or{" "}
+                Historic Downtown Frankfort, or{" "}
                 <Link to="/contact" className="text-accent underline-offset-4 hover:underline">
                   get in touch
                 </Link>{" "}

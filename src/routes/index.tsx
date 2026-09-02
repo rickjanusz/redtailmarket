@@ -18,13 +18,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A maker market in Downtown Frankfort, IL specializing in reclaimed, distressed and primitive home decor, small-batch candles and handcrafted gifts.",
+          "A maker market in Historic Downtown Frankfort, IL specializing in reclaimed, distressed and primitive home decor, small-batch candles and handcrafted gifts.",
       },
       { property: "og:title", content: "Redtail Market | Handcrafted Maker Market" },
       {
         property: "og:description",
         content:
-          "Reclaimed, distressed and primitive decor plus handcrafted gifts from makers across the USA.",
+          "Reclaimed, distressed and primitive decor, handmade goods and small-batch gifts in Historic Downtown Frankfort, Illinois.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -37,7 +37,7 @@ const pillars = [
   {
     icon: Hammer,
     title: "Made by hand",
-    body: "Every piece is built, poured, stitched or thrown by a real maker — rough edges, honest materials and all.",
+    body: "The heart of the market is work from independent makers — built, poured, stitched and thrown by hand, rough edges and all.",
   },
   {
     icon: Recycle,
@@ -97,7 +97,7 @@ function Index() {
             <div className="flex flex-col justify-center gap-6 px-6 py-16 lg:px-14 lg:py-24">
               <p className="flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.32em] text-accent">
                 <MapPin className="h-3.5 w-3.5" />
-                Downtown Frankfort, Illinois
+                Historic Downtown Frankfort, Illinois
               </p>
 
               <h1 className="text-5xl leading-[0.95] text-foreground sm:text-6xl lg:text-7xl">
@@ -109,7 +109,7 @@ function Index() {
               </h1>
 
               <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
-                Redtail Market is a curated maker market in Downtown Frankfort, Illinois.
+                Redtail Market is a curated maker market in Historic Downtown Frankfort, Illinois.
                 We carry distressed decor, salvaged wood signs, small-batch candles,
                 handcrafted boards and gifts from independent artisans.
               </p>
@@ -254,9 +254,9 @@ function Index() {
                 Real people, real workshops
               </h2>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                Dozens of independent artisans stock Redtail Market. Each maker has their
-                own page here with their story and their full collection — the same pieces
-                you'd pick up off the shelf in Frankfort.
+                Independent makers stock most of our shelves — potters, woodworkers, candle
+                pourers and paper artists from Illinois, Indiana, Wisconsin and beyond.
+                Many have a page here with their story.
               </p>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 Our parent shop,{" "}
@@ -287,11 +287,11 @@ function Index() {
             Come see us
           </p>
           <h2 className="mx-auto mt-3 max-w-2xl text-4xl text-foreground sm:text-5xl">
-            Worth the trip to Downtown Frankfort
+            Worth the trip to Historic Downtown Frankfort
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Wander the market in person, or shop the whole floor online. Everything is
-            made in the USA and stocked by hand.
+            Come wander the shelves in person — it is the only way to see the whole
+            market. Our candles are available online, with more to follow.
           </p>
           <Link
             to="/visit"

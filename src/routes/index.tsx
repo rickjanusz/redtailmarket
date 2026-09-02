@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Reclaimed, distressed and primitive decor, handmade goods and small-batch gifts in Historic Downtown Frankfort, Illinois.",
+          "Reclaimed, distressed and primitive decor plus handcrafted gifts from makers across the USA, in Historic Downtown Frankfort, Illinois.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -256,7 +256,7 @@ function Index() {
               <p className="mt-5 text-base leading-relaxed text-muted-foreground">
                 Independent makers stock most of our shelves — potters, woodworkers, candle
                 pourers and paper artists from Illinois, Indiana, Wisconsin and beyond.
-                Many have a page here with their story.
+                Check out the makers pages to learn more about their stories.
               </p>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 Our parent shop,{" "}
@@ -290,8 +290,8 @@ function Index() {
             Worth the trip to Historic Downtown Frankfort
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Come wander the shelves in person — it is the only way to see the whole
-            market. Our candles are available online, with more to follow.
+            Come wander the shelves in person and see the whole market. Our candles are
+            available online, with more to follow.
           </p>
           <Link
             to="/visit"

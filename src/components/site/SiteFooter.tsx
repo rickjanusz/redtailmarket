@@ -7,8 +7,9 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <h2 className="font-display text-2xl text-foreground">Redtail Market</h2>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            A maker market in Historic Downtown Frankfort, Illinois — reclaimed, distressed and
-            primitive decor, handmade goods and small-batch gifts.
+            A hand-crafted maker market in Historic Downtown Frankfort, Illinois — reclaimed,
+            distressed and primitive decor, plus small-batch gifts from artisans across
+            the USA.
           </p>
         </div>
 

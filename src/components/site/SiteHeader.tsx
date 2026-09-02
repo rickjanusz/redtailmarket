@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 import wordmark from "@/assets/brand/redtail-wordmark.png";
 
@@ -17,16 +17,31 @@ export function SiteHeader() {
 
   return (
     <header className="header-wood sticky top-0 z-50 border-b border-border">
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-6 px-5">
+      <div className="mx-auto flex h-36 max-w-7xl items-center justify-between gap-6 px-5">
+        {/*
+          The wordmark's "Market" script is black on transparency, so it needs
+          lifting off the near-black header. `drop-shadow()` cannot blend, so the
+          glow is a second copy of the logo: `brightness(0) invert(1)` turns every
+          opaque pixel cream while keeping the alpha shape, then it is blurred and
+          composited additively with plus-lighter. --logo-glow is the feather —
+          the one number worth tuning.
+        */}
         <Link
           to="/"
-          className="flex h-full items-center py-3"
+          className="relative isolate flex h-full items-center py-3"
           onClick={() => setOpen(false)}
+          style={{ "--logo-glow": "100px" } as CSSProperties}
         >
           <img
             src={wordmark}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-3 left-0 h-[calc(100%-1.5rem)] w-auto object-contain opacity-80 [filter:brightness(0)_invert(1)_blur(var(--logo-glow))] [mix-blend-mode:plus-lighter]"
+          />
+          <img
+            src={wordmark}
             alt="Redtail Market"
-            className="h-full w-auto object-contain drop-shadow-[0_1px_1px_rgba(250,245,235,0.9),0_0_6px_rgba(250,245,235,0.55)]"
+            className="relative h-full w-auto object-contain drop-shadow-[0_1px_2px_rgba(250,245,235,0.55)]"
           />
         </Link>
 

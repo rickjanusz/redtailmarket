@@ -4,7 +4,7 @@ import { ArrowRight, Hammer, MapPin, Recycle, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-market.jpg";
 import { useScentProfile } from "@/hooks/use-scent-profile";
 import { topSellers } from "@/lib/bumblin-bee";
-import { makers } from "@/lib/placeholder-data";
+import { independentMakers } from "@/lib/makers";
 import makersImage from "@/assets/makers.jpg";
 import { MakerCard } from "@/components/site/MakerCard";
 import { ScentCard } from "@/components/site/ScentCard";
@@ -64,6 +64,11 @@ function Index() {
   // Ranked by real Square sales over the last 365 days, not Shopify's "best
   // seller" tag — only 14 of the 27 tagged scents are truly top sellers. A
   // returning shopper with session history sees their own profile instead.
+  // Lead with makers whose blurb names where they work — those cards read best.
+  const featuredMakers = independentMakers
+    .filter((m) => m.hometown)
+    .slice(0, 4);
+
   const {
     scents: featuredScents,
     tagLabel,
@@ -224,7 +229,7 @@ function Index() {
             </Link>
           </div>
           <div className="mt-10 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {makers.slice(0, 4).map((maker) => (
+            {featuredMakers.map((maker) => (
               <MakerCard key={maker.slug} maker={maker} />
             ))}
           </div>

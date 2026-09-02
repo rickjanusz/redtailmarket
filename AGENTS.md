@@ -458,6 +458,38 @@ near-black. `SiteHeader` compensates with a heavy white glow
 (`drop-shadow-[...rgba(250,245,235,0.9)...]`). That is a workaround, not a fix -
 a proper knockout/light version of the wordmark would remove the need for it.
 
+## Maker profiles came from the old Square Online site
+
+`src/lib/makers.ts` holds 21 maker write-ups with photos, lifted ONCE from the
+retired Square Online site's `/makers` page (`scripts/build-makers.py`, reading
+`window.__BOOTSTRAP_STATE__`). **That file is now hand-maintained** - re-running
+the script overwrites edits. Photos are in `src/assets/makers/`, resized from
+18 MB of originals to 4.8 MB.
+
+### squareItems is deliberately not one-to-one
+- **Several makers share one Square item.** Marchello Art sells under
+  `Artisan Jewelry` alongside other makers and some wholesale (owner,
+  2026-09-01), so that maker carries `shared: true` - a maker page must NOT
+  claim the whole item's products as theirs.
+- **One maker spans several items.** Oak Hill Studio is split six ways by
+  season, Hearthside four ways, Bumblin Bee six ways by jar size.
+- `house: true` marks Bumblin Bee as our own brand; `independentMakers` excludes
+  it, and `/makers` lists it separately rather than among the independents.
+
+### Roster gaps (as of 2026-09-01)
+Reconciled against the Square catalogue: 20 of 21 profiles still map to stocked
+items. **About 18 local makers in Square have no write-up at all** - the largest
+being Old Goat Primitives (115 variations), One More Thyme (109), RiRi's Corner
+(66), Doughney Designs (58), Brennans Woodworking (50), Very Very Lapidary (49)
+and The Rusty Nail (40); also Miles Mercantile, Susie B. Crafts, Simple
+Impressions, Barnwood Signs Co., Shoots Roots & Leather Boots, KSchulz Pottery,
+Schitz & Giggles, Turco & Blondie, In My Spare Time, Ellembee, Lil Dickens.
+These need copy and a photo before they can appear.
+
+Note when reconciling: a naive name match reports false losses. `Irvin's
+Tinware` is in Square as `Irvins Country Tinware`, and Bumblin Bee as five size
+items — neither is missing.
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

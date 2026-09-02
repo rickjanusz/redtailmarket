@@ -490,6 +490,37 @@ Note when reconciling: a naive name match reports false losses. `Irvin's
 Tinware` is in Square as `Irvins Country Tinware`, and Bumblin Bee as five size
 items — neither is missing.
 
+## Copy is the owner's call
+
+**Fix what the owner flags; SHOW anything else you spot rather than rewriting
+it.** One flagged line once turned into five rewritten pieces of brand copy in
+a single commit, four of which had to be reverted.
+
+### The wholesale positioning (owner, 2026-09-01)
+The market carries wholesale brands alongside handmade work, but **every brand
+is American-designed, and the companies are usually family-owned or started by
+American makers** — some production happens overseas. So:
+
+- "gifts from artisans across the USA" is ACCURATE. It describes where the
+  makers and companies are, not where every item is manufactured. Do not flag
+  it as an overclaim.
+- Earth Rugs qualifies as US-finished: jute is woven in Bangladesh, then
+  hand-painted at the Arkansas HQ and in studios across the US.
+- What is NOT safe is "Everything is made in the USA". "Made in USA" is an
+  FTC-regulated claim requiring "all or virtually all" domestic content, and
+  imported goods merely finished here generally fail it. That line was removed
+  and should not come back in that form.
+- Still unverified either way: Toysmith/Neato and Myra Bags.
+
+The claim that WAS false and is now fixed: "Every piece is built, poured,
+stitched or thrown by a real maker" — the market carries NobleWorks (230
+variations), Myra Bags (91), WT Collection (86), K&K (66), Paine's (61),
+Dr. Squatch (59), Toysmith/Neato (59), Candle Warmers (57) and others.
+
+### Other claims to keep honest
+Only Bumblin Bee candles are shoppable online, and no maker has products on the
+site — so avoid "shop the whole floor online" or "their full collection".
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

@@ -95,7 +95,7 @@ export const makers: Maker[] = [
   {
     slug: "down-on-the-farm",
     name: "Down on the Farm",
-    hometown: null,
+    hometown: "Southern Illinois",
     blurb: "Indulge in the rustic charm of this family's handcrafted art. Each piece is meticulously cut and painted by the family residing Down on the Farm in scenic southern Indiana. Their unique artistic creations are crafted using scrap lumber from homestead projects and reclaimed wood from defunct buildings across the farm. If you appreciate true craftsmanship with an artists' touch, this is for you.",
     photo: imgDownontheFarm,
     origin: "usa",

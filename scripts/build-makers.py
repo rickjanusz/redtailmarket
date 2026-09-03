@@ -54,6 +54,9 @@ SQUARE_ITEMS = {
 # whatever the text parser finds.
 HOMETOWN_OVERRIDE = {
     "Daybreak Crafts": "New Lenox, Illinois",   # owner, 2026-09-03
+    # Region only — no city known (owner, 2026-09-03). Kept deliberately vague
+    # rather than inventing a town.
+    "Down on the Farm": "Southern Illinois",
 }
 
 # Country-of-origin, per maker. "usa" = made here. "usa-finished" = produced

@@ -61,6 +61,17 @@ HOMETOWN_OVERRIDE = {
     # Ontario, Canada (2026-09-03). The Made in the USA badge rests on this.
     "Vintage Addiction": "Ontario, California",
     "Irvin's Tinware": "Mount Pleasant Mills, Pennsylvania",  # owner, 2026-09-03
+    "Twisted Wares": "Carrollton, Texas",                     # owner, 2026-09-03
+}
+
+# Copy the owner has supplied since the old site was written. Appended to the
+# lifted blurb rather than replacing it, so the origin story survives.
+BLURB_APPEND = {
+    "Twisted Wares": (
+        "Proudly printed, packed, and shipped right here in Carrollton, Texas, "
+        "Twisted Wares brings bold humor and high-quality kitchen goods straight "
+        "from the Lone Star State to your home."
+    ),  # owner, 2026-09-03
 }
 
 # Country-of-origin, per maker. "usa" = made here. "usa-finished" = produced
@@ -129,11 +140,15 @@ for m in makers:
                    "photo": slugify(name) + ".jpg"}
         continue
     town = HOMETOWN_OVERRIDE.get(name) or find_town(m["body"])
+    body = m["body"]
+    extra = BLURB_APPEND.get(name)
+    if extra:
+        body = f"{body} {extra}".strip()
     rows.append({
         "slug": slugify(name),
         "name": name,
         "hometown": town,
-        "blurb": m["body"],
+        "blurb": body,
         "photo": slugify(name) + ".jpg",
         "squareItems": SQUARE_ITEMS.get(name, []),
         # Default: a maker naming a US location in their own copy is US-made.

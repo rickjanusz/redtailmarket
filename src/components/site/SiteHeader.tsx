@@ -7,6 +7,7 @@ import wordmark from "@/assets/brand/redtail-wordmark.png";
 const nav = [
   { to: "/", label: "Home" },
   { to: "/shop", label: "Shop" },
+  { to: "/about", label: "Our Story" },
   { to: "/makers", label: "Our Makers" },
   { to: "/visit", label: "Visit" },
   { to: "/contact", label: "Contact" },

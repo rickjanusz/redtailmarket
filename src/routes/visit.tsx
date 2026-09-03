@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { PageShell } from "@/components/site/PageShell";
@@ -42,7 +43,7 @@ function Visit() {
       title="Historic Downtown Frankfort, Illinois"
       intro="Our storefront sits in the heart of Historic Downtown Frankfort. Stop by to browse the market in person, or reach out by phone or email."
     >
-      <PlaceholderImage className="mt-12 h-64 w-full sm:h-80" label="Storefront photo" />
+      <StoreView />
 
       <div className="mt-px grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
         <a
@@ -119,5 +120,104 @@ function Visit() {
         </div>
       </section>
     </PageShell>
+  );
+}
+
+const STORE_VIEWS = [
+  {
+    id: "street",
+    label: "Street view",
+    title:
+      "Street View of Redtail Market at 3 West Nebraska Street, Frankfort, Illinois",
+    // Keyless embed — no API key to manage, no billing account tied to the site.
+    //
+    // Pinned by PANORAMA ID rather than coordinates. Geocoding the address let
+    // Google snap to whichever panorama was nearest, which landed across the
+    // street at 4 W Nebraska; nudging the coordinate just walked it round onto
+    // White St. The pano id is exact and cannot drift.
+    //
+    // panoid + heading came from the Street View URL for the shopfront:
+    //   .../@41.4977295,-87.8493394,0a,73.7y,4.06h,90t/data=!3m4!1e1!3m2!1s65rbQtVneKTZNgJ7hevxow!2e0
+    // cbp is [maptype],heading,[.],pitch,zoom — 4.06 frames the storefront,
+    // and the trailing 1 is one zoom level in (0 is the widest).
+    //
+    // Left unstyled on purpose: Google's terms restrict altering the appearance,
+    // so no dark-mode filter.
+    src: "https://maps.google.com/maps?q=&layer=c&panoid=65rbQtVneKTZNgJ7hevxow&cbp=11,4.06,0,0,1&output=svembed",
+  },
+  {
+    id: "map",
+    label: "Map",
+    title: "Map showing Redtail Market at 3 West Nebraska Street, Frankfort, Illinois",
+    src: "https://www.google.com/maps?q=3+West+Nebraska+Street,+Frankfort,+IL+60423&output=embed",
+  },
+] as const;
+
+function StoreView() {
+  const [active, setActive] = useState<(typeof STORE_VIEWS)[number]["id"]>("street");
+  // Mount a panel's iframe only once it has been opened, then keep it mounted —
+  // one network load per tab, and switching back does not reload it.
+  const [seen, setSeen] = useState<string[]>(["street"]);
+
+  function open(id: (typeof STORE_VIEWS)[number]["id"]) {
+    setActive(id);
+    setSeen((s) => (s.includes(id) ? s : [...s, id]));
+  }
+
+  return (
+    <div className="mt-12">
+      <div role="tablist" aria-label="View the storefront" className="flex gap-2">
+        {STORE_VIEWS.map((v, i) => (
+          <button
+            key={v.id}
+            role="tab"
+            id={`storeview-tab-${v.id}`}
+            aria-selected={active === v.id}
+            aria-controls={`storeview-panel-${v.id}`}
+            tabIndex={active === v.id ? 0 : -1}
+            onClick={() => open(v.id)}
+            onKeyDown={(e) => {
+              if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+              e.preventDefault();
+              const next =
+                STORE_VIEWS[
+                  (i + (e.key === "ArrowRight" ? 1 : STORE_VIEWS.length - 1)) %
+                    STORE_VIEWS.length
+                ]!;
+              open(next.id);
+              document.getElementById(`storeview-tab-${next.id}`)?.focus();
+            }}
+            className={`border px-5 py-2.5 text-[0.7rem] uppercase tracking-[0.2em] transition-colors ${
+              active === v.id
+                ? "border-accent text-accent"
+                : "border-border text-muted-foreground hover:border-accent hover:text-accent"
+            }`}
+          >
+            {v.label}
+          </button>
+        ))}
+      </div>
+
+      {STORE_VIEWS.map((v) => (
+        <div
+          key={v.id}
+          role="tabpanel"
+          id={`storeview-panel-${v.id}`}
+          aria-labelledby={`storeview-tab-${v.id}`}
+          hidden={active !== v.id}
+          className="mt-3"
+        >
+          {seen.includes(v.id) ? (
+            <iframe
+              title={v.title}
+              src={v.src}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-72 w-full border border-border sm:h-[28rem]"
+            />
+          ) : null}
+        </div>
+      ))}
+    </div>
   );
 }

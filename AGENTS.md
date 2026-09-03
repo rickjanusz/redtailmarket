@@ -525,6 +525,35 @@ Dr. Squatch (59), Toysmith/Neato (59), Candle Warmers (57) and others.
 Only Bumblin Bee candles are shoppable online, and no maker has products on the
 site — so avoid "shop the whole floor online" or "their full collection".
 
+## The market's own story lives on /about
+
+`src/routes/about.tsx`. **Every sentence of body copy is the owner's, verbatim**
+from bumblinbee.com/pages/about-us, re-sequenced for the Redtail context. Do
+not "improve" the voice — see the copy-ownership rule above.
+
+The arc is the point: Bumblin Bee drove catalogs shop to shop, Redtail Market
+said yes first (hours after the catalogs came off the press), and thirteen
+months later Bumblin Bee, LLC bought it. It is now their HQ — "home to the
+local makers we wished had been stocked beside us when we started".
+
+### Presentation is deliberately NOT the Bumblin Bee one
+bumblinbee.com uses polaroid piles on a drawn timeline path (`bb-polaroid-pile`,
+`bb-timeline__path`). This page uses a chronological spine instead — a hard
+rule, square accent nodes, uppercase stage markers (2021 / Month 2 / Month 7 /
+Month 13 / 24 Months, the owner's own points). Reasons, so nobody "fixes" it:
+
+- the polaroid pile needs ~30 snapshots; there are two usable photos here;
+- Redtail's language is dark, hard-bordered, uppercase — the pile is light and
+  casual, and would import another brand's look;
+- if both sites do polaroid piles, neither owns it. Siblings, not twins.
+
+**No in-chapter photography, on purpose.** Only two of the founding photos on
+bumblinbee.com are clean shots; the rest are 1125px iPhone screenshots of
+Instagram stories with captions and the IG logo burned in. Two illustrated
+chapters out of five read as an accident, so the copy carries it alone. If
+better photography appears, the originals are re-downloadable from
+`bumblinbee.com/cdn/shop/files/<name>?width=1600`.
+
 ## Secrets
 
 `.env` (gitignored; template in `.env.example`). Server-side only.

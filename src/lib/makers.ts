@@ -260,8 +260,8 @@ export const makers: Maker[] = [
   {
     slug: "twisted-wares",
     name: "Twisted Wares",
-    hometown: null,
-    blurb: "In the midst of the 2008 recession, Twisted Wares emerged as a ray of hope. Missy, the creative force behind it all, turned adversity into opportunity. The turning point? A simple request for \"the wrong red\" tea towels in 2014. Fueled by determination and sauce(r)y humor, she transformed those towels into instant bestsellers. Since then, Twisted Wares has become synonymous with functional products that pack a punch. Our adultish party collection adds character to any get together, bar or home while sparking conversations and brightening up your day.",
+    hometown: "Carrollton, Texas",
+    blurb: "In the midst of the 2008 recession, Twisted Wares emerged as a ray of hope. Missy, the creative force behind it all, turned adversity into opportunity. The turning point? A simple request for \"the wrong red\" tea towels in 2014. Fueled by determination and sauce(r)y humor, she transformed those towels into instant bestsellers. Since then, Twisted Wares has become synonymous with functional products that pack a punch. Our adultish party collection adds character to any get together, bar or home while sparking conversations and brightening up your day. Proudly printed, packed, and shipped right here in Carrollton, Texas, Twisted Wares brings bold humor and high-quality kitchen goods straight from the Lone Star State to your home.",
     photo: imgTwistedWares,
     origin: "usa",
     squareItems: ["Twisted Wares"],

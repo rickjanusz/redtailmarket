@@ -50,6 +50,12 @@ SQUARE_ITEMS = {
                            "Bumblin Bee, 48oz Apothecary Jar Candle",
                            "Bumblin Bee Accessories"],
 }
+# Hometowns the blurb never states — supplied by the owner. These win over
+# whatever the text parser finds.
+HOMETOWN_OVERRIDE = {
+    "Daybreak Crafts": "New Lenox, Illinois",   # owner, 2026-09-03
+}
+
 # Country-of-origin, per maker. "usa" = made here. "usa-finished" = produced
 # abroad but finished here, which must NOT be called "Made in the USA" (an
 # FTC-regulated claim needing all-or-virtually-all domestic content).
@@ -115,7 +121,7 @@ for m in makers:
         recruit = {"title": name, "body": m["body"],
                    "photo": slugify(name) + ".jpg"}
         continue
-    town = find_town(m["body"])
+    town = HOMETOWN_OVERRIDE.get(name) or find_town(m["body"])
     rows.append({
         "slug": slugify(name),
         "name": name,

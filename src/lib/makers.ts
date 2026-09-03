@@ -84,7 +84,7 @@ export const makers: Maker[] = [
   {
     slug: "daybreak-crafts",
     name: "Daybreak Crafts",
-    hometown: null,
+    hometown: "New Lenox, Illinois",
     blurb: "Explore the stunning 3D paper shadowboxes created by Terry Yaconi of Daybreak Crafts. With intricate layers meticulously assembled, these pieces bring depth and enchantment to every home. The perfect gift for every season, holiday, or special occasion. She always keeps us stocked with a wide array of designs to choose from. Terry's craftsmanship and dedication knows no bounds.",
     photo: imgDaybreakCrafts,
     origin: "usa",

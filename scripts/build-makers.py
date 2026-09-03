@@ -60,6 +60,13 @@ ORIGIN_OVERRIDE = {
     "Earth Rugs": "usa-finished",
     # label reads "Hand-poured in Illinois"
     "Bumblin Bee Candle": "usa",
+    # These five state no location in their own copy, so the automatic rule
+    # cannot infer one. Confirmed US-made by the owner (2026-09-03).
+    "Daybreak Crafts": "usa",
+    "Down on the Farm": "usa",
+    "Irvin's Tinware": "usa",
+    "Twisted Wares": "usa",
+    "Vintage Addiction": "usa",
 }
 
 # Square items holding more than one maker — a maker page must NOT claim all of it.

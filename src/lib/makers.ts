@@ -139,7 +139,7 @@ export const makers: Maker[] = [
   {
     slug: "irvin-s-tinware",
     name: "Irvin's Tinware",
-    hometown: null,
+    hometown: "Mount Pleasant Mills, Pennsylvania",
     blurb: "In 1960, Irvin Hoover, a talented craftsman and designer known for his birdhouses, was inspired by a local merchant to recreate an antique tin-pierced lantern. At the age of sixteen, using an old stovepipe as his materials, young Irvin crafted his first piece. It quickly became a hit and led to the establishment of Irvin's Craft Shop. Today, that shop is known as Irvin's Tinware\u2014a testament to the enduring craftsmanship that began with a simple lantern.",
     photo: imgIrvinsTinware,
     origin: "usa",
@@ -282,7 +282,7 @@ export const makers: Maker[] = [
   {
     slug: "vintage-addiction",
     name: "Vintage Addiction",
-    hometown: null,
+    hometown: "Ontario, California",
     blurb: "Our Vintage Addiction collection is a heartfelt tribute and reminder of the sacrifices made by military veterans. Crafted from genuine used military tents, these recycled bags carry an authentic story. Every bag showcases unique imperfections, stains, and colors that add character, reflecting each soldier's shelter-seeking experience in training fields or combat zones. Keep them in your heart and on your shoulder.",
     photo: imgVintageAddiction,
     origin: "usa",

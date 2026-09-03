@@ -57,6 +57,11 @@ HOMETOWN_OVERRIDE = {
     # Region only — no city known (owner, 2026-09-03). Kept deliberately vague
     # rather than inventing a town.
     "Down on the Farm": "Southern Illinois",
+    # Owner said "Ontario, CA" (2026-09-03), read as Ontario, California — it is
+    # consistent with their confirming this maker as US-made. If they meant
+    # Ontario, Canada, the "Made in the USA" badge below must come off too.
+    "Vintage Addiction": "Ontario, California",
+    "Irvin's Tinware": "Mount Pleasant Mills, Pennsylvania",  # owner, 2026-09-03
 }
 
 # Country-of-origin, per maker. "usa" = made here. "usa-finished" = produced
